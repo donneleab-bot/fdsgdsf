@@ -53,28 +53,17 @@
             pointer-events: none;
         }
 
-        /* ============================================
-           СОФИТЫ И ДЫМ
-           ============================================ */
         .spotlight {
             position: fixed;
-            top: 0;
-            left: 50%;
+            top: 0; left: 50%;
             transform: translateX(-50%);
-            width: 200%;
-            height: 60vh;
+            width: 200%; height: 60vh;
             pointer-events: none;
             z-index: 0;
-            background:
-                radial-gradient(ellipse at 50% 0%,
-                    rgba(255, 220, 120, 0.22) 0%,
-                    rgba(255, 200, 80, 0.12) 20%,
-                    rgba(200, 0, 0, 0.06) 45%,
-                    transparent 75%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 220, 120, 0.22) 0%, rgba(255, 200, 80, 0.12) 20%, rgba(200, 0, 0, 0.06) 45%, transparent 75%);
             filter: blur(50px);
             animation: spotlightPulse 6s ease-in-out infinite;
         }
-
         @keyframes spotlightPulse {
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
@@ -93,7 +82,6 @@
             filter: blur(60px);
             animation: smokeDrift 20s ease-in-out infinite alternate;
         }
-
         @keyframes smokeDrift {
             from { transform: translate(0, 0) scale(1); }
             to { transform: translate(30px, -20px) scale(1.1); }
@@ -106,7 +94,6 @@
             z-index: 0;
             overflow: hidden;
         }
-
         .dust-bg .mote {
             position: absolute;
             border-radius: 50%;
@@ -115,7 +102,6 @@
             opacity: 0;
             animation: moteFloat linear infinite;
         }
-
         @keyframes moteFloat {
             0% { opacity: 0; transform: translate3d(0, 0, 0); }
             20% { opacity: 0.9; }
@@ -132,7 +118,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 22px 45px;
+            padding: 20px 45px;
             position: relative;
             z-index: 20;
             border-bottom: 1px solid rgba(212, 175, 55, 0.18);
@@ -140,13 +126,11 @@
             backdrop-filter: blur(14px);
             box-shadow: 0 1px 0 rgba(255, 215, 0, 0.08), 0 20px 40px rgba(0, 0, 0, 0.5);
         }
-
         .topbar::after {
             content: '';
             position: absolute;
             bottom: -1px;
-            left: 15%;
-            right: 15%;
+            left: 15%; right: 15%;
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.5), transparent);
         }
@@ -158,20 +142,12 @@
             color: #FFD700;
             letter-spacing: 9px;
             text-decoration: none;
-            text-shadow: 
-                0 0 22px rgba(255, 215, 0, 0.6), 
-                0 0 45px rgba(180, 0, 0, 0.5),
-                0 2px 4px rgba(0, 0, 0, 1);
+            text-shadow: 0 0 22px rgba(255, 215, 0, 0.6), 0 0 45px rgba(180, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 1);
             transition: text-shadow 0.4s ease;
         }
-
         .logo:hover {
-            text-shadow: 
-                0 0 35px rgba(255, 215, 0, 0.9), 
-                0 0 70px rgba(180, 0, 0, 0.8),
-                0 2px 4px rgba(0, 0, 0, 1);
+            text-shadow: 0 0 35px rgba(255, 215, 0, 0.9), 0 0 70px rgba(180, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 1);
         }
-
         .logo span {
             font-family: 'Great Vibes', cursive;
             font-size: 1.1rem;
@@ -189,7 +165,6 @@
             letter-spacing: 3.5px;
             text-transform: uppercase;
         }
-
         .topbar-nav a {
             color: rgba(232, 216, 200, 0.55);
             text-decoration: none;
@@ -197,26 +172,23 @@
             position: relative;
             padding: 6px 0;
         }
-
         .topbar-nav a:hover,
         .topbar-nav a.active {
             color: #FFD700;
             text-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
         }
-
         .topbar-nav a.active::after {
             content: '';
             position: absolute;
             bottom: -8px;
-            left: -4px;
-            right: -4px;
+            left: -4px; right: -4px;
             height: 1px;
             background: linear-gradient(90deg, transparent, #FFD700, transparent);
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
 
         /* ============================================
-           БАЛАНС + АВАТАР
+           КОШЕЛЁК — БОЛЬШЕ И КРАСИВЕЕ
            ============================================ */
         .topbar-user {
             display: flex;
@@ -225,53 +197,66 @@
             position: relative;
         }
 
-        /* Кошелёк */
         .wallet {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px 14px 8px 10px;
+            gap: 12px;
+            padding: 6px 18px 6px 8px;
             background: 
-                linear-gradient(135deg, rgba(60, 0, 0, 0.6) 0%, rgba(20, 0, 0, 0.5) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.45);
-            border-radius: 24px;
+                linear-gradient(135deg, rgba(80, 0, 0, 0.75) 0%, rgba(30, 0, 0, 0.65) 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.55);
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             position: relative;
             box-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.15),
-                inset 0 0 15px rgba(0, 0, 0, 0.5);
+                0 0 22px rgba(255, 215, 0, 0.25),
+                inset 0 0 20px rgba(0, 0, 0, 0.6);
         }
 
+        .wallet::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.25), transparent);
+            transition: left 0.8s ease;
+            border-radius: 30px;
+            pointer-events: none;
+        }
+
+        .wallet:hover::before { left: 100%; }
+
         .wallet:hover {
-            border-color: rgba(255, 215, 0, 0.9);
+            border-color: #FFD700;
             box-shadow: 
-                0 0 35px rgba(255, 215, 0, 0.5),
-                0 0 60px rgba(180, 0, 0, 0.3),
-                inset 0 0 15px rgba(0, 0, 0, 0.5);
+                0 0 40px rgba(255, 215, 0, 0.6),
+                0 0 70px rgba(180, 0, 0, 0.4),
+                inset 0 0 20px rgba(0, 0, 0, 0.6);
             transform: translateY(-2px);
         }
 
-        /* Фишка (круг) */
+        /* Фишка — красивая покерная */
         .wallet .chip-icon {
-            width: 30px;
-            height: 30px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: 
-                radial-gradient(circle at 30% 30%, #FFE066, #D4AF37 50%, #8B6914 100%);
-            border: 2px solid #FFD700;
+                radial-gradient(circle at 30% 25%, #FFF1B0 0%, #FFD700 25%, #D4AF37 55%, #8B6914 100%);
+            border: 2px solid #FFE066;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
+            font-size: 1.05rem;
             font-weight: 900;
             color: #1A0505;
-            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
             box-shadow: 
-                0 0 15px rgba(255, 215, 0, 0.7),
-                inset 0 -3px 6px rgba(120, 80, 0, 0.5),
-                inset 0 3px 6px rgba(255, 255, 255, 0.3);
+                0 0 18px rgba(255, 215, 0, 0.85),
+                0 0 35px rgba(255, 180, 0, 0.4),
+                inset 0 -4px 8px rgba(120, 80, 0, 0.6),
+                inset 0 4px 8px rgba(255, 255, 255, 0.4);
             position: relative;
             flex-shrink: 0;
         }
@@ -282,62 +267,70 @@
             position: absolute;
             inset: 4px;
             border-radius: 50%;
-            border: 1px dashed rgba(139, 105, 20, 0.7);
+            border: 1.5px dashed rgba(139, 105, 20, 0.85);
         }
 
+        /* Внутренний кружок (белая звезда) */
         .wallet .chip-icon::after {
-            content: '✦';
+            content: '♠';
             position: absolute;
-            color: #8B6914;
-            font-size: 0.6rem;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.6;
+            color: rgba(26, 5, 5, 0.9);
+            font-size: 0.95rem;
+            font-weight: 900;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+            z-index: 2;
         }
 
         /* Баланс */
         .wallet .balance {
             display: flex;
             flex-direction: column;
-            line-height: 1.1;
+            line-height: 1.15;
+            min-width: 70px;
         }
 
         .wallet .balance .chips {
             font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: #FFD700;
             letter-spacing: 1.5px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+        .wallet .balance .chips .unit {
+            font-size: 0.65rem;
+            color: rgba(255, 215, 0, 0.7);
+            letter-spacing: 2px;
+            margin-left: 3px;
+            font-weight: 400;
         }
 
         .wallet .balance .usdt {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-style: italic;
-            color: rgba(197, 160, 89, 0.9);
+            color: rgba(197, 160, 89, 0.95);
             letter-spacing: 0.5px;
         }
-
         .wallet .balance .usdt .usdt-icon {
             color: #26A17B;
             font-weight: 700;
             text-shadow: 0 0 8px rgba(38, 161, 123, 0.8);
+            margin-right: 2px;
         }
 
         /* Плюсик */
         .wallet .plus {
-            width: 22px;
-            height: 22px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             background: rgba(255, 215, 0, 0.15);
-            border: 1px solid rgba(255, 215, 0, 0.6);
+            border: 1.5px solid rgba(255, 215, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #FFD700;
-            font-size: 0.85rem;
+            font-size: 1rem;
             font-weight: 700;
             line-height: 1;
             transition: all 0.3s ease;
@@ -347,13 +340,14 @@
         .wallet:hover .plus {
             background: #FFD700;
             color: #1A0505;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+            box-shadow: 0 0 22px rgba(255, 215, 0, 1);
+            transform: rotate(90deg);
         }
 
         /* Аватар */
         .topbar-user .avatar {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: linear-gradient(135deg, #2B0A0A, #4A0505);
             border: 2px solid rgba(255, 215, 0, 0.55);
@@ -369,7 +363,6 @@
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
         .topbar-user .avatar:hover {
             box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
             transform: scale(1.06) rotate(5deg);
@@ -377,24 +370,24 @@
         }
 
         /* ============================================
-           ВЫПАДАЮЩЕЕ МЕНЮ ПОПОЛНЕНИЯ
+           ВЫПАДАЮЩЕЕ МЕНЮ ПОПОЛНЕНИЯ — подробнее
            ============================================ */
         .wallet-dropdown {
             position: absolute;
             top: calc(100% + 14px);
             right: 0;
-            width: 320px;
+            width: 360px;
             background: 
-                radial-gradient(ellipse at 30% 0%, rgba(120, 0, 0, 0.5) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 0%, rgba(120, 0, 0, 0.55) 0%, transparent 60%),
                 linear-gradient(165deg, #150303 0%, #080101 100%);
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            border-radius: 14px;
-            padding: 20px;
+            border: 1.5px solid rgba(212, 175, 55, 0.55);
+            border-radius: 16px;
+            padding: 22px;
             z-index: 100;
             box-shadow: 
-                0 25px 60px rgba(0, 0, 0, 0.95),
+                0 30px 70px rgba(0, 0, 0, 0.95),
                 0 0 0 1px rgba(255, 215, 0, 0.15),
-                0 0 60px rgba(180, 0, 0, 0.5);
+                0 0 70px rgba(180, 0, 0, 0.6);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
@@ -411,50 +404,86 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 20%;
-            right: 20%;
+            left: 20%; right: 20%;
             height: 2px;
             background: linear-gradient(90deg, transparent, #FFD700, #FF4444, #FFD700, transparent);
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
             border-radius: 2px;
         }
 
+        /* Заголовок */
         .wallet-dropdown h4 {
             font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #FFD700;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             text-align: center;
-            margin-bottom: 16px;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 6px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
         }
 
+        .wallet-dropdown .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            font-style: italic;
+            color: rgba(197, 160, 89, 0.8);
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        /* Баланс */
         .wallet-dropdown .balance-full {
             text-align: center;
-            padding: 14px 10px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            border-radius: 10px;
-            margin-bottom: 16px;
+            padding: 16px 10px;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.1) 0%, transparent 70%),
+                rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 12px;
+            margin-bottom: 18px;
+            position: relative;
         }
 
         .wallet-dropdown .balance-full .label {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-style: italic;
-            color: rgba(197, 160, 89, 0.8);
-            letter-spacing: 2px;
+            color: rgba(197, 160, 89, 0.85);
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
-
         .wallet-dropdown .balance-full .value-chips {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #FFD700;
             letter-spacing: 2px;
-            text-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
             margin: 4px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .wallet-dropdown .balance-full .value-chips .mini-chip {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 25%, #FFF1B0, #FFD700 25%, #D4AF37 55%, #8B6914 100%);
+            border: 1.5px solid #FFE066;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.7), inset 0 -2px 4px rgba(120, 80, 0, 0.5);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .wallet-dropdown .balance-full .value-chips .mini-chip::after {
+            content: '♠';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.55rem;
+            color: #1A0505;
+            font-weight: 900;
         }
 
         .wallet-dropdown .balance-full .value-usdt {
@@ -464,80 +493,177 @@
             color: #26A17B;
             text-shadow: 0 0 10px rgba(38, 161, 123, 0.6);
         }
+        .wallet-dropdown .balance-full .value-usdt .usdt-icon {
+            color: #26A17B;
+            font-weight: 700;
+            margin-right: 3px;
+        }
+
+        /* Курс */
+        .wallet-dropdown .rate-info {
+            padding: 12px 14px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .wallet-dropdown .rate-info .rate-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem;
+            font-style: italic;
+            color: rgba(197, 160, 89, 0.9);
+            letter-spacing: 1px;
+        }
+        .wallet-dropdown .rate-info .rate-value {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: #FFD700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+        }
+        .wallet-dropdown .rate-info .rate-value .green {
+            color: #26A17B;
+            text-shadow: 0 0 12px rgba(38, 161, 123, 0.7);
+        }
+
+        /* Пакеты */
+        .wallet-dropdown .packages-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
+            letter-spacing: 4px;
+            color: rgba(255, 215, 0, 0.7);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 10px;
+        }
 
         .wallet-dropdown .packages {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 14px;
+            gap: 10px;
+            margin-bottom: 16px;
         }
 
         .wallet-dropdown .pkg {
-            padding: 10px 8px;
+            padding: 12px 8px;
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             text-align: center;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 4px;
+            position: relative;
+            overflow: hidden;
         }
+
+        .wallet-dropdown .pkg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .wallet-dropdown .pkg:hover::before { left: 100%; }
 
         .wallet-dropdown .pkg:hover {
             border-color: #FFD700;
-            background: rgba(60, 0, 0, 0.5);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-            transform: translateY(-2px);
+            background: rgba(60, 0, 0, 0.6);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            transform: translateY(-3px);
         }
 
         .wallet-dropdown .pkg .chips-amount {
             font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #FFD700;
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
         }
 
         .wallet-dropdown .pkg .usdt-amount {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-style: italic;
-            color: rgba(38, 161, 123, 0.9);
+            color: rgba(38, 161, 123, 0.95);
+        }
+
+        .wallet-dropdown .pkg .bonus {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.68rem;
+            font-style: italic;
+            color: rgba(255, 68, 68, 0.95);
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+            text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
         }
 
         .wallet-dropdown .pkg.best {
-            border-color: rgba(255, 68, 68, 0.7);
-            position: relative;
+            border-color: rgba(255, 68, 68, 0.8);
+            background: linear-gradient(165deg, rgba(80, 0, 0, 0.6) 0%, rgba(20, 0, 0, 0.5) 100%);
+            box-shadow: 0 0 25px rgba(180, 0, 0, 0.5);
         }
 
         .wallet-dropdown .pkg.best::after {
             content: 'ТОП';
             position: absolute;
-            top: -8px;
+            top: -6px;
             right: 6px;
             font-family: 'Cinzel', serif;
             font-size: 0.55rem;
             letter-spacing: 2px;
-            padding: 2px 6px;
+            padding: 2px 7px;
             background: linear-gradient(135deg, #FF0000, #8B0000);
             color: #FFFFFF;
             border-radius: 3px;
-            box-shadow: 0 0 12px rgba(255, 0, 0, 0.7);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+            text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
         }
 
+        /* Способы оплаты */
+        .wallet-dropdown .methods {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 14px;
+            justify-content: center;
+        }
+        .wallet-dropdown .methods .method {
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(38, 161, 123, 0.4);
+            color: rgba(38, 161, 123, 0.9);
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .wallet-dropdown .methods .method.active {
+            background: rgba(38, 161, 123, 0.15);
+            border-color: rgba(38, 161, 123, 0.8);
+            box-shadow: 0 0 12px rgba(38, 161, 123, 0.4);
+        }
+
+        /* Кнопка */
         .wallet-dropdown .deposit-btn {
             width: 100%;
             font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: #1A0505;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             border: 1px solid #FFD700;
-            padding: 14px;
-            border-radius: 6px;
+            padding: 15px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 700;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
@@ -562,7 +688,6 @@
             z-index: 5;
             animation: fadeInDown 1.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -580,12 +705,9 @@
             background: rgba(180, 0, 0, 0.18);
             text-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
             margin-bottom: 28px;
-            box-shadow: 
-                0 0 30px rgba(180, 0, 0, 0.5),
-                inset 0 0 20px rgba(255, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(180, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1);
             animation: badgePulse 3s ease-in-out infinite;
         }
-
         @keyframes badgePulse {
             0%, 100% { box-shadow: 0 0 30px rgba(180, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1); }
             50% { box-shadow: 0 0 50px rgba(255, 0, 0, 0.7), inset 0 0 30px rgba(255, 0, 0, 0.2); }
@@ -608,7 +730,6 @@
                 0 5px 0 rgba(120, 80, 0, 1),
                 0 8px 12px rgba(0, 0, 0, 1);
         }
-
         .hero h1 span {
             font-family: 'Great Vibes', cursive;
             font-size: 3.8rem;
@@ -616,9 +737,7 @@
             letter-spacing: 2px;
             text-transform: none;
             margin-left: 20px;
-            text-shadow: 
-                0 0 30px rgba(255, 0, 0, 0.9),
-                0 0 60px rgba(180, 0, 0, 0.7);
+            text-shadow: 0 0 30px rgba(255, 0, 0, 0.9), 0 0 60px rgba(180, 0, 0, 0.7);
         }
 
         .hero p {
@@ -640,14 +759,12 @@
             max-width: 700px;
             width: 90%;
         }
-
         .hero-divider .line {
             flex: 1;
             height: 1px;
             background: linear-gradient(90deg, transparent, #B8860B, #FFD700, #FFFFFF, #FFD700, #B8860B, transparent);
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
-
         .hero-divider .symbol {
             color: #FFD700;
             font-size: 1.4rem;
@@ -670,7 +787,6 @@
             position: relative;
             z-index: 5;
         }
-
         .filter-chip {
             font-family: 'Cinzel', serif;
             font-size: 0.7rem;
@@ -687,7 +803,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .filter-chip::before {
             content: '';
             position: absolute;
@@ -699,16 +814,13 @@
             transition: width 0.6s ease, height 0.6s ease;
             z-index: -1;
         }
-
         .filter-chip:hover::before { width: 200%; height: 200%; }
-
         .filter-chip:hover {
             color: #FFD700;
             border-color: rgba(255, 215, 0, 0.9);
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
             transform: translateY(-3px);
         }
-
         .filter-chip.active {
             color: #1A0505;
             background: linear-gradient(135deg, #FFD700, #FFA500);
@@ -716,7 +828,6 @@
             box-shadow: 0 0 35px rgba(255, 215, 0, 0.8), inset 0 -2px 8px rgba(120, 80, 0, 0.3);
             font-weight: 700;
         }
-
         .filter-chip.adult { color: #FF4444; border-color: rgba(255, 68, 68, 0.6); }
         .filter-chip.adult.active {
             background: linear-gradient(135deg, #FF0000, #8B0000);
@@ -758,7 +869,6 @@
                 border-color 0.4s ease;
             cursor: pointer;
         }
-
         .art-card:hover {
             transform: translateY(-10px) scale(1.02);
             border-color: #FFD700;
@@ -776,7 +886,6 @@
             overflow: hidden;
             background: #0A0000;
         }
-
         .art-card .thumb .placeholder {
             position: absolute;
             inset: 0;
@@ -794,9 +903,7 @@
             transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
             text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
         }
-
         .art-card:hover .thumb .placeholder { transform: scale(1.1); }
-
         .art-card .thumb .placeholder::after {
             content: '❦';
             position: absolute;
@@ -805,7 +912,6 @@
             color: rgba(255, 215, 0, 0.3);
             text-shadow: 0 0 22px rgba(255, 215, 0, 0.5);
         }
-
         .art-card .thumb::before {
             content: '';
             position: absolute;
@@ -817,7 +923,6 @@
             pointer-events: none;
             transition: left 0.9s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
         .art-card:hover .thumb::before { left: 130%; }
 
         .art-card .badge-18 {
@@ -837,7 +942,6 @@
         }
 
         .art-card .info { padding: 16px 18px 18px; }
-
         .art-card .info .title {
             font-family: 'Cinzel', serif;
             font-size: 1rem;
@@ -849,7 +953,6 @@
             text-overflow: ellipsis;
             text-shadow: 0 0 14px rgba(255, 215, 0, 0.45);
         }
-
         .art-card .info .author {
             font-family: 'Cormorant Garamond', serif;
             font-size: 0.9rem;
@@ -858,7 +961,6 @@
             margin-top: 5px;
             letter-spacing: 1.5px;
         }
-
         .art-card .info .meta {
             display: flex;
             align-items: center;
@@ -867,7 +969,6 @@
             padding-top: 12px;
             border-top: 1px solid rgba(212, 175, 55, 0.15);
         }
-
         .art-card .info .stats {
             display: flex;
             gap: 15px;
@@ -875,9 +976,7 @@
             font-size: 0.9rem;
             color: rgba(232, 216, 200, 0.7);
         }
-
         .art-card .info .stats .heart { color: #FF4444; }
-
         .art-card .info .tag {
             font-family: 'Cinzel', serif;
             font-size: 0.6rem;
@@ -907,7 +1006,6 @@
             position: relative;
             z-index: 5;
         }
-
         .footer .back-link {
             display: inline-block;
             margin-bottom: 20px;
@@ -920,12 +1018,10 @@
             text-transform: none;
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
-
         .footer .back-link:hover {
             color: #FFFFFF;
             text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
         }
-
         .footer span {
             color: #FF4444;
             text-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
@@ -951,7 +1047,6 @@
             transition: opacity 0.4s ease, visibility 0.4s ease;
             overflow-y: auto;
         }
-
         .lightbox.active { opacity: 1; visibility: visible; }
 
         .lightbox-inner {
@@ -975,7 +1070,6 @@
             transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
             max-height: 92vh;
         }
-
         .lightbox.active .lightbox-inner { transform: scale(1) translateY(0); }
 
         .lightbox-inner::before {
@@ -1001,7 +1095,6 @@
             min-height: 500px;
             overflow: hidden;
         }
-
         .lb-image::after {
             content: '❦';
             position: absolute;
@@ -1012,12 +1105,10 @@
             pointer-events: none;
             animation: symbolGlow 5s ease-in-out infinite;
         }
-
         @keyframes symbolGlow {
             0%, 100% { text-shadow: 0 0 80px rgba(255, 215, 0, 0.4); opacity: 0.85; }
             50% { text-shadow: 0 0 140px rgba(255, 215, 0, 0.7); opacity: 1; }
         }
-
         .lb-image .badge-18 {
             position: absolute;
             top: 22px; left: 22px;
@@ -1043,7 +1134,6 @@
             scrollbar-color: rgba(255, 215, 0, 0.4) transparent;
             position: relative;
         }
-
         .lb-info::-webkit-scrollbar { width: 6px; }
         .lb-info::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.4); border-radius: 3px; }
 
@@ -1061,7 +1151,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .lb-author::before {
             content: '';
             position: absolute;
@@ -1070,14 +1159,12 @@
             background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
             transition: left 0.7s ease;
         }
-
         .lb-author:hover::before { left: 100%; }
         .lb-author:hover {
             border-color: rgba(255, 215, 0, 0.7);
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
             transform: translateX(4px);
         }
-
         .lb-author .author-avatar {
             width: 56px; height: 56px;
             border-radius: 50%;
@@ -1093,7 +1180,6 @@
             flex-shrink: 0;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
         }
-
         .lb-author .author-info { flex: 1; min-width: 0; }
         .lb-author .author-name {
             font-family: 'Cinzel', serif;
@@ -1187,7 +1273,6 @@
             text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
             letter-spacing: 0.3px;
         }
-
         .lb-desc::before {
             content: '“';
             position: absolute;
@@ -1199,7 +1284,6 @@
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
             pointer-events: none;
         }
-
         .lb-desc::after {
             content: '”';
             position: absolute;
@@ -1332,8 +1416,6 @@
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
             transform: translateY(-3px);
         }
-
-        /* Кнопка чаевых — с золотым отливом */
         .lb-btn-mini.tip .mini-icon {
             color: #FFD700;
             text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
@@ -1398,19 +1480,20 @@
             .logo { font-size: 1.3rem; letter-spacing: 5px; }
             .logo span { font-size: 0.85rem; }
 
-            /* Кошелёк на мобильных */
-            .wallet { padding: 6px 10px 6px 6px; gap: 7px; }
-            .wallet .chip-icon { width: 26px; height: 26px; font-size: 0.75rem; }
-            .wallet .balance .chips { font-size: 0.85rem; }
-            .wallet .balance .usdt { font-size: 0.6rem; }
-            .wallet .plus { width: 18px; height: 18px; font-size: 0.7rem; }
+            .wallet { padding: 5px 14px 5px 6px; gap: 8px; }
+            .wallet .chip-icon { width: 32px; height: 32px; font-size: 0.9rem; }
+            .wallet .balance .chips { font-size: 0.9rem; }
+            .wallet .balance .chips .unit { font-size: 0.55rem; }
+            .wallet .balance .usdt { font-size: 0.65rem; }
+            .wallet .plus { width: 22px; height: 22px; font-size: 0.85rem; }
 
-            .topbar-user .avatar { width: 34px; height: 34px; font-size: 0.85rem; }
+            .topbar-user .avatar { width: 36px; height: 36px; font-size: 0.85rem; }
 
             .wallet-dropdown {
-                width: calc(100vw - 32px);
-                max-width: 320px;
-                right: -10px;
+                width: calc(100vw - 24px);
+                max-width: 340px;
+                right: -8px;
+                padding: 18px;
             }
 
             .hero { padding: 32px 16px 20px; }
@@ -1468,11 +1551,12 @@
             .hero h1 span { font-size: 1.4rem; }
             .hero-badge { font-size: 0.5rem; letter-spacing: 4px; }
 
-            .wallet { padding: 5px 8px 5px 5px; gap: 6px; }
-            .wallet .chip-icon { width: 22px; height: 22px; font-size: 0.65rem; }
-            .wallet .balance .chips { font-size: 0.75rem; }
-            .wallet .balance .usdt { font-size: 0.55rem; }
-            .wallet .plus { width: 16px; height: 16px; font-size: 0.6rem; }
+            .wallet { padding: 4px 10px 4px 5px; gap: 6px; }
+            .wallet .chip-icon { width: 28px; height: 28px; font-size: 0.8rem; }
+            .wallet .balance { min-width: 58px; }
+            .wallet .balance .chips { font-size: 0.8rem; }
+            .wallet .balance .usdt { font-size: 0.6rem; }
+            .wallet .plus { width: 20px; height: 20px; font-size: 0.8rem; }
 
             .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 14px 10px; }
             .art-card .info { padding: 8px 10px 10px; }
@@ -1505,11 +1589,11 @@
         </nav>
         <div class="topbar-user">
             <!-- Кошелёк -->
-            <div class="wallet" id="walletBtn" title="Кошелёк">
-                <div class="chip-icon">♠</div>
+            <div class="wallet" id="walletBtn" title="Кошелёк FENBO">
+                <div class="chip-icon"></div>
                 <div class="balance">
-                    <div class="chips">1 250</div>
-                    <div class="usdt"><span class="usdt-icon">₮</span> 12.50</div>
+                    <div class="chips">1 250<span class="unit">FEN</span></div>
+                    <div class="usdt"><span class="usdt-icon">₮</span>12.50</div>
                 </div>
                 <div class="plus">+</div>
             </div>
@@ -1520,13 +1604,25 @@
             <!-- Выпадающее меню -->
             <div class="wallet-dropdown" id="walletDropdown">
                 <h4>✦ Кошелёк ✦</h4>
+                <div class="subtitle">Фишки клуба FENBO</div>
 
                 <div class="balance-full">
                     <div class="label">Ваш баланс</div>
-                    <div class="value-chips">1 250 <span style="font-size:0.9rem;">фишек</span></div>
-                    <div class="value-usdt">≈ 12.50 USDT</div>
+                    <div class="value-chips">
+                        <div class="mini-chip"></div>
+                        1 250
+                    </div>
+                    <div class="value-usdt">≈ <span class="usdt-icon">₮</span>12.50 USDT</div>
                 </div>
 
+                <!-- Курс -->
+                <div class="rate-info">
+                    <div class="rate-label">Курс обмена:</div>
+                    <div class="rate-value"><span class="green">1 USDT</span> = 100 фишек</div>
+                </div>
+
+                <!-- Пакеты -->
+                <div class="packages-title">Пополнить фишки</div>
                 <div class="packages">
                     <div class="pkg" data-chips="500" data-usdt="5">
                         <div class="chips-amount">500</div>
@@ -1535,15 +1631,25 @@
                     <div class="pkg best" data-chips="1500" data-usdt="15">
                         <div class="chips-amount">1 500</div>
                         <div class="usdt-amount">15 USDT</div>
+                        <div class="bonus">+10% бонус</div>
                     </div>
                     <div class="pkg" data-chips="3000" data-usdt="30">
                         <div class="chips-amount">3 000</div>
                         <div class="usdt-amount">30 USDT</div>
+                        <div class="bonus">+5% бонус</div>
                     </div>
                     <div class="pkg" data-chips="7000" data-usdt="70">
                         <div class="chips-amount">7 000</div>
                         <div class="usdt-amount">70 USDT</div>
+                        <div class="bonus">+10% бонус</div>
                     </div>
+                </div>
+
+                <!-- Способы -->
+                <div class="methods">
+                    <div class="method active">TRC-20</div>
+                    <div class="method">ERC-20</div>
+                    <div class="method">BEP-20</div>
                 </div>
 
                 <button class="deposit-btn" id="depositBtn">Пополнить через USDT</button>
@@ -1742,7 +1848,6 @@
     </div>
 
     <script>
-        /* Фоновая пыль */
         (function dustBg(){
             const c = document.getElementById('dustBg');
             if (!c) return;
@@ -1761,7 +1866,6 @@
             }
         })();
 
-        /* Кошелёк — выпадающее меню */
         const walletBtn = document.getElementById('walletBtn');
         const walletDropdown = document.getElementById('walletDropdown');
         const depositBtn = document.getElementById('depositBtn');
@@ -1770,27 +1874,22 @@
             e.stopPropagation();
             walletDropdown.classList.toggle('active');
         });
-
         document.addEventListener('click', e => {
-            if (!walletDropdown.contains(e.target) && e.target !== walletBtn) {
+            if (!walletDropdown.contains(e.target) && !walletBtn.contains(e.target)) {
                 walletDropdown.classList.remove('active');
             }
         });
-
-        // Пакеты
         document.querySelectorAll('.pkg').forEach(pkg => {
             pkg.addEventListener('click', () => {
                 const chips = pkg.dataset.chips;
                 const usdt = pkg.dataset.usdt;
-                alert(`Пакет: ${chips} фишек за ${usdt} USDT\n(Подключение USDT — в следующей версии ✦)`);
+                alert(`Пакет: ${chips} фишек FENBO\nОплата: ${usdt} USDT\nКурс: 1 USDT = 100 фишек\n\nПодключение USDT — в следующей версии ✦`);
             });
         });
-
         depositBtn.addEventListener('click', () => {
-            alert('Пополнение через USDT (TRC-20 / ERC-20) — в следующей версии ✦');
+            alert('Пополнение через USDT (TRC-20 / ERC-20 / BEP-20)\n\nКурс: 1 USDT = 100 фишек FENBO\nМинимум: 5 USDT (500 фишек)\n\nПодключение — в следующей версии ✦');
         });
 
-        /* Лайтбокс */
         const lightbox = document.getElementById('lightbox');
         const lbClose = document.getElementById('lbClose');
         const lbTitle = document.getElementById('lbTitle');
@@ -1881,9 +1980,8 @@
         });
         lbTip.addEventListener('click', e => {
             e.stopPropagation();
-            alert('Чаевые автору через фишки / USDT — в следующей версии ✦');
+            alert('Чаевые автору\n\nСписать фишки FENBO (или USDT):\n• 10 фишек — поддержать\n• 50 фишек — благодарность\n• 100 фишек — восхищение\n\nПодключение — в следующей версии ✦');
         });
-
         lbStatLikes.addEventListener('click', () => alert('Список тех, кто лайкнул — в следующей версии'));
         lbStatViews.addEventListener('click', () => alert('Детальная статистика — в следующей версии'));
         lbAuthorClick.addEventListener('click', e => { if (e.target === lbSubscribe) return; alert('Профиль автора — в следующей версии'); });
