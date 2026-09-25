@@ -53,20 +53,53 @@
             pointer-events: none;
         }
 
+        /* ============================================
+           ФОН: софиты, дым, пыль, неон
+           ============================================ */
         .spotlight {
             position: fixed;
             top: 0; left: 50%;
             transform: translateX(-50%);
-            width: 200%; height: 60vh;
+            width: 200%; height: 70vh;
             pointer-events: none;
             z-index: 0;
-            background: radial-gradient(ellipse at 50% 0%, rgba(255, 220, 120, 0.22) 0%, rgba(255, 200, 80, 0.12) 20%, rgba(200, 0, 0, 0.06) 45%, transparent 75%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 220, 120, 0.25) 0%, rgba(255, 200, 80, 0.14) 20%, rgba(200, 0, 0, 0.08) 45%, transparent 75%);
             filter: blur(50px);
             animation: spotlightPulse 6s ease-in-out infinite;
         }
         @keyframes spotlightPulse {
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
+        }
+
+        /* Два боковых неоновых прожектора */
+        .neon-left, .neon-right {
+            position: fixed;
+            top: 20%;
+            width: 40%;
+            height: 60vh;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(60px);
+            opacity: 0.5;
+        }
+        .neon-left {
+            left: -10%;
+            background: radial-gradient(ellipse at 100% 50%, rgba(180, 0, 60, 0.4) 0%, transparent 70%);
+            animation: neonPulseL 8s ease-in-out infinite;
+        }
+        .neon-right {
+            right: -10%;
+            background: radial-gradient(ellipse at 0% 50%, rgba(255, 0, 60, 0.35) 0%, transparent 70%);
+            animation: neonPulseR 9s ease-in-out infinite;
+        }
+        @keyframes neonPulseL {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        @keyframes neonPulseR {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.3; }
         }
 
         .smoke {
@@ -76,9 +109,9 @@
             z-index: 0;
             opacity: 0.35;
             background-image:
-                radial-gradient(ellipse 60% 40% at 20% 80%, rgba(180, 60, 60, 0.15) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 35% at 80% 30%, rgba(120, 0, 60, 0.12) 0%, transparent 70%),
-                radial-gradient(ellipse 45% 30% at 50% 100%, rgba(255, 180, 80, 0.08) 0%, transparent 70%);
+                radial-gradient(ellipse 60% 40% at 20% 80%, rgba(180, 60, 60, 0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 35% at 80% 30%, rgba(120, 0, 60, 0.14) 0%, transparent 70%),
+                radial-gradient(ellipse 45% 30% at 50% 100%, rgba(255, 180, 80, 0.1) 0%, transparent 70%);
             filter: blur(60px);
             animation: smokeDrift 20s ease-in-out infinite alternate;
         }
@@ -110,7 +143,7 @@
         }
 
         /* ============================================
-           ШАПКА — ЧИСТАЯ И ДОРОГАЯ
+           ШАПКА
            ============================================ */
         .topbar-wrap {
             width: 100%;
@@ -119,7 +152,6 @@
             z-index: 20;
             padding: 0 45px;
         }
-
         .topbar {
             width: 100%;
             display: grid;
@@ -130,24 +162,16 @@
             position: relative;
             border-bottom: 1px solid rgba(212, 175, 55, 0.18);
         }
-
-        /* Золотая линия-разделитель под шапкой (затухающая по краям) */
         .topbar::after {
             content: '';
             position: absolute;
             bottom: -1px;
             left: 0; right: 0;
             height: 1px;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(255, 215, 0, 0.4) 20%,
-                rgba(255, 215, 0, 0.6) 50%,
-                rgba(255, 215, 0, 0.4) 80%,
-                transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 215, 0, 0.4) 20%, rgba(255, 215, 0, 0.6) 50%, rgba(255, 215, 0, 0.4) 80%, transparent 100%);
             box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
         }
 
-        /* Логотип */
         .logo {
             font-family: 'Cinzel', serif;
             font-size: 1.75rem;
@@ -159,16 +183,9 @@
                 0 0 22px rgba(255, 215, 0, 0.6),
                 0 0 45px rgba(180, 0, 0, 0.5),
                 0 2px 4px rgba(0, 0, 0, 1);
-            transition: text-shadow 0.4s ease;
             display: flex;
             align-items: baseline;
             white-space: nowrap;
-        }
-        .logo:hover {
-            text-shadow: 
-                0 0 35px rgba(255, 215, 0, 0.9),
-                0 0 70px rgba(180, 0, 0, 0.8),
-                0 2px 4px rgba(0, 0, 0, 1);
         }
         .logo .sub {
             font-family: 'Great Vibes', cursive;
@@ -180,7 +197,6 @@
             font-weight: 400;
         }
 
-        /* Навигация — по центру */
         .topbar-nav {
             display: flex;
             justify-content: center;
@@ -220,7 +236,6 @@
             transform: translateX(-50%) scaleX(1);
         }
 
-        /* Правая часть: кошелёк + аватар */
         .topbar-user {
             display: flex;
             align-items: center;
@@ -229,27 +244,20 @@
             position: relative;
         }
 
-        /* ============================================
-           КОШЕЛЁК
-           ============================================ */
+        /* Кошелёк */
         .wallet {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 6px 14px 6px 6px;
-            background: 
-                linear-gradient(135deg, rgba(70, 0, 0, 0.9) 0%, rgba(30, 0, 0, 0.85) 100%);
+            background: linear-gradient(135deg, rgba(70, 0, 0, 0.9) 0%, rgba(30, 0, 0, 0.85) 100%);
             border: 1.5px solid rgba(255, 215, 0, 0.55);
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             position: relative;
-            box-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.2),
-                inset 0 1px 0 rgba(255, 215, 0, 0.2),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 1px 0 rgba(255, 215, 0, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
         }
-
         .wallet::before {
             content: '';
             position: absolute;
@@ -258,34 +266,21 @@
             border: 1px solid rgba(255, 215, 0, 0.15);
             pointer-events: none;
         }
-
         .wallet:hover {
             border-color: #FFD700;
-            box-shadow: 
-                0 0 35px rgba(255, 215, 0, 0.6),
-                0 0 60px rgba(180, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 215, 0, 0.3),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.6), 0 0 60px rgba(180, 0, 0, 0.4);
             transform: translateY(-2px);
         }
-
-        /* Фишка */
         .wallet .chip-icon {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 50%;
-            background: 
-                radial-gradient(circle at 30% 25%, #FFF6C8 0%, #FFE066 15%, #FFD700 35%, #D4AF37 65%, #8B6914 100%);
+            background: radial-gradient(circle at 30% 25%, #FFF6C8 0%, #FFE066 15%, #FFD700 35%, #D4AF37 65%, #8B6914 100%);
             border: 2px solid #FFE066;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #1A0505;
-            box-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.9),
-                0 0 40px rgba(255, 180, 0, 0.4),
-                inset 0 -4px 8px rgba(120, 80, 0, 0.6),
-                inset 0 4px 8px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 40px rgba(255, 180, 0, 0.4), inset 0 -4px 8px rgba(120, 80, 0, 0.6), inset 0 4px 8px rgba(255, 255, 255, 0.4);
             position: relative;
             flex-shrink: 0;
         }
@@ -304,8 +299,6 @@
             text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
             z-index: 2;
         }
-
-        /* Баланс */
         .wallet .balance {
             display: flex;
             flex-direction: column;
@@ -334,7 +327,6 @@
             font-size: 0.78rem;
             font-style: italic;
             color: rgba(197, 160, 89, 1);
-            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -344,8 +336,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 13px;
-            height: 13px;
+            width: 13px; height: 13px;
             background: #26A17B;
             border-radius: 50%;
             color: #FFFFFF;
@@ -355,11 +346,8 @@
             font-style: normal;
             box-shadow: 0 0 8px rgba(38, 161, 123, 0.7);
         }
-
-        /* Плюсик */
         .wallet .plus {
-            width: 26px;
-            height: 26px;
+            width: 26px; height: 26px;
             border-radius: 50%;
             background: rgba(255, 215, 0, 0.12);
             border: 1.5px solid rgba(255, 215, 0, 0.7);
@@ -380,11 +368,8 @@
             transform: rotate(90deg);
             border-color: #FFFFFF;
         }
-
-        /* Аватар */
         .topbar-user .avatar {
-            width: 44px;
-            height: 44px;
+            width: 44px; height: 44px;
             border-radius: 50%;
             background: linear-gradient(135deg, #2B0A0A, #4A0505);
             border: 1.5px solid rgba(255, 215, 0, 0.55);
@@ -394,9 +379,7 @@
             font-family: 'Cinzel', serif;
             font-size: 1.05rem;
             color: #FFD700;
-            box-shadow: 
-                0 0 16px rgba(255, 215, 0, 0.35),
-                inset 0 0 12px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 16px rgba(255, 215, 0, 0.35), inset 0 0 12px rgba(0, 0, 0, 0.6);
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
@@ -407,7 +390,7 @@
         }
 
         /* ============================================
-           ВЫПАДАЮЩЕЕ МЕНЮ
+           ВЫПАДАЮЩЕЕ МЕНЮ ПОПОЛНЕНИЯ
            ============================================ */
         .wallet-dropdown {
             position: absolute;
@@ -421,18 +404,13 @@
             border-radius: 16px;
             padding: 24px;
             z-index: 100;
-            box-shadow: 
-                0 30px 70px rgba(0, 0, 0, 0.95),
-                0 0 0 1px rgba(255, 215, 0, 0.15),
-                0 0 80px rgba(180, 0, 0, 0.6);
-            opacity: 0;
-            visibility: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 215, 0, 0.15), 0 0 80px rgba(180, 0, 0, 0.6);
+            opacity: 0; visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .wallet-dropdown.active {
-            opacity: 1;
-            visibility: visible;
+            opacity: 1; visibility: visible;
             transform: translateY(0);
         }
         .wallet-dropdown::before {
@@ -443,9 +421,7 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, #FFD700, #FF4444, #FFD700, transparent);
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-            border-radius: 2px;
         }
-
         .wallet-dropdown h4 {
             font-family: 'Cinzel', serif;
             font-size: 0.95rem;
@@ -465,13 +441,10 @@
             text-align: center;
             margin-bottom: 20px;
         }
-
         .wallet-dropdown .balance-full {
             text-align: center;
             padding: 18px 12px;
-            background: 
-                radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.12) 0%, transparent 70%),
-                rgba(0, 0, 0, 0.5);
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.12) 0%, transparent 70%), rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(212, 175, 55, 0.35);
             border-radius: 12px;
             margin-bottom: 18px;
@@ -497,8 +470,7 @@
             gap: 10px;
         }
         .wallet-dropdown .balance-full .value-chips .mini-chip {
-            width: 26px;
-            height: 26px;
+            width: 26px; height: 26px;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 25%, #FFF6C8, #FFE066 15%, #FFD700 35%, #D4AF37 65%, #8B6914 100%);
             border: 2px solid #FFE066;
@@ -522,13 +494,11 @@
             color: #1A0505;
             font-weight: 900;
         }
-
         .wallet-dropdown .balance-full .value-usdt {
             font-family: 'Cormorant Garamond', serif;
             font-size: 0.95rem;
             font-style: italic;
             color: #26A17B;
-            text-shadow: 0 0 12px rgba(38, 161, 123, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -538,8 +508,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 16px;
-            height: 16px;
+            width: 16px; height: 16px;
             background: #26A17B;
             border-radius: 50%;
             color: #FFFFFF;
@@ -548,7 +517,6 @@
             font-weight: 700;
             font-style: normal;
         }
-
         .wallet-dropdown .rate-info {
             padding: 12px 14px;
             background: rgba(0, 0, 0, 0.4);
@@ -571,13 +539,10 @@
             font-size: 0.9rem;
             color: #FFD700;
             letter-spacing: 1px;
-            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
         }
         .wallet-dropdown .rate-info .rate-value .green {
             color: #26A17B;
-            text-shadow: 0 0 12px rgba(38, 161, 123, 0.8);
         }
-
         .wallet-dropdown .packages-title {
             font-family: 'Cinzel', serif;
             font-size: 0.65rem;
@@ -587,7 +552,6 @@
             text-align: center;
             margin-bottom: 12px;
         }
-
         .wallet-dropdown .packages {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -619,7 +583,6 @@
             font-size: 1.1rem;
             color: #FFD700;
             letter-spacing: 1px;
-            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
         }
         .wallet-dropdown .pkg .usdt-amount {
             font-family: 'Cormorant Garamond', serif;
@@ -633,18 +596,15 @@
             font-style: italic;
             color: rgba(255, 68, 68, 0.95);
             margin-top: 2px;
-            text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
         }
         .wallet-dropdown .pkg.best {
             border-color: rgba(255, 68, 68, 0.8);
             background: linear-gradient(165deg, rgba(80, 0, 0, 0.6) 0%, rgba(20, 0, 0, 0.5) 100%);
-            box-shadow: 0 0 25px rgba(180, 0, 0, 0.5);
         }
         .wallet-dropdown .pkg.best::after {
             content: 'ТОП';
             position: absolute;
-            top: -6px;
-            right: 6px;
+            top: -6px; right: 6px;
             font-family: 'Cinzel', serif;
             font-size: 0.55rem;
             letter-spacing: 2px;
@@ -654,7 +614,6 @@
             border-radius: 3px;
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
         }
-
         .wallet-dropdown .methods {
             display: flex;
             gap: 6px;
@@ -676,15 +635,12 @@
         }
         .wallet-dropdown .methods .method:hover {
             border-color: rgba(38, 161, 123, 0.8);
-            box-shadow: 0 0 15px rgba(38, 161, 123, 0.4);
         }
         .wallet-dropdown .methods .method.active {
             background: rgba(38, 161, 123, 0.2);
             border-color: rgba(38, 161, 123, 0.9);
-            box-shadow: 0 0 15px rgba(38, 161, 123, 0.5);
             color: #26A17B;
         }
-
         .wallet-dropdown .deposit-btn {
             width: 100%;
             font-family: 'Cinzel', serif;
@@ -708,13 +664,13 @@
         }
 
         /* ============================================
-           ГЕРОЙ
+           ГЕРОЙ — КАЗИНО-СТРИПТИЗ СТИЛЬ
            ============================================ */
         .hero {
             width: 100%;
             max-width: 1600px;
             text-align: center;
-            padding: 70px 45px 45px;
+            padding: 60px 45px 30px;
             position: relative;
             z-index: 5;
             animation: fadeInDown 1.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -724,26 +680,76 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero-badge {
-            display: inline-block;
+        /* Верхняя плашка — «СТРИПТИЗ-КАЗИНО» */
+        .hero-topline {
+            display: inline-flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 20px;
+            animation: fadeIn 1.6s ease;
+        }
+        .hero-topline .line-s {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #FFD700, #FF4444);
+        }
+        .hero-topline .line-s.r {
+            background: linear-gradient(270deg, transparent, #FFD700, #FF4444);
+        }
+        .hero-topline .suits {
             font-family: 'Cinzel', serif;
-            font-size: 0.68rem;
-            letter-spacing: 12px;
+            font-size: 1.1rem;
+            color: #FFD700;
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+        }
+
+        /* Основной бейдж */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 10px;
             color: #FF4444;
             border: 1px solid rgba(255, 68, 68, 0.65);
-            padding: 10px 26px;
+            padding: 10px 22px;
             text-transform: uppercase;
             background: rgba(180, 0, 0, 0.18);
             text-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
-            margin-bottom: 28px;
+            margin-bottom: 26px;
             box-shadow: 0 0 30px rgba(180, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1);
             animation: badgePulse 3s ease-in-out infinite;
+            position: relative;
+        }
+        .hero-badge::before {
+            content: '18';
+            font-size: 0.75rem;
+            color: #FFFFFF;
+            background: #FF0000;
+            padding: 3px 7px;
+            border-radius: 3px;
+            letter-spacing: 0;
+            text-shadow: 0 0 8px rgba(255, 0, 0, 1);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+        }
+        .hero-badge::after {
+            content: '♥';
+            color: #FF4444;
+            font-size: 0.85rem;
+            text-shadow: 0 0 12px rgba(255, 0, 0, 1);
         }
         @keyframes badgePulse {
             0%, 100% { box-shadow: 0 0 30px rgba(180, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1); }
             50% { box-shadow: 0 0 50px rgba(255, 0, 0, 0.7), inset 0 0 30px rgba(255, 0, 0, 0.2); }
         }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
+        /* Заголовок */
         .hero h1 {
             font-family: 'Cinzel', serif;
             font-size: 5.5rem;
@@ -780,14 +786,21 @@
             margin-top: 24px;
             text-shadow: 0 0 15px rgba(0, 0, 0, 1);
         }
+        .hero p .accent {
+            color: #FF4444;
+            font-style: normal;
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
 
+        /* Разделитель-масти под героем */
         .hero-divider {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 18px;
-            margin: 45px auto 0;
-            max-width: 700px;
+            margin: 40px auto 0;
+            max-width: 800px;
             width: 90%;
         }
         .hero-divider .line {
@@ -802,6 +815,85 @@
             letter-spacing: 18px;
             font-family: 'Cinzel', serif;
             text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+        }
+
+        /* ============================================
+           СТАТИСТИКА КАЗИНО (мини-плашки)
+           ============================================ */
+        .casino-stats {
+            width: 100%;
+            max-width: 1600px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 30px 45px 0;
+            position: relative;
+            z-index: 5;
+            animation: fadeIn 1.8s ease 0.2s both;
+        }
+        .casino-stat {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, rgba(60, 0, 0, 0.5) 0%, rgba(20, 0, 0, 0.4) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .casino-stat::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.12), transparent);
+            transition: left 0.8s ease;
+        }
+        .casino-stat:hover::before { left: 100%; }
+        .casino-stat:hover {
+            border-color: rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+            transform: translateY(-3px);
+        }
+        .casino-stat .stat-icon {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.2), rgba(120, 0, 0, 0.4));
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #FFD700;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+            flex-shrink: 0;
+        }
+        .casino-stat .stat-body {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            min-width: 0;
+        }
+        .casino-stat .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
+            white-space: nowrap;
+        }
+        .casino-stat .stat-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.72rem;
+            font-style: italic;
+            color: rgba(197, 160, 89, 0.85);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
         }
 
         /* ============================================
@@ -868,7 +960,103 @@
         }
 
         /* ============================================
-           ГАЛЕРЕЯ
+           ГОРЯЧИЕ СТАВКИ — лента-полоска
+           ============================================ */
+        .hot-bets {
+            width: 100%;
+            max-width: 1600px;
+            margin: 20px auto 0;
+            padding: 0 45px;
+            position: relative;
+            z-index: 5;
+            animation: fadeIn 2s ease 0.4s both;
+        }
+        .hot-bets-inner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 16px 24px;
+            background: 
+                linear-gradient(90deg, rgba(180, 0, 0, 0.25) 0%, rgba(60, 0, 0, 0.35) 50%, rgba(180, 0, 0, 0.25) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        .hot-bets-inner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(180deg, #FF4444, #FFD700, #FF4444);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
+        }
+        .hot-bets-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: #FF4444;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-right: 20px;
+            border-right: 1px solid rgba(212, 175, 55, 0.25);
+        }
+        .hot-bets-label .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #FF0000;
+            box-shadow: 0 0 12px rgba(255, 0, 0, 1);
+            animation: livePulse 1.5s ease-in-out infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+        .hot-bets-track {
+            display: flex;
+            gap: 40px;
+            overflow: hidden;
+            flex: 1;
+            white-space: nowrap;
+        }
+        .hot-bet {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: rgba(232, 216, 200, 0.85);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: hotScroll 30s linear infinite;
+        }
+        .hot-bet .bet-artist {
+            color: #FFD700;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+            font-style: normal;
+            font-weight: 600;
+        }
+        .hot-bet .bet-amount {
+            color: #FF4444;
+            text-shadow: 0 0 12px rgba(255, 0, 0, 0.7);
+            font-style: normal;
+            font-weight: 700;
+        }
+        .hot-bet .bet-suit {
+            color: #FFD700;
+            font-size: 1rem;
+        }
+        @keyframes hotScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ============================================
+           ГАЛЕРЕЯ (карточки НЕ ТРОГАЮ)
            ============================================ */
         .gallery {
             width: 100%;
@@ -890,33 +1078,17 @@
             overflow: hidden;
             background: linear-gradient(165deg, #1A0505 0%, #0D0202 100%);
             border: 1px solid rgba(212, 175, 55, 0.28);
-            box-shadow: 
-                0 12px 35px rgba(0, 0, 0, 0.8),
-                0 0 0 1px rgba(255, 215, 0, 0.05),
-                inset 0 0 30px rgba(0, 0, 0, 0.6);
-            transition: 
-                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.4s ease;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 215, 0, 0.05), inset 0 0 30px rgba(0, 0, 0, 0.6);
+            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
             cursor: pointer;
         }
         .art-card:hover {
             transform: translateY(-10px) scale(1.02);
             border-color: #FFD700;
-            box-shadow: 
-                0 30px 70px rgba(180, 0, 0, 0.9),
-                0 0 0 2px rgba(255, 215, 0, 0.7),
-                0 0 50px rgba(255, 215, 0, 0.5),
-                0 0 100px rgba(180, 0, 0, 0.5);
+            box-shadow: 0 30px 70px rgba(180, 0, 0, 0.9), 0 0 0 2px rgba(255, 215, 0, 0.7), 0 0 50px rgba(255, 215, 0, 0.5), 0 0 100px rgba(180, 0, 0, 0.5);
         }
 
-        .art-card .thumb {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            background: #0A0000;
-        }
+        .art-card .thumb { position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #0A0000; }
         .art-card .thumb .placeholder {
             position: absolute;
             inset: 0;
@@ -941,7 +1113,6 @@
             bottom: 20px; right: 20px;
             font-size: 2rem;
             color: rgba(255, 215, 0, 0.3);
-            text-shadow: 0 0 22px rgba(255, 215, 0, 0.5);
         }
         .art-card .thumb::before {
             content: '';
@@ -1020,6 +1191,140 @@
         }
 
         /* ============================================
+           ЗА КУЛИСАМИ — доп. лента (намёк 18+)
+           ============================================ */
+        .backstage {
+            width: 100%;
+            max-width: 1600px;
+            padding: 60px 45px 20px;
+            position: relative;
+            z-index: 5;
+            animation: fadeIn 2.2s ease 0.6s both;
+        }
+        .backstage-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .backstage-header .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 12px;
+            color: #FF4444;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            margin-bottom: 12px;
+        }
+        .backstage-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #FFD700;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 25px rgba(255, 215, 0, 0.6),
+                0 0 60px rgba(180, 0, 0, 0.5);
+        }
+        .backstage-header h3 span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #FF4444;
+            letter-spacing: 2px;
+            text-transform: none;
+            margin-left: 12px;
+            text-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
+        }
+        .backstage-header p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: #C5A059;
+            letter-spacing: 3px;
+            margin-top: 14px;
+        }
+
+        .backstage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .bkg-card {
+            position: relative;
+            padding: 26px 24px;
+            background: linear-gradient(165deg, rgba(60, 0, 0, 0.6) 0%, rgba(20, 0, 0, 0.5) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow: hidden;
+        }
+        .bkg-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+        .bkg-card:hover::before { left: 100%; }
+        .bkg-card:hover {
+            border-color: rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.4), 0 15px 40px rgba(180, 0, 0, 0.6);
+            transform: translateY(-6px);
+        }
+        .bkg-card .bkg-tag {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 4px;
+            color: #FF4444;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border: 1px solid rgba(255, 68, 68, 0.6);
+            border-radius: 3px;
+            margin-bottom: 14px;
+            text-shadow: 0 0 12px rgba(255, 0, 0, 0.7);
+            background: rgba(180, 0, 0, 0.15);
+        }
+        .bkg-card .bkg-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #FFD700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 14px rgba(255, 215, 0, 0.5);
+        }
+        .bkg-card .bkg-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.92rem;
+            font-style: italic;
+            color: rgba(232, 216, 200, 0.75);
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+        .bkg-card .bkg-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: rgba(197, 160, 89, 0.85);
+            font-style: italic;
+        }
+        .bkg-card .bkg-meta .bkg-price {
+            font-family: 'Cinzel', serif;
+            font-style: normal;
+            color: #FFD700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+
+        /* ============================================
            ПОДВАЛ
            ============================================ */
         .footer {
@@ -1047,7 +1352,6 @@
             text-decoration: none;
             letter-spacing: 2px;
             text-transform: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
         .footer .back-link:hover {
             color: #FFFFFF;
@@ -1059,7 +1363,7 @@
         }
 
         /* ============================================
-           ЛАЙТБОКС
+           ЛАЙТБОКС (не трогаю)
            ============================================ */
         .lightbox {
             position: fixed;
@@ -1069,12 +1373,9 @@
             align-items: center;
             justify-content: center;
             padding: 30px 20px;
-            background: 
-                radial-gradient(ellipse at 50% 30%, rgba(80, 0, 0, 0.5) 0%, transparent 60%),
-                rgba(0, 0, 0, 0.94);
+            background: radial-gradient(ellipse at 50% 30%, rgba(80, 0, 0, 0.5) 0%, transparent 60%), rgba(0, 0, 0, 0.94);
             backdrop-filter: blur(22px);
-            opacity: 0;
-            visibility: hidden;
+            opacity: 0; visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease;
             overflow-y: auto;
         }
@@ -1086,23 +1387,16 @@
             max-width: 1480px;
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            background: 
-                radial-gradient(ellipse at 20% 0%, rgba(120, 0, 0, 0.35) 0%, transparent 50%),
-                linear-gradient(165deg, #120202 0%, #080101 100%);
+            background: radial-gradient(ellipse at 20% 0%, rgba(120, 0, 0, 0.35) 0%, transparent 50%), linear-gradient(165deg, #120202 0%, #080101 100%);
             border: 1px solid rgba(212, 175, 55, 0.5);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 
-                0 50px 150px rgba(0, 0, 0, 1),
-                0 0 0 1px rgba(255, 215, 0, 0.2),
-                0 0 120px rgba(180, 0, 0, 0.7),
-                0 0 240px rgba(255, 0, 0, 0.35);
+            box-shadow: 0 50px 150px rgba(0, 0, 0, 1), 0 0 0 1px rgba(255, 215, 0, 0.2), 0 0 120px rgba(180, 0, 0, 0.7), 0 0 240px rgba(255, 0, 0, 0.35);
             transform: scale(0.94) translateY(20px);
             transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
             max-height: 92vh;
         }
         .lightbox.active .lightbox-inner { transform: scale(1) translateY(0); }
-
         .lightbox-inner::before {
             content: '';
             position: absolute;
@@ -1112,14 +1406,9 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
             z-index: 5;
         }
-
         .lb-image {
             position: relative;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.55) 0%, transparent 55%),
-                radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.45) 0%, transparent 55%),
-                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 215, 0, 0.03) 40px, rgba(255, 215, 0, 0.03) 41px),
-                linear-gradient(165deg, #2B0A0A 0%, #0D0202 100%);
+            background: radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.55) 0%, transparent 55%), radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.45) 0%, transparent 55%), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 215, 0, 0.03) 40px, rgba(255, 215, 0, 0.03) 41px), linear-gradient(165deg, #2B0A0A 0%, #0D0202 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1155,7 +1444,6 @@
             box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
             z-index: 5;
         }
-
         .lb-info {
             padding: 32px 32px 28px;
             display: flex;
@@ -1163,11 +1451,9 @@
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 215, 0, 0.4) transparent;
-            position: relative;
         }
         .lb-info::-webkit-scrollbar { width: 6px; }
         .lb-info::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.4); border-radius: 3px; }
-
         .lb-author {
             display: flex;
             align-items: center;
@@ -1178,23 +1464,8 @@
             border: 1px solid rgba(212, 175, 55, 0.35);
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-        }
-        .lb-author::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
-            transition: left 0.7s ease;
-        }
-        .lb-author:hover::before { left: 100%; }
-        .lb-author:hover {
-            border-color: rgba(255, 215, 0, 0.7);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-            transform: translateX(4px);
         }
         .lb-author .author-avatar {
             width: 56px; height: 56px;
@@ -1207,9 +1478,8 @@
             font-family: 'Cinzel', serif;
             font-size: 1.5rem;
             color: #FFD700;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
             flex-shrink: 0;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
         }
         .lb-author .author-info { flex: 1; min-width: 0; }
         .lb-author .author-name {
@@ -1218,7 +1488,6 @@
             color: #FFD700;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            text-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
         }
         .lb-author .author-subs {
             font-family: 'Cormorant Garamond', serif;
@@ -1240,21 +1509,16 @@
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
-            position: relative;
-            z-index: 2;
         }
         .lb-author .btn-subscribe:hover {
             background: #FFD700;
             color: #1A0505;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
-            letter-spacing: 4px;
         }
         .lb-author .btn-subscribe.subscribed {
             background: rgba(180, 0, 0, 0.5);
             border-color: #FF4444;
             color: #FF4444;
         }
-
         .lb-title {
             font-family: 'Cinzel', serif;
             font-size: 2.2rem;
@@ -1266,7 +1530,6 @@
             margin-bottom: 16px;
             text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 50px rgba(255, 215, 0, 0.6);
         }
-
         .lb-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
         .lb-tag {
             font-family: 'Cinzel', serif;
@@ -1281,13 +1544,7 @@
             text-decoration: none;
             transition: all 0.35s ease;
         }
-        .lb-tag:hover {
-            background: #FFD700;
-            color: #1A0505;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
-            transform: translateY(-2px);
-        }
-
+        .lb-tag:hover { background: #FFD700; color: #1A0505; }
         .lb-desc {
             position: relative;
             font-family: 'Cormorant Garamond', serif;
@@ -1301,7 +1558,6 @@
             border-left: 3px solid #FFD700;
             border-radius: 0 12px 12px 0;
             margin-bottom: 24px;
-            text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
         }
         .lb-desc::before {
             content: '“';
@@ -1311,7 +1567,6 @@
             font-size: 4.5rem;
             color: rgba(255, 215, 0, 0.5);
             line-height: 1;
-            pointer-events: none;
         }
         .lb-desc::after {
             content: '”';
@@ -1321,15 +1576,8 @@
             font-size: 4.5rem;
             color: rgba(255, 215, 0, 0.3);
             line-height: 1;
-            pointer-events: none;
         }
-
-        .lb-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+        .lb-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .lb-stat {
             display: flex;
             flex-direction: column;
@@ -1342,16 +1590,11 @@
             cursor: pointer;
             transition: all 0.35s ease;
         }
-        .lb-stat:hover {
-            border-color: rgba(255, 215, 0, 0.7);
-            background: rgba(60, 0, 0, 0.4);
-            transform: translateY(-3px);
-        }
+        .lb-stat:hover { border-color: rgba(255, 215, 0, 0.7); background: rgba(60, 0, 0, 0.4); }
         .lb-stat .stat-value {
             font-family: 'Cinzel', serif;
             font-size: 1.6rem;
             color: #FFD700;
-            letter-spacing: 2px;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
         }
         .lb-stat .stat-value .heart { color: #FF4444; font-size: 1.2rem; }
@@ -1362,13 +1605,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
         }
-
-        .lb-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 14px;
-        }
+        .lb-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
         .lb-actions button {
             font-family: 'Cinzel', serif;
             font-size: 0.72rem;
@@ -1387,36 +1624,17 @@
             color: #FF4444;
             background: rgba(180, 0, 0, 0.15);
             border: 1px solid rgba(255, 68, 68, 0.6);
-            text-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
         }
-        .lb-btn-like:hover {
-            background: #FF0000;
-            color: #FFFFFF;
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
-        }
-        .lb-btn-like.liked {
-            background: linear-gradient(135deg, #FF0000, #8B0000);
-            color: #FFFFFF;
-            border-color: #FF4444;
-        }
+        .lb-btn-like:hover { background: #FF0000; color: #FFFFFF; }
+        .lb-btn-like.liked { background: linear-gradient(135deg, #FF0000, #8B0000); color: #FFFFFF; }
         .lb-btn-order {
             color: #1A0505;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             border: 1px solid #FFD700;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
             font-weight: 700;
         }
-        .lb-btn-order:hover {
-            background: linear-gradient(135deg, #FFFFFF, #FFD700);
-            box-shadow: 0 0 60px rgba(255, 215, 0, 1);
-            letter-spacing: 5px;
-        }
-
-        .lb-actions-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-        }
+        .lb-btn-order:hover { background: linear-gradient(135deg, #FFFFFF, #FFD700); letter-spacing: 5px; }
+        .lb-actions-2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
         .lb-btn-mini {
             font-family: 'Cinzel', serif;
             font-size: 0.62rem;
@@ -1435,22 +1653,8 @@
             gap: 5px;
         }
         .lb-btn-mini .mini-icon { font-size: 1rem; color: #FFD700; }
-        .lb-btn-mini:hover {
-            border-color: rgba(255, 215, 0, 0.8);
-            color: #FFD700;
-            background: rgba(60, 0, 0, 0.4);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
-            transform: translateY(-3px);
-        }
-        .lb-btn-mini.tip .mini-icon {
-            color: #FFD700;
-            text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
-        }
-        .lb-btn-mini.tip:hover {
-            border-color: #FFD700;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(180, 0, 0, 0.3));
-        }
-
+        .lb-btn-mini:hover { border-color: rgba(255, 215, 0, 0.8); color: #FFD700; background: rgba(60, 0, 0, 0.4); }
+        .lb-btn-mini.tip:hover { border-color: #FFD700; background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(180, 0, 0, 0.3)); }
         .lb-close {
             position: absolute;
             top: 16px; right: 16px;
@@ -1464,16 +1668,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: all 0.4s ease;
             z-index: 30;
-            font-family: 'Cinzel', serif;
         }
         .lb-close:hover {
             background: #FFD700;
             color: #1A0505;
-            box-shadow: 0 0 35px rgba(255, 215, 0, 1);
-            transform: rotate(90deg) scale(1.06);
-            border-color: #FFFFFF;
+            transform: rotate(90deg);
         }
 
         /* ============================================
@@ -1488,22 +1689,21 @@
             .hero { padding: 50px 25px 30px; }
             .hero h1 { font-size: 3.8rem; letter-spacing: 14px; }
             .hero h1 span { font-size: 2.6rem; }
+            .casino-stats { grid-template-columns: repeat(2, 1fr); padding: 25px; }
+            .hot-bets { padding: 0 25px; }
+            .backstage { padding: 50px 25px 20px; }
+            .backstage-grid { grid-template-columns: 1fr 1fr; }
             .gallery { padding: 25px; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
             .filters { padding: 25px; }
-            .lightbox-inner { grid-template-columns: 1fr; max-height: 94vh; }
+            .lightbox-inner { grid-template-columns: 1fr; }
             .lb-image { min-height: 320px; }
-            .lb-image::after { font-size: 8rem; }
-            .lb-info { padding: 26px 22px; }
-            .lb-title { font-size: 1.7rem; letter-spacing: 4px; }
         }
 
         @media (max-width: 768px) {
             .topbar-wrap { padding: 0 16px; }
             .topbar {
                 grid-template-columns: 1fr auto;
-                grid-template-areas: 
-                    "logo user"
-                    "nav nav";
+                grid-template-areas: "logo user" "nav nav";
                 gap: 12px;
                 padding: 14px 0;
             }
@@ -1524,27 +1724,46 @@
             .wallet .chip-icon { width: 32px; height: 32px; font-size: 0.9rem; }
             .wallet .balance { min-width: 60px; }
             .wallet .balance .chips { font-size: 0.85rem; }
-            .wallet .balance .chips .unit { font-size: 0.55rem; letter-spacing: 1.5px; }
+            .wallet .balance .chips .unit { font-size: 0.55rem; }
             .wallet .balance .usdt { font-size: 0.7rem; }
             .wallet .plus { width: 22px; height: 22px; font-size: 0.85rem; }
             .topbar-user .avatar { width: 36px; height: 36px; font-size: 0.9rem; }
 
-            .wallet-dropdown {
-                width: calc(100vw - 24px);
-                max-width: 340px;
-                right: -8px;
-                padding: 20px;
-            }
+            .wallet-dropdown { width: calc(100vw - 24px); max-width: 340px; right: -8px; padding: 20px; }
 
             .hero { padding: 32px 16px 20px; }
-            .hero-badge { font-size: 0.55rem; letter-spacing: 7px; padding: 7px 16px; margin-bottom: 20px; }
+            .hero-topline { gap: 14px; margin-bottom: 14px; }
+            .hero-topline .line-s { width: 50px; }
+            .hero-topline .suits { font-size: 0.9rem; letter-spacing: 4px; }
+            .hero-badge { font-size: 0.5rem; letter-spacing: 5px; padding: 7px 14px; margin-bottom: 18px; }
+            .hero-badge::before { font-size: 0.65rem; padding: 2px 6px; }
             .hero h1 { font-size: 2.4rem; letter-spacing: 7px; }
             .hero h1 span { font-size: 1.7rem; display: block; margin: 8px 0 0; }
             .hero p { font-size: 0.88rem; letter-spacing: 2.5px; margin-top: 15px; }
-            .hero-divider { margin-top: 30px; }
+            .hero-divider { margin-top: 25px; }
+
+            .casino-stats { grid-template-columns: 1fr 1fr; gap: 10px; padding: 18px 16px 0; }
+            .casino-stat { padding: 12px 14px; gap: 10px; }
+            .casino-stat .stat-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+            .casino-stat .stat-value { font-size: 0.95rem; }
+            .casino-stat .stat-label { font-size: 0.62rem; }
+
+            .hot-bets { padding: 0 16px; margin-top: 14px; }
+            .hot-bets-inner { padding: 12px 16px; gap: 14px; }
+            .hot-bets-label { font-size: 0.6rem; letter-spacing: 2.5px; padding-right: 14px; }
+            .hot-bet { font-size: 0.85rem; }
 
             .filters { padding: 18px 16px 5px; gap: 8px; }
             .filter-chip { font-size: 0.6rem; letter-spacing: 2px; padding: 7px 15px; }
+
+            .backstage { padding: 40px 16px 15px; }
+            .backstage-header h3 { font-size: 1.6rem; letter-spacing: 6px; }
+            .backstage-header h3 span { font-size: 1.4rem; }
+            .backstage-header p { font-size: 0.85rem; letter-spacing: 2px; }
+            .backstage-grid { grid-template-columns: 1fr; gap: 14px; }
+            .bkg-card { padding: 20px 18px; }
+            .bkg-card .bkg-title { font-size: 0.95rem; letter-spacing: 2px; }
+            .bkg-card .bkg-desc { font-size: 0.85rem; }
 
             .gallery { padding: 18px 16px; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
             .art-card .info { padding: 11px 13px 13px; }
@@ -1555,12 +1774,9 @@
             .art-card .badge-18 { font-size: 0.55rem; padding: 3px 8px; top: 8px; left: 8px; }
 
             .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; letter-spacing: 4px; }
-            .footer .back-link { font-size: 0.9rem; }
 
             .lightbox { padding: 12px 8px; }
-            .lightbox-inner { border-radius: 14px; }
             .lb-image { min-height: 260px; }
-            .lb-image .badge-18 { top: 14px; left: 14px; font-size: 0.6rem; padding: 4px 10px; }
             .lb-image::after { font-size: 6rem; }
             .lb-info { padding: 20px 16px; }
             .lb-title { font-size: 1.4rem; letter-spacing: 3px; margin-bottom: 12px; }
@@ -1569,16 +1785,9 @@
             .lb-author .author-name { font-size: 0.85rem; }
             .lb-author .author-subs { font-size: 0.75rem; }
             .lb-author .btn-subscribe { font-size: 0.55rem; padding: 8px 12px; letter-spacing: 2px; }
-
-            .lb-desc {
-                font-size: 0.95rem;
-                line-height: 1.7;
-                padding: 20px 22px 20px 42px;
-                margin-bottom: 18px;
-            }
+            .lb-desc { font-size: 0.95rem; line-height: 1.7; padding: 20px 22px 20px 42px; margin-bottom: 18px; }
             .lb-desc::before { font-size: 3.5rem; top: 4px; left: 10px; }
             .lb-desc::after { font-size: 3.5rem; bottom: -16px; right: 14px; }
-
             .lb-stat .stat-value { font-size: 1.2rem; }
             .lb-stat .stat-label { font-size: 0.6rem; }
             .lb-actions button { padding: 13px 10px; font-size: 0.62rem; letter-spacing: 3px; }
@@ -1589,15 +1798,19 @@
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; letter-spacing: 5px; }
             .hero h1 span { font-size: 1.4rem; }
-            .hero-badge { font-size: 0.5rem; letter-spacing: 4px; }
+            .hero-badge { font-size: 0.45rem; letter-spacing: 4px; }
+            .casino-stats { grid-template-columns: 1fr 1fr; }
+            .casino-stat { padding: 10px 10px; gap: 8px; }
+            .casino-stat .stat-icon { width: 30px; height: 30px; font-size: 0.9rem; }
+            .casino-stat .stat-value { font-size: 0.85rem; }
+            .casino-stat .stat-label { font-size: 0.55rem; letter-spacing: 1px; }
 
             .wallet { padding: 4px 8px 4px 4px; gap: 6px; }
             .wallet .chip-icon { width: 28px; height: 28px; font-size: 0.8rem; }
             .wallet .balance { min-width: 55px; }
             .wallet .balance .chips { font-size: 0.78rem; }
-            .wallet .balance .chips .unit { font-size: 0.5rem; letter-spacing: 1px; }
+            .wallet .balance .chips .unit { font-size: 0.5rem; }
             .wallet .balance .usdt { font-size: 0.62rem; }
-            .wallet .balance .usdt .usdt-icon { width: 11px; height: 11px; font-size: 0.55rem; }
             .wallet .plus { width: 20px; height: 20px; font-size: 0.8rem; }
 
             .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 14px 10px; }
@@ -1615,7 +1828,10 @@
 </head>
 <body>
 
+    <!-- ФОН: софиты, неон, дым, пыль -->
     <div class="spotlight"></div>
+    <div class="neon-left"></div>
+    <div class="neon-right"></div>
     <div class="smoke"></div>
     <div class="dust-bg" id="dustBg"></div>
 
@@ -1699,15 +1915,76 @@
 
     <!-- ГЕРОЙ -->
     <section class="hero">
-        <div class="hero-badge">18+ · Порно-арты · Стриптиз-клуб</div>
+        <div class="hero-topline">
+            <div class="line-s"></div>
+            <div class="suits">♠ ♥ ♦ ♣</div>
+            <div class="line-s r"></div>
+        </div>
+
+        <div class="hero-badge">Стриптиз-Казино · Искусство Желания</div>
+
         <h1>Плоть<span>искусство</span></h1>
-        <p>Где бархат встречается с желанием. Только для взрослых.</p>
+
+        <p>Где бархат встречается с <span class="accent">желанием</span>. Только для взрослых.</p>
+
         <div class="hero-divider">
             <div class="line"></div>
             <div class="symbol">♠ ♥ ♦ ♣</div>
             <div class="line"></div>
         </div>
     </section>
+
+    <!-- СТАТИСТИКА КАЗИНО -->
+    <div class="casino-stats">
+        <div class="casino-stat">
+            <div class="stat-icon">♠</div>
+            <div class="stat-body">
+                <div class="stat-value">2 480</div>
+                <div class="stat-label">Работ на сцене</div>
+            </div>
+        </div>
+        <div class="casino-stat">
+            <div class="stat-icon">♥</div>
+            <div class="stat-body">
+                <div class="stat-value">320</div>
+                <div class="stat-label">Художников</div>
+            </div>
+        </div>
+        <div class="casino-stat">
+            <div class="stat-icon">♦</div>
+            <div class="stat-body">
+                <div class="stat-value">18 500</div>
+                <div class="stat-label">Фишек в ставках</div>
+            </div>
+        </div>
+        <div class="casino-stat">
+            <div class="stat-icon">♣</div>
+            <div class="stat-body">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Сцена открыта</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ГОРЯЧИЕ СТАВКИ -->
+    <div class="hot-bets">
+        <div class="hot-bets-inner">
+            <div class="hot-bets-label">
+                <span class="dot"></span>
+                Горячие ставки
+            </div>
+            <div class="hot-bets-track">
+                <div class="hot-bet"><span class="bet-suit">♥</span> <span class="bet-artist">Velvet_Rose</span> ставит <span class="bet-amount">500 FEN</span> на «Бархатный вечер»</div>
+                <div class="hot-bet"><span class="bet-suit">♠</span> <span class="bet-artist">Noir_Art</span> ставит <span class="bet-amount">1 200 FEN</span> на «Ночную смену»</div>
+                <div class="hot-bet"><span class="bet-suit">♦</span> <span class="bet-artist">ScarletDream</span> ставит <span class="bet-amount">800 FEN</span> на «Красный шёлк»</div>
+                <div class="hot-bet"><span class="bet-suit">♣</span> <span class="bet-artist">MidnightLux</span> ставит <span class="bet-amount">300 FEN</span> на «Сцену · 03:00»</div>
+                <div class="hot-bet"><span class="bet-suit">♥</span> <span class="bet-artist">Velvet_Rose</span> ставит <span class="bet-amount">500 FEN</span> на «Бархатный вечер»</div>
+                <div class="hot-bet"><span class="bet-suit">♠</span> <span class="bet-artist">Noir_Art</span> ставит <span class="bet-amount">1 200 FEN</span> на «Ночную смену»</div>
+                <div class="hot-bet"><span class="bet-suit">♦</span> <span class="bet-artist">ScarletDream</span> ставит <span class="bet-amount">800 FEN</span> на «Красный шёлк»</div>
+                <div class="hot-bet"><span class="bet-suit">♣</span> <span class="bet-artist">MidnightLux</span> ставит <span class="bet-amount">300 FEN</span> на «Сцену · 03:00»</div>
+            </div>
+        </div>
+    </div>
 
     <!-- ФИЛЬТРЫ -->
     <div class="filters">
@@ -1834,6 +2111,46 @@
 
     </main>
 
+    <!-- ЗА КУЛИСАМИ (доп. секция) -->
+    <section class="backstage">
+        <div class="backstage-header">
+            <div class="label">✦ Только для своих ✦</div>
+            <h3>За кулисами<span>приват</span></h3>
+            <p>То, что не попадает на главную сцену. Приватные заказы и закрытые лоты.</p>
+        </div>
+
+        <div class="backstage-grid">
+            <div class="bkg-card">
+                <div class="bkg-tag">Приват · 18+</div>
+                <div class="bkg-title">Индивидуальный заказ</div>
+                <div class="bkg-desc">Личный арт по вашему сценарию. Анонимно. Деликатно. Под вашим полным контролем.</div>
+                <div class="bkg-meta">
+                    <span>от 100 фишек</span>
+                    <span class="bkg-price">Открыть</span>
+                </div>
+            </div>
+            <div class="bkg-card">
+                <div class="bkg-tag">VIP · 18+</div>
+                <div class="bkg-title">Закрытый аукцион</div>
+                <div class="bkg-desc">Работы, которые не выставляются публично. Ставки фишками, доступ по приглашению.</div>
+                <div class="bkg-meta">
+                    <span>вход 500 фишек</span>
+                    <span class="bkg-price">Войти</span>
+                </div>
+            </div>
+            <div class="bkg-card">
+                <div class="bkg-tag">Сцена · 18+</div>
+                <div class="bkg-title">Ночь желаний</div>
+                <div class="bkg-desc">Тематический вечер каждую субботу. Лучшие работы получают призовой фонд фишками.</div>
+                <div class="bkg-meta">
+                    <span>сб · 00:00</span>
+                    <span class="bkg-price">Узнать</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
     <footer class="footer">
         <a href="index.html" class="back-link">← Вернуться в главное меню</a>
         <div>✦ FENBO · ПЛОТЬ ✦ 2025 ✦ <span>Только 18+</span> ✦</div>
@@ -1921,9 +2238,7 @@
         });
         document.querySelectorAll('.pkg').forEach(pkg => {
             pkg.addEventListener('click', () => {
-                const chips = pkg.dataset.chips;
-                const usdt = pkg.dataset.usdt;
-                alert(`Пакет: ${chips} фишек FENBO\nОплата: ${usdt} USDT\nКурс: 1 USDT = 100 фишек\n\nПодключение USDT — в следующей версии ✦`);
+                alert(`Пакет: ${pkg.dataset.chips} фишек FENBO\nОплата: ${pkg.dataset.usdt} USDT\nКурс: 1 USDT = 100 фишек\n\nПодключение USDT — в следующей версии ✦`);
             });
         });
         document.querySelectorAll('.method').forEach(m => {
@@ -1937,6 +2252,7 @@
             alert(`Пополнение через USDT (${active})\n\nКурс: 1 USDT = 100 фишек FENBO\nМинимум: 5 USDT (500 фишек)\n\nПодключение — в следующей версии ✦`);
         });
 
+        /* Лайтбокс */
         const lightbox = document.getElementById('lightbox');
         const lbClose = document.getElementById('lbClose');
         const lbTitle = document.getElementById('lbTitle');
