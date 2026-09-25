@@ -54,7 +54,7 @@
         }
 
         /* ============================================
-           СОФИТЫ (свет сверху)
+           СОФИТЫ
            ============================================ */
         .spotlight {
             position: fixed;
@@ -80,9 +80,6 @@
             50% { opacity: 1; }
         }
 
-        /* ============================================
-           ДЫМ
-           ============================================ */
         .smoke {
             position: fixed;
             inset: 0;
@@ -190,6 +187,13 @@
             font-size: 1rem;
             color: #FFD700;
             box-shadow: 0 0 18px rgba(255, 215, 0, 0.35);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .topbar-user .avatar:hover {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+            transform: scale(1.05);
         }
 
         /* ============================================
@@ -286,12 +290,6 @@
             justify-content: center;
             position: relative;
             z-index: 5;
-            animation: fadeIn 1.6s ease 0.3s both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .filter-chip {
@@ -347,17 +345,8 @@
             gap: 28px;
             position: relative;
             z-index: 5;
-            animation: fadeInUp 1.4s ease 0.5s both;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ============================================
-           КАРТОЧКА
-           ============================================ */
         .art-card {
             position: relative;
             display: block;
@@ -447,7 +436,6 @@
 
         .art-card .info {
             padding: 16px 18px 18px;
-            position: relative;
         }
 
         .art-card .info .title {
@@ -460,11 +448,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             text-shadow: 0 0 14px rgba(255, 215, 0, 0.45);
-            transition: text-shadow 0.4s ease;
-        }
-
-        .art-card:hover .info .title {
-            text-shadow: 0 0 28px rgba(255, 215, 0, 1);
         }
 
         .art-card .info .author {
@@ -493,19 +476,7 @@
             color: rgba(232, 216, 200, 0.7);
         }
 
-        .art-card .info .stats span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s ease;
-        }
-
-        .art-card:hover .info .stats span {
-            color: #FFD700;
-        }
-
         .art-card .info .stats .heart { color: #FF4444; }
-
         .art-card .info .tag {
             font-family: 'Cinzel', serif;
             font-size: 0.6rem;
@@ -515,36 +486,6 @@
             padding: 3px 9px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 2px;
-        }
-
-        /* ============================================
-           КНОПКА "ЗАГРУЗИТЬ ЕЩЁ"
-           ============================================ */
-        .load-more {
-            grid-column: 1 / -1;
-            text-align: center;
-            margin-top: 25px;
-        }
-
-        .load-more button {
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: #FFD700;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 215, 0, 0.55);
-            padding: 18px 50px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
-        }
-
-        .load-more button:hover {
-            background: #FFD700;
-            color: #1A0505;
-            letter-spacing: 8px;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.8);
         }
 
         /* ============================================
@@ -590,7 +531,7 @@
         }
 
         /* ============================================
-           ЛАЙТБОКС
+           ЛАЙТБОКС — ЛЮКС-ВЕРСИЯ
            ============================================ */
         .lightbox {
             position: fixed;
@@ -599,9 +540,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(18px);
+            padding: 30px 20px;
+            background: 
+                radial-gradient(ellipse at 50% 30%, rgba(80, 0, 0, 0.5) 0%, transparent 60%),
+                rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(22px);
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -613,37 +556,56 @@
             visibility: visible;
         }
 
+        /* Внутренний контейнер */
         .lightbox-inner {
             position: relative;
             width: 100%;
-            max-width: 1400px;
+            max-width: 1480px;
             display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            background: linear-gradient(165deg, #150303 0%, #0A0101 100%);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 16px;
+            grid-template-columns: 1.2fr 1fr;
+            background: 
+                radial-gradient(ellipse at 20% 0%, rgba(120, 0, 0, 0.35) 0%, transparent 50%),
+                linear-gradient(165deg, #120202 0%, #080101 100%);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 
-                0 40px 120px rgba(0, 0, 0, 1),
-                0 0 0 1px rgba(255, 215, 0, 0.15),
-                0 0 100px rgba(180, 0, 0, 0.6),
-                0 0 200px rgba(255, 0, 0, 0.3);
+                0 50px 150px rgba(0, 0, 0, 1),
+                0 0 0 1px rgba(255, 215, 0, 0.2),
+                0 0 120px rgba(180, 0, 0, 0.7),
+                0 0 240px rgba(255, 0, 0, 0.35),
+                inset 0 0 80px rgba(0, 0, 0, 0.5);
             transform: scale(0.94) translateY(20px);
-            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            max-height: 88vh;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            max-height: 92vh;
         }
 
         .lightbox.active .lightbox-inner {
             transform: scale(1) translateY(0);
         }
 
-        /* Левая часть — картинка */
+        /* Верхняя золотая полоска */
+        .lightbox-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, #FF4444, #FFD700, transparent);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            z-index: 5;
+        }
+
+        /* ============================================
+           ЛЕВАЯ СТОРОНА — ПРЕВЬЮ
+           ============================================ */
         .lb-image {
             position: relative;
             background: 
-                radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.55) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.45) 0%, transparent 50%),
-                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255, 215, 0, 0.03) 30px, rgba(255, 215, 0, 0.03) 31px),
+                radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.65) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.5) 0%, transparent 55%),
+                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 215, 0, 0.03) 40px, rgba(255, 215, 0, 0.03) 41px),
                 linear-gradient(165deg, #2B0A0A 0%, #0D0202 100%);
             display: flex;
             align-items: center;
@@ -656,36 +618,83 @@
             content: '❦';
             position: absolute;
             font-family: 'Cinzel', serif;
-            font-size: 12rem;
-            color: rgba(255, 215, 0, 0.1);
-            text-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+            font-size: 16rem;
+            color: rgba(255, 215, 0, 0.12);
+            text-shadow: 0 0 80px rgba(255, 215, 0, 0.4);
             pointer-events: none;
+            animation: symbolGlow 5s ease-in-out infinite;
+        }
+
+        @keyframes symbolGlow {
+            0%, 100% { text-shadow: 0 0 80px rgba(255, 215, 0, 0.4); opacity: 0.85; }
+            50% { text-shadow: 0 0 140px rgba(255, 215, 0, 0.7); opacity: 1; }
+        }
+
+        /* Верхние софиты */
+        .lb-image::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: 
+                radial-gradient(ellipse at 30% 0%, rgba(255, 220, 120, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 0%, rgba(255, 200, 80, 0.25) 0%, transparent 60%);
+            filter: blur(35px);
+            pointer-events: none;
+            z-index: 2;
         }
 
         .lb-image .badge-18 {
             position: absolute;
-            top: 22px;
-            left: 22px;
+            top: 24px;
+            left: 24px;
             font-family: 'Cinzel', serif;
             font-size: 0.7rem;
             letter-spacing: 4px;
-            padding: 6px 14px;
+            padding: 7px 16px;
             background: rgba(180, 0, 0, 0.95);
             color: #FFFFFF;
             border: 1px solid #FF4444;
-            border-radius: 2px;
+            border-radius: 3px;
             text-shadow: 0 0 12px rgba(255, 0, 0, 1);
             box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+            z-index: 3;
         }
 
-        /* Правая часть — инфо */
+        /* Плашка-подсказка */
+        .lb-image .hint {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: rgba(255, 215, 0, 0.7);
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+            padding: 6px 16px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 3;
+            white-space: nowrap;
+        }
+
+        /* ============================================
+           ПРАВАЯ СТОРОНА — ИНФО
+           ============================================ */
         .lb-info {
-            padding: 40px 35px;
+            padding: 32px 32px 28px;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 215, 0, 0.4) transparent;
+            position: relative;
         }
 
         .lb-info::-webkit-scrollbar { width: 6px; }
@@ -695,30 +704,63 @@
             border-radius: 3px;
         }
 
-        /* Автор */
+        /* ============================================
+           АВТОР
+           ============================================ */
         .lb-author {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding-bottom: 22px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            margin-bottom: 22px;
+            gap: 14px;
+            padding: 14px;
+            margin-bottom: 20px;
+            background: 
+                linear-gradient(135deg, rgba(60, 0, 0, 0.5) 0%, rgba(20, 0, 0, 0.3) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lb-author::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .lb-author:hover {
+            border-color: rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.05);
+            transform: translateX(4px);
+        }
+
+        .lb-author:hover::before {
+            left: 100%;
         }
 
         .lb-author .author-avatar {
-            width: 54px;
-            height: 54px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #2B0A0A, #4A0505);
-            border: 2px solid rgba(255, 215, 0, 0.6);
+            background: 
+                radial-gradient(circle at 30% 30%, #4A0505, #1A0505);
+            border: 2px solid rgba(255, 215, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #FFD700;
-            box-shadow: 0 0 22px rgba(255, 215, 0, 0.4);
+            box-shadow: 
+                0 0 25px rgba(255, 215, 0, 0.5),
+                inset 0 0 15px rgba(0, 0, 0, 0.7);
             flex-shrink: 0;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
         }
 
         .lb-author .author-info {
@@ -728,16 +770,25 @@
 
         .lb-author .author-name {
             font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: #FFD700;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            text-shadow: 0 0 14px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lb-author .author-name .verified {
+            font-size: 0.7rem;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 1);
         }
 
         .lb-author .author-subs {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-style: italic;
             color: #C5A059;
             margin-top: 3px;
@@ -746,23 +797,25 @@
 
         .lb-author .btn-subscribe {
             font-family: 'Cinzel', serif;
-            font-size: 0.62rem;
+            font-size: 0.6rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: #FFD700;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 215, 0, 0.6);
-            padding: 9px 16px;
-            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.7);
+            padding: 10px 16px;
+            border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
+            position: relative;
+            z-index: 2;
         }
 
         .lb-author .btn-subscribe:hover {
             background: #FFD700;
             color: #1A0505;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
             letter-spacing: 4px;
         }
 
@@ -770,9 +823,12 @@
             background: rgba(180, 0, 0, 0.5);
             border-color: #FF4444;
             color: #FF4444;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
         }
 
-        /* Название */
+        /* ============================================
+           НАЗВАНИЕ
+           ============================================ */
         .lb-title {
             font-family: 'Cinzel', serif;
             font-size: 2.2rem;
@@ -781,18 +837,21 @@
             letter-spacing: 6px;
             text-transform: uppercase;
             line-height: 1.15;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             text-shadow: 
                 0 0 20px rgba(0, 0, 0, 1),
-                0 0 40px rgba(255, 215, 0, 0.5);
+                0 0 50px rgba(255, 215, 0, 0.6),
+                0 0 100px rgba(180, 0, 0, 0.5);
         }
 
-        /* Хэштеги */
+        /* ============================================
+           ХЭШТЕГИ
+           ============================================ */
         .lb-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .lb-tag {
@@ -800,99 +859,139 @@
             font-size: 0.65rem;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            color: rgba(255, 215, 0, 0.85);
-            padding: 5px 12px;
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            border-radius: 3px;
+            color: rgba(255, 215, 0, 0.9);
+            padding: 6px 14px;
+            border: 1px solid rgba(255, 215, 0, 0.45);
+            border-radius: 20px;
             background: rgba(255, 215, 0, 0.05);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
         }
 
         .lb-tag:hover {
             background: #FFD700;
             color: #1A0505;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+            transform: translateY(-2px);
+            letter-spacing: 3px;
         }
 
-        /* Описание */
+        /* ============================================
+           ОПИСАНИЕ
+           ============================================ */
         .lb-desc {
             font-family: 'Lora', serif;
             font-size: 0.95rem;
-            line-height: 1.8;
+            line-height: 1.85;
             color: #D4C4B0;
             font-style: italic;
-            padding: 18px 20px;
-            border-left: 2px solid rgba(255, 215, 0, 0.5);
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 0 6px 6px 0;
-            margin-bottom: 24px;
+            padding: 18px 22px;
+            border-left: 3px solid rgba(255, 215, 0, 0.6);
+            background: 
+                linear-gradient(90deg, rgba(60, 0, 0, 0.4) 0%, rgba(20, 0, 0, 0.2) 100%);
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 22px;
             text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+            position: relative;
         }
 
-        /* Статы */
+        .lb-desc::before {
+            content: '“';
+            position: absolute;
+            top: -8px;
+            left: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: rgba(255, 215, 0, 0.4);
+            line-height: 1;
+        }
+
+        /* ============================================
+           СТАТИСТИКА — КЛИКАБЕЛЬНАЯ
+           ============================================ */
         .lb-stats {
-            display: flex;
-            gap: 25px;
-            margin-bottom: 25px;
-            padding: 16px 0;
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .lb-stat {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 4px;
+            padding: 14px 8px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .lb-stat:hover {
+            border-color: rgba(255, 215, 0, 0.7);
+            background: rgba(60, 0, 0, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(180, 0, 0, 0.4);
         }
 
         .lb-stat .stat-value {
             font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #FFD700;
             letter-spacing: 2px;
-            text-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
+
+        .lb-stat .stat-value .heart { color: #FF4444; font-size: 1.1rem; }
 
         .lb-stat .stat-label {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.75rem;
-            color: rgba(197, 160, 89, 0.7);
+            font-size: 0.68rem;
+            color: rgba(197, 160, 89, 0.8);
             letter-spacing: 3px;
             text-transform: uppercase;
         }
 
-        /* Кнопки действий */
+        /* ============================================
+           ДЕЙСТВИЯ
+           ============================================ */
         .lb-actions {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
-        .lb-actions button,
-        .lb-actions a {
-            flex: 1;
+        .lb-actions button {
             font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
-            letter-spacing: 4px;
+            font-size: 0.72rem;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
-            padding: 15px 20px;
-            border-radius: 4px;
+            padding: 15px 14px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            text-align: center;
-            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Лайк */
         .lb-btn-like {
             color: #FF4444;
             background: rgba(180, 0, 0, 0.15);
             border: 1px solid rgba(255, 68, 68, 0.6);
             text-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+            grid-column: span 1;
         }
 
         .lb-btn-like:hover {
@@ -900,55 +999,120 @@
             color: #FFFFFF;
             border-color: #FF0000;
             box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+            letter-spacing: 4px;
         }
 
         .lb-btn-like.liked {
-            background: #FF0000;
+            background: linear-gradient(135deg, #FF0000, #8B0000);
             color: #FFFFFF;
             border-color: #FF4444;
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.9), inset 0 0 25px rgba(255, 0, 0, 0.5);
+            animation: likePulse 0.5s ease;
         }
 
+        @keyframes likePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        /* Заказать */
         .lb-btn-order {
             color: #1A0505;
-            background: #FFD700;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
             border: 1px solid #FFD700;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 -3px 10px rgba(120, 80, 0, 0.4);
+            font-weight: 700;
+        }
+
+        .lb-btn-order::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: left 0.7s ease;
         }
 
         .lb-btn-order:hover {
-            background: #FFFFFF;
-            border-color: #FFFFFF;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.9);
+            background: linear-gradient(135deg, #FFFFFF, #FFD700);
+            box-shadow: 0 0 60px rgba(255, 215, 0, 1), inset 0 -3px 10px rgba(120, 80, 0, 0.3);
             letter-spacing: 5px;
         }
 
-        /* Кнопка закрытия */
+        .lb-btn-order:hover::before {
+            left: 100%;
+        }
+
+        /* Вторая линия действий */
+        .lb-actions-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .lb-btn-mini {
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(232, 216, 200, 0.8);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 12px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lb-btn-mini .mini-icon {
+            font-size: 1rem;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .lb-btn-mini:hover {
+            border-color: rgba(255, 215, 0, 0.8);
+            color: #FFD700;
+            background: rgba(60, 0, 0, 0.4);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+           КНОПКА ЗАКРЫТИЯ
+           ============================================ */
         .lb-close {
             position: absolute;
             top: 18px;
             right: 18px;
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 215, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.6);
             color: #FFD700;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             z-index: 20;
             font-family: 'Cinzel', serif;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
         .lb-close:hover {
             background: #FFD700;
             color: #1A0505;
-            box-shadow: 0 0 35px rgba(255, 215, 0, 0.9);
-            transform: rotate(90deg);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+            transform: rotate(90deg) scale(1.05);
         }
 
         /* ============================================
@@ -963,9 +1127,10 @@
             .gallery { padding: 25px; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
             .filters { padding: 25px; }
 
-            .lightbox-inner { grid-template-columns: 1fr; max-height: 92vh; }
+            .lightbox-inner { grid-template-columns: 1fr; max-height: 94vh; }
             .lb-image { min-height: 320px; }
-            .lb-info { padding: 30px 25px; }
+            .lb-image::after { font-size: 8rem; }
+            .lb-info { padding: 26px 22px; }
             .lb-title { font-size: 1.7rem; letter-spacing: 4px; }
         }
 
@@ -988,7 +1153,6 @@
             }
             .logo { font-size: 1.3rem; letter-spacing: 5px; }
             .logo span { font-size: 0.85rem; }
-            .topbar-user .avatar { width: 34px; height: 34px; font-size: 0.9rem; }
 
             .hero { padding: 32px 16px 20px; }
             .hero-badge { font-size: 0.55rem; letter-spacing: 7px; padding: 7px 16px; margin-bottom: 20px; }
@@ -996,22 +1160,10 @@
             .hero h1 span { font-size: 1.7rem; display: block; margin: 8px 0 0; }
             .hero p { font-size: 0.88rem; letter-spacing: 2.5px; margin-top: 15px; }
 
-            .filters {
-                padding: 18px 16px 5px;
-                gap: 8px;
-            }
-            .filter-chip {
-                font-size: 0.6rem;
-                letter-spacing: 2px;
-                padding: 7px 15px;
-            }
+            .filters { padding: 18px 16px 5px; gap: 8px; }
+            .filter-chip { font-size: 0.6rem; letter-spacing: 2px; padding: 7px 15px; }
 
-            .gallery {
-                padding: 18px 16px;
-                gap: 14px;
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            }
-
+            .gallery { padding: 18px 16px; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
             .art-card .info { padding: 11px 13px 13px; }
             .art-card .info .title { font-size: 0.82rem; letter-spacing: 1.5px; }
             .art-card .info .author { font-size: 0.76rem; }
@@ -1019,31 +1171,37 @@
             .art-card .info .tag { font-size: 0.55rem; padding: 2px 6px; }
             .art-card .badge-18 { font-size: 0.55rem; padding: 3px 8px; top: 8px; left: 8px; }
 
-            .load-more button { padding: 15px 32px; font-size: 0.65rem; letter-spacing: 4px; }
-
             .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; letter-spacing: 4px; }
-            .footer .back-link { font-size: 0.9rem; }
 
             /* Лайтбокс */
-            .lightbox { padding: 15px 10px; }
-            .lightbox-inner { border-radius: 12px; }
-            .lb-image { min-height: 260px; }
+            .lightbox { padding: 12px 8px; }
+            .lightbox-inner { border-radius: 14px; }
+            .lb-image { min-height: 280px; }
             .lb-image .badge-18 { top: 14px; left: 14px; font-size: 0.6rem; padding: 4px 10px; }
             .lb-image::after { font-size: 6rem; }
-            .lb-info { padding: 22px 18px; }
-            .lb-title { font-size: 1.35rem; letter-spacing: 3px; margin-bottom: 10px; }
-            .lb-author .author-avatar { width: 44px; height: 44px; font-size: 1.1rem; }
-            .lb-author .author-name { font-size: 0.9rem; letter-spacing: 1.5px; }
-            .lb-author .author-subs { font-size: 0.8rem; }
-            .lb-author .btn-subscribe { font-size: 0.55rem; padding: 7px 12px; letter-spacing: 2px; }
-            .lb-tag { font-size: 0.55rem; letter-spacing: 2px; padding: 4px 9px; }
-            .lb-desc { font-size: 0.85rem; line-height: 1.7; padding: 14px 15px; margin-bottom: 18px; }
-            .lb-stats { gap: 18px; padding: 12px 0; margin-bottom: 18px; }
+            .lb-image .hint { font-size: 0.7rem; padding: 5px 12px; bottom: 14px; }
+            .lb-info { padding: 20px 16px; }
+            .lb-title { font-size: 1.4rem; letter-spacing: 3px; margin-bottom: 12px; }
+
+            .lb-author { padding: 11px; gap: 11px; }
+            .lb-author .author-avatar { width: 46px; height: 46px; font-size: 1.2rem; }
+            .lb-author .author-name { font-size: 0.85rem; letter-spacing: 1.5px; }
+            .lb-author .author-subs { font-size: 0.75rem; }
+            .lb-author .btn-subscribe { font-size: 0.55rem; padding: 8px 12px; letter-spacing: 2px; }
+
+            .lb-tag { font-size: 0.55rem; letter-spacing: 2px; padding: 5px 10px; }
+            .lb-desc { font-size: 0.85rem; line-height: 1.7; padding: 14px 16px; margin-bottom: 18px; }
+
+            .lb-stats { gap: 8px; }
+            .lb-stat { padding: 10px 4px; }
             .lb-stat .stat-value { font-size: 1.1rem; }
-            .lb-stat .stat-label { font-size: 0.65rem; letter-spacing: 2px; }
-            .lb-actions { flex-direction: column; gap: 10px; }
-            .lb-actions button, .lb-actions a { padding: 14px 16px; font-size: 0.62rem; letter-spacing: 3px; }
-            .lb-close { width: 36px; height: 36px; font-size: 1.1rem; top: 12px; right: 12px; }
+            .lb-stat .stat-label { font-size: 0.6rem; letter-spacing: 2px; }
+
+            .lb-actions button { padding: 13px 10px; font-size: 0.62rem; letter-spacing: 3px; }
+            .lb-actions-2 { gap: 8px; }
+            .lb-btn-mini { font-size: 0.55rem; padding: 10px 4px; letter-spacing: 2px; }
+            .lb-btn-mini .mini-icon { font-size: 0.9rem; }
+            .lb-close { width: 38px; height: 38px; font-size: 1rem; top: 12px; right: 12px; }
         }
 
         @media (max-width: 480px) {
@@ -1051,22 +1209,18 @@
             .hero h1 span { font-size: 1.4rem; }
             .hero-badge { font-size: 0.5rem; letter-spacing: 4px; }
 
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                padding: 14px 10px;
-            }
-
+            .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 14px 10px; }
             .art-card .info { padding: 8px 10px 10px; }
             .art-card .info .title { font-size: 0.72rem; letter-spacing: 1px; }
-            .art-card .info .author { font-size: 0.68rem; margin-top: 2px; }
-            .art-card .info .meta { margin-top: 8px; padding-top: 8px; }
+            .art-card .info .author { font-size: 0.68rem; }
             .art-card .info .stats { font-size: 0.68rem; gap: 8px; }
             .art-card .info .tag { display: none; }
-
             .topbar-nav { font-size: 0.55rem; letter-spacing: 1.5px; gap: 10px; }
 
-            .lb-title { font-size: 1.2rem; }
+            .lb-title { font-size: 1.15rem; letter-spacing: 2px; }
+            .lb-actions { grid-template-columns: 1fr; }
+            .lb-actions-2 { grid-template-columns: 1fr 1fr 1fr; }
+            .lb-stats { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
@@ -1087,7 +1241,7 @@
             <a href="#">Авторы</a>
         </nav>
         <div class="topbar-user">
-            <div class="avatar">F</div>
+            <div class="avatar" title="Профиль">F</div>
         </div>
     </header>
 
@@ -1113,8 +1267,7 @@
     <!-- ГАЛЕРЕЯ -->
     <main class="gallery" id="gallery">
 
-        <!-- 1 -->
-        <div class="art-card" data-title="Бархатный вечер" data-author="Velvet_Rose" data-symbol="❦" data-tag="живопись" data-desc="Тихий вечер в бархатном кресле. Только я, вино и твои глаза напротив. Иногда самое интимное — это пауза перед тем, как всё начнётся." data-likes="1245" data-views="4520" data-tags="живопись,неон,бархат,интим">
+        <div class="art-card" data-title="Бархатный вечер" data-author="Velvet_Rose" data-symbol="❦" data-tag="живопись" data-desc="Тихий вечер в бархатном кресле. Только я, вино и твои глаза напротив. Иногда самое интимное — это пауза перед тем, как всё начнётся." data-likes="1245" data-views="4520" data-tags="живопись,неон,бархат,интим,вечер,желание">
             <div class="thumb">
                 <div class="placeholder">❦</div>
                 <span class="badge-18">18+</span>
@@ -1123,227 +1276,109 @@
                 <div class="title">Бархатный вечер</div>
                 <div class="author">by Velvet_Rose</div>
                 <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 1.2k</span>
-                        <span>👁 4.5k</span>
-                    </div>
+                    <div class="stats"><span><span class="heart">♥</span> 1.2k</span><span>👁 4.5k</span></div>
                     <span class="tag">живопись</span>
                 </div>
             </div>
         </div>
 
-        <!-- 2 -->
-        <div class="art-card" data-title="Ночная смена" data-author="Noir_Art" data-symbol="♠" data-tag="диджитал" data-desc="Когда клуб закрывается, а свет ещё горит — начинается настоящая магия. Тени, дым, отблески на коже." data-likes="856" data-views="2140" data-tags="диджитал,неон,тени,бар">
-            <div class="thumb">
-                <div class="placeholder">♠</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Ночная смена" data-author="Noir_Art" data-symbol="♠" data-tag="диджитал" data-desc="Когда клуб закрывается, а свет ещё горит — начинается настоящая магия. Тени, дым, отблески на коже." data-likes="856" data-views="2140" data-tags="диджитал,неон,тени,бар,ночь">
+            <div class="thumb"><div class="placeholder">♠</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Ночная смена</div>
                 <div class="author">by Noir_Art</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 856</span>
-                        <span>👁 2.1k</span>
-                    </div>
-                    <span class="tag">диджитал</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 856</span><span>👁 2.1k</span></div><span class="tag">диджитал</span></div>
             </div>
         </div>
 
-        <!-- 3 -->
-        <div class="art-card" data-title="Красный шёлк" data-author="ScarletDream" data-symbol="♥" data-tag="аниме" data-desc="Шёлк скользит по коже. Я знаю, что ты смотришь. Позволь мне продолжить." data-likes="2415" data-views="8930" data-tags="аниме,шёлк,красный,соблазн">
-            <div class="thumb">
-                <div class="placeholder">♥</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Красный шёлк" data-author="ScarletDream" data-symbol="♥" data-tag="аниме" data-desc="Шёлк скользит по коже. Я знаю, что ты смотришь. Позволь мне продолжить." data-likes="2415" data-views="8930" data-tags="аниме,шёлк,красный,соблазн,кожа">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Красный шёлк</div>
                 <div class="author">by ScarletDream</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 2.4k</span>
-                        <span>👁 8.9k</span>
-                    </div>
-                    <span class="tag">аниме</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 2.4k</span><span>👁 8.9k</span></div><span class="tag">аниме</span></div>
             </div>
         </div>
 
-        <!-- 4 -->
-        <div class="art-card" data-title="Сцена · 03:00" data-author="MidnightLux" data-symbol="♦" data-tag="фетиш" data-desc="Три часа ночи. Последний танец. Софит оставляет только самое важное." data-likes="631" data-views="1720" data-tags="фетиш,сцена,софит,танец">
-            <div class="thumb">
-                <div class="placeholder">♦</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Сцена · 03:00" data-author="MidnightLux" data-symbol="♦" data-tag="фетиш" data-desc="Три часа ночи. Последний танец. Софит оставляет только самое важное." data-likes="631" data-views="1720" data-tags="фетиш,сцена,софит,танец,ночь">
+            <div class="thumb"><div class="placeholder">♦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Сцена · 03:00</div>
                 <div class="author">by MidnightLux</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 631</span>
-                        <span>👁 1.7k</span>
-                    </div>
-                    <span class="tag">фетиш</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 631</span><span>👁 1.7k</span></div><span class="tag">фетиш</span></div>
             </div>
         </div>
 
-        <!-- 5 -->
-        <div class="art-card" data-title="Шёлковые оковы" data-author="BoundElegance" data-symbol="♣" data-tag="бдсм" data-desc="Нежные путы из шёлка. Никакой боли — только доверие, ритм и полное присутствие." data-likes="1830" data-views="5210" data-tags="бдсм,шёлк,доверие,оковы">
-            <div class="thumb">
-                <div class="placeholder">♣</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Шёлковые оковы" data-author="BoundElegance" data-symbol="♣" data-tag="бдсм" data-desc="Нежные путы из шёлка. Никакой боли — только доверие, ритм и полное присутствие." data-likes="1830" data-views="5210" data-tags="бдсм,шёлк,доверие,оковы,нежность">
+            <div class="thumb"><div class="placeholder">♣</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Шёлковые оковы</div>
                 <div class="author">by BoundElegance</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 1.8k</span>
-                        <span>👁 5.2k</span>
-                    </div>
-                    <span class="tag">бдсм</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.8k</span><span>👁 5.2k</span></div><span class="tag">бдсм</span></div>
             </div>
         </div>
 
-        <!-- 6 -->
-        <div class="art-card" data-title="Две свечи" data-author="TwinFlame" data-symbol="❦" data-tag="лесби" data-desc="Два огня рядом. Один взгляд — и мы уже всё поняли друг о друге." data-likes="3120" data-views="12040" data-tags="лесби,свечи,интим,взгляд">
-            <div class="thumb">
-                <div class="placeholder">❦</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Две свечи" data-author="TwinFlame" data-symbol="❦" data-tag="лесби" data-desc="Два огня рядом. Один взгляд — и мы уже всё поняли друг о друге." data-likes="3120" data-views="12040" data-tags="лесби,свечи,интим,взгляд,огонь">
+            <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Две свечи</div>
                 <div class="author">by TwinFlame</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 3.1k</span>
-                        <span>👁 12k</span>
-                    </div>
-                    <span class="tag">лесби</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 3.1k</span><span>👁 12k</span></div><span class="tag">лесби</span></div>
             </div>
         </div>
 
-        <!-- 7 -->
-        <div class="art-card" data-title="За кулисами" data-author="Backstage_" data-symbol="♥" data-tag="диджитал" data-desc="То, что происходит за занавесом, важнее самого выступления. Шёпот, дыхание, ожидание." data-likes="921" data-views="3420" data-tags="диджитал,занавес,тайна,ожидание">
-            <div class="thumb">
-                <div class="placeholder">♥</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="За кулисами" data-author="Backstage_" data-symbol="♥" data-tag="диджитал" data-desc="То, что происходит за занавесом, важнее самого выступления. Шёпот, дыхание, ожидание." data-likes="921" data-views="3420" data-tags="диджитал,занавес,тайна,ожидание,шёпот">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">За кулисами</div>
                 <div class="author">by Backstage_</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 921</span>
-                        <span>👁 3.4k</span>
-                    </div>
-                    <span class="tag">диджитал</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 921</span><span>👁 3.4k</span></div><span class="tag">диджитал</span></div>
             </div>
         </div>
 
-        <!-- 8 -->
-        <div class="art-card" data-title="Тёмный бархат" data-author="DarkVelvet" data-symbol="♠" data-tag="живопись" data-desc="Тёмный бархат скрывает всё, кроме самого главного. Ищи меня глазами." data-likes="1410" data-views="4120" data-tags="живопись,бархат,тени,взгляд">
-            <div class="thumb">
-                <div class="placeholder">♠</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Тёмный бархат" data-author="DarkVelvet" data-symbol="♠" data-tag="живопись" data-desc="Тёмный бархат скрывает всё, кроме самого главного. Ищи меня глазами." data-likes="1410" data-views="4120" data-tags="живопись,бархат,тени,взгляд,тайна">
+            <div class="thumb"><div class="placeholder">♠</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Тёмный бархат</div>
                 <div class="author">by DarkVelvet</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 1.4k</span>
-                        <span>👁 4.1k</span>
-                    </div>
-                    <span class="tag">живопись</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.4k</span><span>👁 4.1k</span></div><span class="tag">живопись</span></div>
             </div>
         </div>
 
-        <!-- 9 -->
-        <div class="art-card" data-title="Золотая клетка" data-author="GoldenCage" data-symbol="♦" data-tag="фетиш" data-desc="Иногда свобода — это позволить кому-то закрыть для тебя дверь. И держать ключ." data-likes="2740" data-views="9840" data-tags="фетиш,золото,клетка,власть">
-            <div class="thumb">
-                <div class="placeholder">♦</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Золотая клетка" data-author="GoldenCage" data-symbol="♦" data-tag="фетиш" data-desc="Иногда свобода — это позволить кому-то закрыть для тебя дверь. И держать ключ." data-likes="2740" data-views="9840" data-tags="фетиш,золото,клетка,власть,свобода">
+            <div class="thumb"><div class="placeholder">♦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Золотая клетка</div>
                 <div class="author">by GoldenCage</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 2.7k</span>
-                        <span>👁 9.8k</span>
-                    </div>
-                    <span class="tag">фетиш</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 2.7k</span><span>👁 9.8k</span></div><span class="tag">фетиш</span></div>
             </div>
         </div>
 
-        <!-- 10 -->
-        <div class="art-card" data-title="Пурпурный дым" data-author="PurpleSmoke" data-symbol="♣" data-tag="аниме" data-desc="Дым клубится, свет распадается. Всё, что осталось — мои руки и твой запах." data-likes="1120" data-views="2960" data-tags="аниме,дым,пурпур,руки">
-            <div class="thumb">
-                <div class="placeholder">♣</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Пурпурный дым" data-author="PurpleSmoke" data-symbol="♣" data-tag="аниме" data-desc="Дым клубится, свет распадается. Всё, что осталось — мои руки и твой запах." data-likes="1120" data-views="2960" data-tags="аниме,дым,пурпур,руки,запах">
+            <div class="thumb"><div class="placeholder">♣</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Пурпурный дым</div>
                 <div class="author">by PurpleSmoke</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 1.1k</span>
-                        <span>👁 2.9k</span>
-                    </div>
-                    <span class="tag">аниме</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.1k</span><span>👁 2.9k</span></div><span class="tag">аниме</span></div>
             </div>
         </div>
 
-        <!-- 11 -->
-        <div class="art-card" data-title="Шёпот в темноте" data-author="WhisperArt" data-symbol="❦" data-tag="диджитал" data-desc="Слова не нужны. Только шёпот у самого уха и тепло на коже." data-likes="1940" data-views="6340" data-tags="диджитал,шёпот,темнота,тепло">
-            <div class="thumb">
-                <div class="placeholder">❦</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Шёпот в темноте" data-author="WhisperArt" data-symbol="❦" data-tag="диджитал" data-desc="Слова не нужны. Только шёпот у самого уха и тепло на коже." data-likes="1940" data-views="6340" data-tags="диджитал,шёпот,темнота,тепло,кожа">
+            <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Шёпот в темноте</div>
                 <div class="author">by WhisperArt</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 1.9k</span>
-                        <span>👁 6.3k</span>
-                    </div>
-                    <span class="tag">диджитал</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.9k</span><span>👁 6.3k</span></div><span class="tag">диджитал</span></div>
             </div>
         </div>
 
-        <!-- 12 -->
-        <div class="art-card" data-title="Алый закат" data-author="ScarletSunset" data-symbol="♥" data-tag="живопись" data-desc="Закат цвета крови. Мы на крыше. Всё, что нужно знать друг о друге — уже сказано." data-likes="3520" data-views="15100" data-tags="живопись,закат,алый,крыша">
-            <div class="thumb">
-                <div class="placeholder">♥</div>
-                <span class="badge-18">18+</span>
-            </div>
+        <div class="art-card" data-title="Алый закат" data-author="ScarletSunset" data-symbol="♥" data-tag="живопись" data-desc="Закат цвета крови. Мы на крыше. Всё, что нужно знать друг о друге — уже сказано." data-likes="3520" data-views="15100" data-tags="живопись,закат,алый,крыша,кровь">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Алый закат</div>
                 <div class="author">by ScarletSunset</div>
-                <div class="meta">
-                    <div class="stats">
-                        <span><span class="heart">♥</span> 3.5k</span>
-                        <span>👁 15k</span>
-                    </div>
-                    <span class="tag">живопись</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 3.5k</span><span>👁 15k</span></div><span class="tag">живопись</span></div>
             </div>
-        </div>
-
-        <!-- Кнопка "Загрузить ещё" -->
-        <div class="load-more">
-            <button type="button" onclick="alert('Скоро здесь появится больше работ…')">Загрузить ещё</button>
         </div>
 
     </main>
@@ -1361,19 +1396,23 @@
         <div class="lightbox-inner">
             <button class="lb-close" id="lbClose" aria-label="Закрыть">✕</button>
 
-            <!-- Левая сторона — превью -->
+            <!-- Левая сторона -->
             <div class="lb-image">
                 <span class="badge-18">18+</span>
+                <span class="hint">нажмите для увеличения · листайте работы автора</span>
             </div>
 
-            <!-- Правая сторона — инфо -->
+            <!-- Правая сторона -->
             <div class="lb-info">
 
                 <!-- Автор -->
-                <div class="lb-author">
+                <div class="lb-author" id="lbAuthorClick" title="Открыть профиль автора">
                     <div class="author-avatar" id="lbAuthorAvatar">V</div>
                     <div class="author-info">
-                        <div class="author-name" id="lbAuthorName">Velvet_Rose</div>
+                        <div class="author-name">
+                            <span id="lbAuthorName">Velvet_Rose</span>
+                            <span class="verified" title="Проверенный автор">✦</span>
+                        </div>
                         <div class="author-subs" id="lbAuthorSubs">12.4k подписчиков</div>
                     </div>
                     <button class="btn-subscribe" id="lbSubscribe" type="button">Подписаться</button>
@@ -1388,15 +1427,19 @@
                 <!-- Описание -->
                 <div class="lb-desc" id="lbDesc"></div>
 
-                <!-- Статистика -->
+                <!-- Статистика (кликабельная) -->
                 <div class="lb-stats">
-                    <div class="lb-stat">
-                        <span class="stat-value" id="lbLikes">1.2k</span>
+                    <div class="lb-stat" id="lbStatLikes" title="Кто лайкнул">
+                        <span class="stat-value"><span class="heart">♥</span> <span id="lbLikes">1.2k</span></span>
                         <span class="stat-label">Лайков</span>
                     </div>
-                    <div class="lb-stat">
-                        <span class="stat-value" id="lbViews">4.5k</span>
+                    <div class="lb-stat" id="lbStatViews" title="Просмотры">
+                        <span class="stat-value">👁 <span id="lbViews">4.5k</span></span>
                         <span class="stat-label">Просмотров</span>
+                    </div>
+                    <div class="lb-stat" id="lbStatComments" title="Комментарии (скоро)">
+                        <span class="stat-value">💬 <span id="lbComments">128</span></span>
+                        <span class="stat-label">Отзывов</span>
                     </div>
                 </div>
 
@@ -1406,15 +1449,30 @@
                     <button class="lb-btn-order" id="lbOrder" type="button">✦ Заказать арт</button>
                 </div>
 
+                <!-- Вторая линия действий -->
+                <div class="lb-actions-2">
+                    <button class="lb-btn-mini" id="lbFav" type="button">
+                        <span class="mini-icon">★</span>
+                        В избранное
+                    </button>
+                    <button class="lb-btn-mini" id="lbShare" type="button">
+                        <span class="mini-icon">➤</span>
+                        Поделиться
+                    </button>
+                    <button class="lb-btn-mini" id="lbTip" type="button">
+                        <span class="mini-icon">✦</span>
+                        Чаевые
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
 
     <!-- ============================================
-         СКРИПТ: лайтбокс + переворот карточек
+         СКРИПТ
          ============================================ -->
     <script>
-        /* ---------- ЛАЙТБОКС ---------- */
         const lightbox = document.getElementById('lightbox');
         const lbClose = document.getElementById('lbClose');
         const lbTitle = document.getElementById('lbTitle');
@@ -1425,9 +1483,17 @@
         const lbTags = document.getElementById('lbTags');
         const lbLikes = document.getElementById('lbLikes');
         const lbViews = document.getElementById('lbViews');
+        const lbComments = document.getElementById('lbComments');
         const lbLike = document.getElementById('lbLike');
         const lbSubscribe = document.getElementById('lbSubscribe');
         const lbOrder = document.getElementById('lbOrder');
+        const lbFav = document.getElementById('lbFav');
+        const lbShare = document.getElementById('lbShare');
+        const lbTip = document.getElementById('lbTip');
+        const lbStatLikes = document.getElementById('lbStatLikes');
+        const lbStatViews = document.getElementById('lbStatViews');
+        const lbStatComments = document.getElementById('lbStatComments');
+        const lbAuthorClick = document.getElementById('lbAuthorClick');
 
         function formatNumber(n) {
             n = parseInt(n, 10) || 0;
@@ -1437,36 +1503,32 @@
         }
 
         function openLightbox(card) {
-            const title = card.dataset.title || 'Без названия';
+            lbTitle.textContent = card.dataset.title || 'Без названия';
             const author = card.dataset.author || 'Аноним';
-            const symbol = card.dataset.symbol || '❦';
-            const desc = card.dataset.desc || 'Описание отсутствует.';
-            const likes = card.dataset.likes || '0';
-            const views = card.dataset.views || '0';
-            const tagsRaw = card.dataset.tags || '';
-
-            lbTitle.textContent = title;
             lbAuthorName.textContent = author;
             lbAuthorAvatar.textContent = author.charAt(0).toUpperCase();
             lbAuthorSubs.textContent = formatNumber(Math.floor(Math.random() * 30000) + 500) + ' подписчиков';
-            lbDesc.textContent = desc;
-            lbLikes.textContent = formatNumber(likes);
-            lbViews.textContent = formatNumber(views);
+            lbDesc.textContent = card.dataset.desc || 'Описание отсутствует.';
+            lbLikes.textContent = formatNumber(card.dataset.likes);
+            lbViews.textContent = formatNumber(card.dataset.views);
+            lbComments.textContent = formatNumber(Math.floor(Math.random() * 500) + 12);
 
             // Теги
             lbTags.innerHTML = '';
-            if (tagsRaw) {
-                tagsRaw.split(',').forEach(t => {
-                    t = t.trim();
-                    if (!t) return;
-                    const a = document.createElement('a');
-                    a.href = '#';
-                    a.className = 'lb-tag';
-                    a.textContent = '#' + t;
-                    a.addEventListener('click', e => e.preventDefault());
-                    lbTags.appendChild(a);
+            (card.dataset.tags || '').split(',').forEach(t => {
+                t = t.trim();
+                if (!t) return;
+                const a = document.createElement('a');
+                a.href = '#';
+                a.className = 'lb-tag';
+                a.textContent = '#' + t;
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    alert('Переход к тегу #' + t + ' (в следующей версии)');
                 });
-            }
+                lbTags.appendChild(a);
+            });
 
             // Сброс кнопок
             lbLike.classList.remove('liked');
@@ -1491,26 +1553,55 @@
         });
 
         lbClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', e => {
-            if (e.target === lightbox) closeLightbox();
-        });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeLightbox();
-        });
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-        /* Кнопки внутри лайтбокса */
-        lbLike.addEventListener('click', () => {
+        /* Кнопки */
+        lbLike.addEventListener('click', e => {
+            e.stopPropagation();
             lbLike.classList.toggle('liked');
             lbLike.innerHTML = lbLike.classList.contains('liked') ? '♥ Понравилось' : '♥ Лайк';
         });
 
-        lbSubscribe.addEventListener('click', () => {
+        lbSubscribe.addEventListener('click', e => {
+            e.stopPropagation();
             lbSubscribe.classList.toggle('subscribed');
             lbSubscribe.textContent = lbSubscribe.classList.contains('subscribed') ? 'Вы подписаны' : 'Подписаться';
         });
 
-        lbOrder.addEventListener('click', () => {
-            alert('Форма заказа арта появится в следующей версии ✦');
+        lbOrder.addEventListener('click', e => {
+            e.stopPropagation();
+            alert('Форма заказа арта у автора — в следующей версии ✦');
+        });
+
+        lbFav.addEventListener('click', e => {
+            e.stopPropagation();
+            lbFav.style.color = '#FFD700';
+            lbFav.querySelector('.mini-icon').textContent = '★';
+            alert('Добавлено в избранное ✦');
+        });
+
+        lbShare.addEventListener('click', e => {
+            e.stopPropagation();
+            if (navigator.share) {
+                navigator.share({ title: lbTitle.textContent, text: 'Смотри на FENBO · Плоть' });
+            } else {
+                alert('Ссылка скопирована (заглушка)');
+            }
+        });
+
+        lbTip.addEventListener('click', e => {
+            e.stopPropagation();
+            alert('Отправить чаевые автору — в следующей версии ✦');
+        });
+
+        lbStatLikes.addEventListener('click', () => alert('Список тех, кто лайкнул — в следующей версии'));
+        lbStatViews.addEventListener('click', () => alert('Детальная статистика просмотров — в следующей версии'));
+        lbStatComments.addEventListener('click', () => alert('Отзывы и комментарии — в следующей версии'));
+
+        lbAuthorClick.addEventListener('click', e => {
+            if (e.target === lbSubscribe) return;
+            alert('Профиль автора — в следующей версии');
         });
     </script>
 
