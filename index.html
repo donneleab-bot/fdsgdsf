@@ -99,7 +99,6 @@
             to { transform: translate(30px, -20px) scale(1.1); }
         }
 
-        /* Плавающие частицы пыли на фоне */
         .dust-bg {
             position: fixed;
             inset: 0;
@@ -322,7 +321,6 @@
             text-shadow: 0 0 15px rgba(0, 0, 0, 1);
         }
 
-        /* Разделитель под героем */
         .hero-divider {
             display: flex;
             align-items: center;
@@ -442,9 +440,6 @@
             z-index: 5;
         }
 
-        /* ============================================
-           КАРТОЧКА (простой вид — как было)
-           ============================================ */
         .art-card {
             position: relative;
             display: block;
@@ -515,7 +510,6 @@
             text-shadow: 0 0 22px rgba(255, 215, 0, 0.5);
         }
 
-        /* Пробегающий блик по карточке */
         .art-card .thumb::before {
             content: '';
             position: absolute;
@@ -768,11 +762,13 @@
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 215, 0, 0.4) transparent;
+            position: relative;
         }
 
         .lb-info::-webkit-scrollbar { width: 6px; }
         .lb-info::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.4); border-radius: 3px; }
 
+        /* Автор */
         .lb-author {
             display: flex;
             align-items: center;
@@ -866,6 +862,7 @@
             color: #FF4444;
         }
 
+        /* Название */
         .lb-title {
             font-family: 'Cinzel', serif;
             font-size: 2.2rem;
@@ -878,7 +875,8 @@
             text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 50px rgba(255, 215, 0, 0.6);
         }
 
-        .lb-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        /* Теги */
+        .lb-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
         .lb-tag {
             font-family: 'Cinzel', serif;
             font-size: 0.65rem;
@@ -899,29 +897,52 @@
             transform: translateY(-2px);
         }
 
+        /* ---------- ОПИСАНИЕ (переделано) ---------- */
         .lb-desc {
-            font-family: 'Lora', serif;
-            font-size: 0.95rem;
-            line-height: 1.85;
-            color: #D4C4B0;
-            font-style: italic;
-            padding: 18px 22px;
-            border-left: 3px solid rgba(255, 215, 0, 0.6);
-            background: linear-gradient(90deg, rgba(60, 0, 0, 0.4) 0%, rgba(20, 0, 0, 0.2) 100%);
-            border-radius: 0 10px 10px 0;
-            margin-bottom: 22px;
             position: relative;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.85;
+            color: #E8D8C8;
+            padding: 26px 30px 26px 55px;
+            background: 
+                linear-gradient(90deg, rgba(60, 0, 0, 0.5) 0%, rgba(20, 0, 0, 0.25) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-left: 3px solid #FFD700;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 24px;
+            text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+            letter-spacing: 0.3px;
         }
+
         .lb-desc::before {
             content: '“';
             position: absolute;
-            top: -8px;
-            left: 10px;
+            top: 6px;
+            left: 14px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            color: rgba(255, 215, 0, 0.4);
+            font-size: 4.5rem;
+            color: rgba(255, 215, 0, 0.5);
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            pointer-events: none;
         }
 
+        .lb-desc::after {
+            content: '”';
+            position: absolute;
+            bottom: -20px;
+            right: 18px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            color: rgba(255, 215, 0, 0.3);
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            pointer-events: none;
+        }
+
+        /* Статистика */
         .lb-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -962,6 +983,7 @@
             text-transform: uppercase;
         }
 
+        /* Кнопки действий */
         .lb-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1043,30 +1065,39 @@
             transform: translateY(-3px);
         }
 
+        /* ============================================
+           КНОПКА ЗАКРЫТИЯ — теперь вынесена и не мешает
+           ============================================ */
         .lb-close {
             position: absolute;
-            top: 18px;
-            right: 18px;
-            width: 44px;
-            height: 44px;
+            top: -18px;
+            right: 20px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 215, 0, 0.6);
+            background: 
+                radial-gradient(circle at 30% 30%, #4A0505, #1A0505);
+            border: 2px solid rgba(255, 215, 0, 0.8);
             color: #FFD700;
             font-size: 1.2rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s ease;
-            z-index: 20;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 30;
             font-family: 'Cinzel', serif;
+            box-shadow: 
+                0 0 25px rgba(255, 215, 0, 0.5),
+                0 8px 25px rgba(0, 0, 0, 0.8);
         }
+
         .lb-close:hover {
             background: #FFD700;
             color: #1A0505;
-            box-shadow: 0 0 40px rgba(255, 215, 0, 1);
-            transform: rotate(90deg) scale(1.05);
+            box-shadow: 0 0 45px rgba(255, 215, 0, 1);
+            transform: rotate(90deg) scale(1.08);
+            border-color: #FFFFFF;
         }
 
         /* ============================================
@@ -1085,6 +1116,7 @@
             .lb-image::after { font-size: 8rem; }
             .lb-info { padding: 26px 22px; }
             .lb-title { font-size: 1.7rem; letter-spacing: 4px; }
+            .lb-close { top: -14px; right: 14px; width: 42px; height: 42px; }
         }
 
         @media (max-width: 768px) {
@@ -1120,7 +1152,7 @@
             .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; letter-spacing: 4px; }
             .footer .back-link { font-size: 0.9rem; }
 
-            .lightbox { padding: 12px 8px; }
+            .lightbox { padding: 30px 8px 12px; }
             .lightbox-inner { border-radius: 14px; }
             .lb-image { min-height: 260px; }
             .lb-image .badge-18 { top: 14px; left: 14px; font-size: 0.6rem; padding: 4px 10px; }
@@ -1132,13 +1164,21 @@
             .lb-author .author-name { font-size: 0.85rem; }
             .lb-author .author-subs { font-size: 0.75rem; }
             .lb-author .btn-subscribe { font-size: 0.55rem; padding: 8px 12px; letter-spacing: 2px; }
-            .lb-tag { font-size: 0.55rem; padding: 5px 10px; }
-            .lb-desc { font-size: 0.85rem; padding: 14px 16px; margin-bottom: 18px; }
+
+            .lb-desc {
+                font-size: 0.95rem;
+                line-height: 1.7;
+                padding: 20px 22px 20px 42px;
+                margin-bottom: 18px;
+            }
+            .lb-desc::before { font-size: 3.5rem; top: 4px; left: 10px; }
+            .lb-desc::after { font-size: 3.5rem; bottom: -16px; right: 14px; }
+
             .lb-stat .stat-value { font-size: 1.1rem; }
             .lb-stat .stat-label { font-size: 0.6rem; }
             .lb-actions button { padding: 13px 10px; font-size: 0.62rem; letter-spacing: 3px; }
             .lb-btn-mini { font-size: 0.55rem; padding: 10px 4px; }
-            .lb-close { width: 38px; height: 38px; font-size: 1rem; top: 12px; right: 12px; }
+            .lb-close { width: 40px; height: 40px; font-size: 1rem; top: -14px; right: 14px; }
         }
 
         @media (max-width: 480px) {
@@ -1208,17 +1248,11 @@
     <main class="gallery" id="gallery">
 
         <div class="art-card" data-title="Бархатный вечер" data-author="Velvet_Rose" data-tag="живопись" data-desc="Тихий вечер в бархатном кресле. Только я, вино и твои глаза напротив. Иногда самое интимное — это пауза перед тем, как всё начнётся." data-likes="1245" data-views="4520" data-tags="живопись,неон,бархат,интим,вечер,желание">
-            <div class="thumb">
-                <div class="placeholder">❦</div>
-                <span class="badge-18">18+</span>
-            </div>
+            <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Бархатный вечер</div>
                 <div class="author">by Velvet_Rose</div>
-                <div class="meta">
-                    <div class="stats"><span><span class="heart">♥</span> 1.2k</span><span>👁 4.5k</span></div>
-                    <span class="tag">живопись</span>
-                </div>
+                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.2k</span><span>👁 4.5k</span></div><span class="tag">живопись</span></div>
             </div>
         </div>
 
@@ -1400,7 +1434,6 @@
             }
         })();
 
-        /* Лайтбокс */
         const lightbox = document.getElementById('lightbox');
         const lbClose = document.getElementById('lbClose');
         const lbTitle = document.getElementById('lbTitle');
