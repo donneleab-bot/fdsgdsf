@@ -25,12 +25,12 @@
         html { scroll-behavior: smooth; }
 
         body {
-            background-color: #0A0000;
+            background-color: #080000;
             background-image: 
-                radial-gradient(ellipse at 20% 0%, rgba(180, 0, 0, 0.45) 0%, transparent 45%),
-                radial-gradient(ellipse at 80% 100%, rgba(120, 0, 60, 0.4) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255, 180, 0, 0.04) 0%, transparent 60%),
-                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255, 215, 0, 0.02) 30px, rgba(255, 215, 0, 0.02) 31px);
+                radial-gradient(ellipse at 15% 0%, rgba(180, 0, 0, 0.5) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 100%, rgba(140, 0, 60, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 60%, rgba(255, 180, 0, 0.05) 0%, transparent 60%),
+                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 215, 0, 0.015) 40px, rgba(255, 215, 0, 0.015) 41px);
             background-attachment: fixed;
             font-family: 'Lora', serif;
             color: #E8D8C8;
@@ -48,13 +48,13 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.95) 100%);
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.98) 100%);
             z-index: -1;
             pointer-events: none;
         }
 
         /* ============================================
-           СВЕТ ПРОЖЕКТОРА СВЕРХУ
+           СОФИТЫ (свет сверху)
            ============================================ */
         .spotlight {
             position: fixed;
@@ -62,22 +62,44 @@
             left: 50%;
             transform: translateX(-50%);
             width: 200%;
-            height: 55vh;
+            height: 60vh;
             pointer-events: none;
             z-index: 0;
             background:
                 radial-gradient(ellipse at 50% 0%,
-                    rgba(255, 220, 120, 0.18) 0%,
-                    rgba(255, 200, 80, 0.1) 25%,
-                    rgba(200, 0, 0, 0.05) 50%,
-                    transparent 80%);
-            filter: blur(40px);
+                    rgba(255, 220, 120, 0.22) 0%,
+                    rgba(255, 200, 80, 0.12) 20%,
+                    rgba(200, 0, 0, 0.06) 45%,
+                    transparent 75%);
+            filter: blur(50px);
             animation: spotlightPulse 6s ease-in-out infinite;
         }
 
         @keyframes spotlightPulse {
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
+        }
+
+        /* ============================================
+           ДЫМ
+           ============================================ */
+        .smoke {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.35;
+            background-image:
+                radial-gradient(ellipse 60% 40% at 20% 80%, rgba(180, 60, 60, 0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 35% at 80% 30%, rgba(120, 0, 60, 0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 45% 30% at 50% 100%, rgba(255, 180, 80, 0.08) 0%, transparent 70%);
+            filter: blur(60px);
+            animation: smokeDrift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes smokeDrift {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(30px, -20px) scale(1.1); }
         }
 
         /* ============================================
@@ -89,42 +111,44 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 40px;
+            padding: 22px 45px;
             position: relative;
-            z-index: 10;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            z-index: 20;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
         }
 
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 900;
             color: #FFD700;
-            letter-spacing: 8px;
+            letter-spacing: 9px;
             text-decoration: none;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(180, 0, 0, 0.5);
+            text-shadow: 0 0 22px rgba(255, 215, 0, 0.6), 0 0 45px rgba(180, 0, 0, 0.5);
         }
 
         .logo span {
             font-family: 'Great Vibes', cursive;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #FF4444;
             letter-spacing: 2px;
-            margin-left: 6px;
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+            margin-left: 8px;
+            text-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
         }
 
         .topbar-nav {
             display: flex;
-            gap: 28px;
+            gap: 30px;
             font-family: 'Cinzel', serif;
             font-size: 0.75rem;
-            letter-spacing: 3px;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
         }
 
         .topbar-nav a {
-            color: rgba(232, 216, 200, 0.6);
+            color: rgba(232, 216, 200, 0.55);
             text-decoration: none;
             transition: color 0.3s ease, text-shadow 0.3s ease;
             position: relative;
@@ -133,17 +157,18 @@
         .topbar-nav a:hover,
         .topbar-nav a.active {
             color: #FFD700;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            text-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
         }
 
         .topbar-nav a.active::after {
             content: '';
             position: absolute;
             bottom: -8px;
-            left: 0;
-            right: 0;
+            left: -4px;
+            right: -4px;
             height: 1px;
             background: linear-gradient(90deg, transparent, #FFD700, transparent);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
 
         .topbar-user {
@@ -153,28 +178,28 @@
         }
 
         .topbar-user .avatar {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: linear-gradient(135deg, #2B0A0A, #4A0505);
-            border: 2px solid rgba(255, 215, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.55);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Cinzel', serif;
             font-size: 1rem;
             color: #FFD700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 18px rgba(255, 215, 0, 0.35);
         }
 
         /* ============================================
-           ГЕРОЙ-БЛОК
+           ГЕРОЙ
            ============================================ */
         .hero {
             width: 100%;
             max-width: 1600px;
             text-align: center;
-            padding: 60px 40px 40px;
+            padding: 70px 45px 45px;
             position: relative;
             z-index: 5;
             animation: fadeInDown 1.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -188,52 +213,63 @@
         .hero-badge {
             display: inline-block;
             font-family: 'Cinzel', serif;
-            font-size: 0.65rem;
-            letter-spacing: 10px;
+            font-size: 0.68rem;
+            letter-spacing: 12px;
             color: #FF4444;
-            border: 1px solid rgba(255, 68, 68, 0.6);
-            padding: 8px 22px;
+            border: 1px solid rgba(255, 68, 68, 0.65);
+            padding: 10px 26px;
             text-transform: uppercase;
-            background: rgba(180, 0, 0, 0.15);
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-            margin-bottom: 25px;
-            box-shadow: 0 0 25px rgba(180, 0, 0, 0.4);
+            background: rgba(180, 0, 0, 0.18);
+            text-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+            margin-bottom: 28px;
+            box-shadow: 
+                0 0 30px rgba(180, 0, 0, 0.5),
+                inset 0 0 20px rgba(255, 0, 0, 0.1);
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(180, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1); }
+            50% { box-shadow: 0 0 50px rgba(255, 0, 0, 0.7), inset 0 0 30px rgba(255, 0, 0, 0.2); }
         }
 
         .hero h1 {
             font-family: 'Cinzel', serif;
-            font-size: 5rem;
+            font-size: 5.5rem;
             font-weight: 900;
             color: #FFD700;
-            letter-spacing: 18px;
+            letter-spacing: 22px;
             text-transform: uppercase;
             line-height: 1;
             text-shadow: 
                 0 0 20px rgba(0, 0, 0, 1),
-                0 0 40px rgba(0, 0, 0, 0.9),
-                0 0 60px rgba(255, 215, 0, 0.6),
-                0 0 100px rgba(180, 0, 0, 0.7),
-                0 4px 0 rgba(120, 80, 0, 1),
-                0 6px 10px rgba(0, 0, 0, 1);
+                0 0 45px rgba(0, 0, 0, 0.9),
+                0 0 70px rgba(255, 215, 0, 0.65),
+                0 0 120px rgba(180, 0, 0, 0.8),
+                0 0 200px rgba(255, 0, 0, 0.4),
+                0 5px 0 rgba(120, 80, 0, 1),
+                0 8px 12px rgba(0, 0, 0, 1);
         }
 
         .hero h1 span {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             color: #FF4444;
             letter-spacing: 2px;
             text-transform: none;
-            margin-left: 15px;
-            text-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 60px rgba(180, 0, 0, 0.6);
+            margin-left: 20px;
+            text-shadow: 
+                0 0 30px rgba(255, 0, 0, 0.9),
+                0 0 60px rgba(180, 0, 0, 0.7);
         }
 
         .hero p {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-style: italic;
             color: #C5A059;
-            letter-spacing: 3px;
-            margin-top: 22px;
+            letter-spacing: 4px;
+            margin-top: 24px;
             text-shadow: 0 0 15px rgba(0, 0, 0, 1);
         }
 
@@ -243,7 +279,7 @@
         .filters {
             width: 100%;
             max-width: 1600px;
-            padding: 30px 40px 10px;
+            padding: 30px 45px 10px;
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
@@ -261,13 +297,13 @@
         .filter-chip {
             font-family: 'Cinzel', serif;
             font-size: 0.7rem;
-            letter-spacing: 3px;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
             color: rgba(232, 216, 200, 0.7);
-            padding: 8px 20px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
+            padding: 9px 22px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 22px;
             cursor: pointer;
             transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
             text-decoration: none;
@@ -275,8 +311,8 @@
 
         .filter-chip:hover {
             color: #FFD700;
-            border-color: rgba(255, 215, 0, 0.7);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
             transform: translateY(-2px);
         }
 
@@ -284,31 +320,31 @@
             color: #1A0505;
             background: #FFD700;
             border-color: #FFD700;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
         }
 
         .filter-chip.adult {
             color: #FF4444;
-            border-color: rgba(255, 68, 68, 0.5);
+            border-color: rgba(255, 68, 68, 0.6);
         }
 
         .filter-chip.adult.active {
             background: #FF0000;
             color: #FFFFFF;
             border-color: #FF0000;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
         }
 
         /* ============================================
-           СЕТКА РАБОТ
+           ГАЛЕРЕЯ
            ============================================ */
         .gallery {
             width: 100%;
             max-width: 1600px;
-            padding: 30px 40px;
+            padding: 30px 45px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 28px;
             position: relative;
             z-index: 5;
             animation: fadeInUp 1.4s ease 0.5s both;
@@ -320,35 +356,36 @@
         }
 
         /* ============================================
-           КАРТОЧКА РАБОТЫ
+           КАРТОЧКА
            ============================================ */
         .art-card {
             position: relative;
             display: block;
             text-decoration: none;
             color: inherit;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             background: linear-gradient(165deg, #1A0505 0%, #0D0202 100%);
-            border: 1px solid rgba(212, 175, 55, 0.25);
+            border: 1px solid rgba(212, 175, 55, 0.28);
             box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.7),
-                0 0 0 1px rgba(255, 215, 0, 0.05);
+                0 12px 35px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 215, 0, 0.05),
+                inset 0 0 30px rgba(0, 0, 0, 0.6);
             transition: 
-                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1),
                 border-color 0.4s ease;
             cursor: pointer;
         }
 
         .art-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-10px) scale(1.02);
             border-color: #FFD700;
             box-shadow: 
-                0 25px 60px rgba(180, 0, 0, 0.8),
-                0 0 0 2px rgba(255, 215, 0, 0.6),
-                0 0 40px rgba(255, 215, 0, 0.4),
-                0 0 80px rgba(180, 0, 0, 0.4);
+                0 30px 70px rgba(180, 0, 0, 0.9),
+                0 0 0 2px rgba(255, 215, 0, 0.7),
+                0 0 50px rgba(255, 215, 0, 0.5),
+                0 0 100px rgba(180, 0, 0, 0.5);
         }
 
         .art-card .thumb {
@@ -359,7 +396,6 @@
             background: #0A0000;
         }
 
-        /* Заглушка-превью (пока без баз) */
         .art-card .thumb .placeholder {
             position: absolute;
             inset: 0;
@@ -367,18 +403,19 @@
             align-items: center;
             justify-content: center;
             font-family: 'Cinzel', serif;
-            font-size: 4rem;
-            color: rgba(255, 215, 0, 0.15);
+            font-size: 5rem;
+            color: rgba(255, 215, 0, 0.18);
             background: 
-                radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.5) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.55) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.45) 0%, transparent 50%),
                 repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 215, 0, 0.03) 20px, rgba(255, 215, 0, 0.03) 21px),
                 linear-gradient(165deg, #2B0A0A 0%, #0D0202 100%);
-            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
         }
 
         .art-card:hover .thumb .placeholder {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
         .art-card .thumb .placeholder::after {
@@ -387,75 +424,73 @@
             bottom: 20px;
             right: 20px;
             font-size: 2rem;
-            color: rgba(255, 215, 0, 0.25);
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            color: rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 22px rgba(255, 215, 0, 0.5);
         }
 
-        /* Плашка 18+ */
         .art-card .badge-18 {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            top: 14px;
+            left: 14px;
             font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            padding: 4px 10px;
-            background: rgba(180, 0, 0, 0.9);
+            font-size: 0.65rem;
+            letter-spacing: 3.5px;
+            padding: 5px 12px;
+            background: rgba(180, 0, 0, 0.95);
             color: #FFFFFF;
             border: 1px solid #FF4444;
             border-radius: 2px;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 1);
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+            text-shadow: 0 0 12px rgba(255, 0, 0, 1);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             z-index: 3;
         }
 
-        /* Инфо-блок */
         .art-card .info {
-            padding: 14px 16px 16px;
+            padding: 16px 18px 18px;
             position: relative;
         }
 
         .art-card .info .title {
             font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #FFD700;
             letter-spacing: 2px;
             text-transform: uppercase;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+            text-shadow: 0 0 14px rgba(255, 215, 0, 0.45);
             transition: text-shadow 0.4s ease;
         }
 
         .art-card:hover .info .title {
-            text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+            text-shadow: 0 0 28px rgba(255, 215, 0, 1);
         }
 
         .art-card .info .author {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-style: italic;
             color: #C5A059;
-            margin-top: 4px;
-            letter-spacing: 1px;
+            margin-top: 5px;
+            letter-spacing: 1.5px;
         }
 
         .art-card .info .meta {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 12px;
-            padding-top: 10px;
+            margin-top: 14px;
+            padding-top: 12px;
             border-top: 1px solid rgba(212, 175, 55, 0.15);
         }
 
         .art-card .info .stats {
             display: flex;
-            gap: 14px;
+            gap: 15px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            color: rgba(232, 216, 200, 0.65);
+            font-size: 0.9rem;
+            color: rgba(232, 216, 200, 0.7);
         }
 
         .art-card .info .stats span {
@@ -476,9 +511,9 @@
             font-size: 0.6rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: rgba(255, 215, 0, 0.6);
-            padding: 3px 8px;
-            border: 1px solid rgba(255, 215, 0, 0.25);
+            color: rgba(255, 215, 0, 0.65);
+            padding: 3px 9px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 2px;
         }
 
@@ -488,28 +523,28 @@
         .load-more {
             grid-column: 1 / -1;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .load-more button {
             font-family: 'Cinzel', serif;
             font-size: 0.75rem;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             color: #FFD700;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 215, 0, 0.5);
-            padding: 16px 45px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 215, 0, 0.55);
+            padding: 18px 50px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
         }
 
         .load-more button:hover {
             background: #FFD700;
             color: #1A0505;
-            letter-spacing: 7px;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.7);
+            letter-spacing: 8px;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.8);
         }
 
         /* ============================================
@@ -520,12 +555,12 @@
             max-width: 1600px;
             text-align: center;
             margin-top: 60px;
-            padding: 40px 40px 20px;
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 40px 45px 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.18);
             font-family: 'Cinzel', serif;
             font-size: 0.7rem;
             letter-spacing: 6px;
-            color: rgba(197, 160, 89, 0.4);
+            color: rgba(197, 160, 89, 0.45);
             text-transform: uppercase;
             position: relative;
             z-index: 5;
@@ -535,7 +570,7 @@
             display: inline-block;
             margin-bottom: 20px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-style: italic;
             color: #FFD700;
             text-decoration: none;
@@ -546,12 +581,374 @@
 
         .footer .back-link:hover {
             color: #FFFFFF;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
         }
 
         .footer span {
             color: #FF4444;
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+            text-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+        }
+
+        /* ============================================
+           ЛАЙТБОКС
+           ============================================ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(18px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-inner {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            background: linear-gradient(165deg, #150303 0%, #0A0101 100%);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 
+                0 40px 120px rgba(0, 0, 0, 1),
+                0 0 0 1px rgba(255, 215, 0, 0.15),
+                0 0 100px rgba(180, 0, 0, 0.6),
+                0 0 200px rgba(255, 0, 0, 0.3);
+            transform: scale(0.94) translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            max-height: 88vh;
+        }
+
+        .lightbox.active .lightbox-inner {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Левая часть — картинка */
+        .lb-image {
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.55) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.45) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255, 215, 0, 0.03) 30px, rgba(255, 215, 0, 0.03) 31px),
+                linear-gradient(165deg, #2B0A0A 0%, #0D0202 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .lb-image::after {
+            content: '❦';
+            position: absolute;
+            font-family: 'Cinzel', serif;
+            font-size: 12rem;
+            color: rgba(255, 215, 0, 0.1);
+            text-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+            pointer-events: none;
+        }
+
+        .lb-image .badge-18 {
+            position: absolute;
+            top: 22px;
+            left: 22px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            padding: 6px 14px;
+            background: rgba(180, 0, 0, 0.95);
+            color: #FFFFFF;
+            border: 1px solid #FF4444;
+            border-radius: 2px;
+            text-shadow: 0 0 12px rgba(255, 0, 0, 1);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+        }
+
+        /* Правая часть — инфо */
+        .lb-info {
+            padding: 40px 35px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 215, 0, 0.4) transparent;
+        }
+
+        .lb-info::-webkit-scrollbar { width: 6px; }
+        .lb-info::-webkit-scrollbar-track { background: transparent; }
+        .lb-info::-webkit-scrollbar-thumb {
+            background: rgba(255, 215, 0, 0.4);
+            border-radius: 3px;
+        }
+
+        /* Автор */
+        .lb-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 22px;
+        }
+
+        .lb-author .author-avatar {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2B0A0A, #4A0505);
+            border: 2px solid rgba(255, 215, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #FFD700;
+            box-shadow: 0 0 22px rgba(255, 215, 0, 0.4);
+            flex-shrink: 0;
+        }
+
+        .lb-author .author-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .lb-author .author-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            color: #FFD700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 14px rgba(255, 215, 0, 0.5);
+        }
+
+        .lb-author .author-subs {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #C5A059;
+            margin-top: 3px;
+            letter-spacing: 1px;
+        }
+
+        .lb-author .btn-subscribe {
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #FFD700;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.6);
+            padding: 9px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .lb-author .btn-subscribe:hover {
+            background: #FFD700;
+            color: #1A0505;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            letter-spacing: 4px;
+        }
+
+        .lb-author .btn-subscribe.subscribed {
+            background: rgba(180, 0, 0, 0.5);
+            border-color: #FF4444;
+            color: #FF4444;
+        }
+
+        /* Название */
+        .lb-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            line-height: 1.15;
+            margin-bottom: 14px;
+            text-shadow: 
+                0 0 20px rgba(0, 0, 0, 1),
+                0 0 40px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Хэштеги */
+        .lb-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .lb-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 215, 0, 0.85);
+            padding: 5px 12px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 3px;
+            background: rgba(255, 215, 0, 0.05);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .lb-tag:hover {
+            background: #FFD700;
+            color: #1A0505;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Описание */
+        .lb-desc {
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #D4C4B0;
+            font-style: italic;
+            padding: 18px 20px;
+            border-left: 2px solid rgba(255, 215, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 24px;
+            text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Статы */
+        .lb-stats {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            padding: 16px 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .lb-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .lb-stat .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #FFD700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
+        }
+
+        .lb-stat .stat-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem;
+            color: rgba(197, 160, 89, 0.7);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Кнопки действий */
+        .lb-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .lb-actions button,
+        .lb-actions a {
+            flex: 1;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 15px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .lb-btn-like {
+            color: #FF4444;
+            background: rgba(180, 0, 0, 0.15);
+            border: 1px solid rgba(255, 68, 68, 0.6);
+            text-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+        }
+
+        .lb-btn-like:hover {
+            background: #FF0000;
+            color: #FFFFFF;
+            border-color: #FF0000;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+        }
+
+        .lb-btn-like.liked {
+            background: #FF0000;
+            color: #FFFFFF;
+            border-color: #FF4444;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+        }
+
+        .lb-btn-order {
+            color: #1A0505;
+            background: #FFD700;
+            border: 1px solid #FFD700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .lb-btn-order:hover {
+            background: #FFFFFF;
+            border-color: #FFFFFF;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.9);
+            letter-spacing: 5px;
+        }
+
+        /* Кнопка закрытия */
+        .lb-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            color: #FFD700;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 20;
+            font-family: 'Cinzel', serif;
+        }
+
+        .lb-close:hover {
+            background: #FFD700;
+            color: #1A0505;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.9);
+            transform: rotate(90deg);
         }
 
         /* ============================================
@@ -560,11 +957,16 @@
         @media (max-width: 1024px) {
             .topbar { padding: 18px 25px; }
             .topbar-nav { gap: 18px; font-size: 0.65rem; }
-            .hero { padding: 45px 25px 30px; }
-            .hero h1 { font-size: 3.5rem; letter-spacing: 12px; }
-            .hero h1 span { font-size: 2.5rem; }
-            .gallery { padding: 25px; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+            .hero { padding: 50px 25px 30px; }
+            .hero h1 { font-size: 3.8rem; letter-spacing: 14px; }
+            .hero h1 span { font-size: 2.6rem; }
+            .gallery { padding: 25px; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
             .filters { padding: 25px; }
+
+            .lightbox-inner { grid-template-columns: 1fr; max-height: 92vh; }
+            .lb-image { min-height: 320px; }
+            .lb-info { padding: 30px 25px; }
+            .lb-title { font-size: 1.7rem; letter-spacing: 4px; }
         }
 
         @media (max-width: 768px) {
@@ -580,19 +982,19 @@
                 gap: 14px;
                 font-size: 0.6rem;
                 letter-spacing: 2px;
-                border-top: 1px solid rgba(212, 175, 55, 0.1);
+                border-top: 1px solid rgba(212, 175, 55, 0.12);
                 padding-top: 12px;
                 margin-top: 6px;
             }
             .logo { font-size: 1.3rem; letter-spacing: 5px; }
             .logo span { font-size: 0.85rem; }
-            .topbar-user .avatar { width: 32px; height: 32px; font-size: 0.85rem; }
+            .topbar-user .avatar { width: 34px; height: 34px; font-size: 0.9rem; }
 
-            .hero { padding: 30px 16px 20px; }
-            .hero-badge { font-size: 0.55rem; letter-spacing: 6px; padding: 6px 14px; margin-bottom: 18px; }
-            .hero h1 { font-size: 2.2rem; letter-spacing: 6px; }
-            .hero h1 span { font-size: 1.6rem; display: block; margin: 6px 0 0; }
-            .hero p { font-size: 0.85rem; letter-spacing: 2px; margin-top: 14px; }
+            .hero { padding: 32px 16px 20px; }
+            .hero-badge { font-size: 0.55rem; letter-spacing: 7px; padding: 7px 16px; margin-bottom: 20px; }
+            .hero h1 { font-size: 2.4rem; letter-spacing: 7px; }
+            .hero h1 span { font-size: 1.7rem; display: block; margin: 8px 0 0; }
+            .hero p { font-size: 0.88rem; letter-spacing: 2.5px; margin-top: 15px; }
 
             .filters {
                 padding: 18px 16px 5px;
@@ -601,7 +1003,7 @@
             .filter-chip {
                 font-size: 0.6rem;
                 letter-spacing: 2px;
-                padding: 6px 14px;
+                padding: 7px 15px;
             }
 
             .gallery {
@@ -610,22 +1012,43 @@
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             }
 
-            .art-card .info { padding: 10px 12px 12px; }
-            .art-card .info .title { font-size: 0.8rem; letter-spacing: 1.5px; }
-            .art-card .info .author { font-size: 0.75rem; }
-            .art-card .info .stats { font-size: 0.75rem; gap: 10px; }
+            .art-card .info { padding: 11px 13px 13px; }
+            .art-card .info .title { font-size: 0.82rem; letter-spacing: 1.5px; }
+            .art-card .info .author { font-size: 0.76rem; }
+            .art-card .info .stats { font-size: 0.78rem; gap: 10px; }
             .art-card .info .tag { font-size: 0.55rem; padding: 2px 6px; }
             .art-card .badge-18 { font-size: 0.55rem; padding: 3px 8px; top: 8px; left: 8px; }
 
-            .load-more button { padding: 14px 30px; font-size: 0.65rem; letter-spacing: 3px; }
+            .load-more button { padding: 15px 32px; font-size: 0.65rem; letter-spacing: 4px; }
 
             .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; letter-spacing: 4px; }
             .footer .back-link { font-size: 0.9rem; }
+
+            /* Лайтбокс */
+            .lightbox { padding: 15px 10px; }
+            .lightbox-inner { border-radius: 12px; }
+            .lb-image { min-height: 260px; }
+            .lb-image .badge-18 { top: 14px; left: 14px; font-size: 0.6rem; padding: 4px 10px; }
+            .lb-image::after { font-size: 6rem; }
+            .lb-info { padding: 22px 18px; }
+            .lb-title { font-size: 1.35rem; letter-spacing: 3px; margin-bottom: 10px; }
+            .lb-author .author-avatar { width: 44px; height: 44px; font-size: 1.1rem; }
+            .lb-author .author-name { font-size: 0.9rem; letter-spacing: 1.5px; }
+            .lb-author .author-subs { font-size: 0.8rem; }
+            .lb-author .btn-subscribe { font-size: 0.55rem; padding: 7px 12px; letter-spacing: 2px; }
+            .lb-tag { font-size: 0.55rem; letter-spacing: 2px; padding: 4px 9px; }
+            .lb-desc { font-size: 0.85rem; line-height: 1.7; padding: 14px 15px; margin-bottom: 18px; }
+            .lb-stats { gap: 18px; padding: 12px 0; margin-bottom: 18px; }
+            .lb-stat .stat-value { font-size: 1.1rem; }
+            .lb-stat .stat-label { font-size: 0.65rem; letter-spacing: 2px; }
+            .lb-actions { flex-direction: column; gap: 10px; }
+            .lb-actions button, .lb-actions a { padding: 14px 16px; font-size: 0.62rem; letter-spacing: 3px; }
+            .lb-close { width: 36px; height: 36px; font-size: 1.1rem; top: 12px; right: 12px; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.7rem; letter-spacing: 5px; }
-            .hero h1 span { font-size: 1.3rem; }
+            .hero h1 { font-size: 1.8rem; letter-spacing: 5px; }
+            .hero h1 span { font-size: 1.4rem; }
             .hero-badge { font-size: 0.5rem; letter-spacing: 4px; }
 
             .gallery {
@@ -642,13 +1065,16 @@
             .art-card .info .tag { display: none; }
 
             .topbar-nav { font-size: 0.55rem; letter-spacing: 1.5px; gap: 10px; }
+
+            .lb-title { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Свет прожектора -->
+    <!-- Софиты и дым -->
     <div class="spotlight"></div>
+    <div class="smoke"></div>
 
     <!-- ШАПКА -->
     <header class="topbar">
@@ -684,11 +1110,11 @@
         <a href="#" class="filter-chip adult">Экстрим 18+</a>
     </div>
 
-    <!-- СЕТКА РАБОТ -->
-    <main class="gallery">
+    <!-- ГАЛЕРЕЯ -->
+    <main class="gallery" id="gallery">
 
         <!-- 1 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Бархатный вечер" data-author="Velvet_Rose" data-symbol="❦" data-tag="живопись" data-desc="Тихий вечер в бархатном кресле. Только я, вино и твои глаза напротив. Иногда самое интимное — это пауза перед тем, как всё начнётся." data-likes="1245" data-views="4520" data-tags="живопись,неон,бархат,интим">
             <div class="thumb">
                 <div class="placeholder">❦</div>
                 <span class="badge-18">18+</span>
@@ -704,10 +1130,10 @@
                     <span class="tag">живопись</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 2 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Ночная смена" data-author="Noir_Art" data-symbol="♠" data-tag="диджитал" data-desc="Когда клуб закрывается, а свет ещё горит — начинается настоящая магия. Тени, дым, отблески на коже." data-likes="856" data-views="2140" data-tags="диджитал,неон,тени,бар">
             <div class="thumb">
                 <div class="placeholder">♠</div>
                 <span class="badge-18">18+</span>
@@ -723,10 +1149,10 @@
                     <span class="tag">диджитал</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 3 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Красный шёлк" data-author="ScarletDream" data-symbol="♥" data-tag="аниме" data-desc="Шёлк скользит по коже. Я знаю, что ты смотришь. Позволь мне продолжить." data-likes="2415" data-views="8930" data-tags="аниме,шёлк,красный,соблазн">
             <div class="thumb">
                 <div class="placeholder">♥</div>
                 <span class="badge-18">18+</span>
@@ -742,10 +1168,10 @@
                     <span class="tag">аниме</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 4 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Сцена · 03:00" data-author="MidnightLux" data-symbol="♦" data-tag="фетиш" data-desc="Три часа ночи. Последний танец. Софит оставляет только самое важное." data-likes="631" data-views="1720" data-tags="фетиш,сцена,софит,танец">
             <div class="thumb">
                 <div class="placeholder">♦</div>
                 <span class="badge-18">18+</span>
@@ -761,10 +1187,10 @@
                     <span class="tag">фетиш</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 5 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Шёлковые оковы" data-author="BoundElegance" data-symbol="♣" data-tag="бдсм" data-desc="Нежные путы из шёлка. Никакой боли — только доверие, ритм и полное присутствие." data-likes="1830" data-views="5210" data-tags="бдсм,шёлк,доверие,оковы">
             <div class="thumb">
                 <div class="placeholder">♣</div>
                 <span class="badge-18">18+</span>
@@ -780,10 +1206,10 @@
                     <span class="tag">бдсм</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 6 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Две свечи" data-author="TwinFlame" data-symbol="❦" data-tag="лесби" data-desc="Два огня рядом. Один взгляд — и мы уже всё поняли друг о друге." data-likes="3120" data-views="12040" data-tags="лесби,свечи,интим,взгляд">
             <div class="thumb">
                 <div class="placeholder">❦</div>
                 <span class="badge-18">18+</span>
@@ -799,10 +1225,10 @@
                     <span class="tag">лесби</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 7 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="За кулисами" data-author="Backstage_" data-symbol="♥" data-tag="диджитал" data-desc="То, что происходит за занавесом, важнее самого выступления. Шёпот, дыхание, ожидание." data-likes="921" data-views="3420" data-tags="диджитал,занавес,тайна,ожидание">
             <div class="thumb">
                 <div class="placeholder">♥</div>
                 <span class="badge-18">18+</span>
@@ -818,10 +1244,10 @@
                     <span class="tag">диджитал</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 8 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Тёмный бархат" data-author="DarkVelvet" data-symbol="♠" data-tag="живопись" data-desc="Тёмный бархат скрывает всё, кроме самого главного. Ищи меня глазами." data-likes="1410" data-views="4120" data-tags="живопись,бархат,тени,взгляд">
             <div class="thumb">
                 <div class="placeholder">♠</div>
                 <span class="badge-18">18+</span>
@@ -837,10 +1263,10 @@
                     <span class="tag">живопись</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 9 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Золотая клетка" data-author="GoldenCage" data-symbol="♦" data-tag="фетиш" data-desc="Иногда свобода — это позволить кому-то закрыть для тебя дверь. И держать ключ." data-likes="2740" data-views="9840" data-tags="фетиш,золото,клетка,власть">
             <div class="thumb">
                 <div class="placeholder">♦</div>
                 <span class="badge-18">18+</span>
@@ -856,10 +1282,10 @@
                     <span class="tag">фетиш</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 10 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Пурпурный дым" data-author="PurpleSmoke" data-symbol="♣" data-tag="аниме" data-desc="Дым клубится, свет распадается. Всё, что осталось — мои руки и твой запах." data-likes="1120" data-views="2960" data-tags="аниме,дым,пурпур,руки">
             <div class="thumb">
                 <div class="placeholder">♣</div>
                 <span class="badge-18">18+</span>
@@ -875,10 +1301,10 @@
                     <span class="tag">аниме</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 11 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Шёпот в темноте" data-author="WhisperArt" data-symbol="❦" data-tag="диджитал" data-desc="Слова не нужны. Только шёпот у самого уха и тепло на коже." data-likes="1940" data-views="6340" data-tags="диджитал,шёпот,темнота,тепло">
             <div class="thumb">
                 <div class="placeholder">❦</div>
                 <span class="badge-18">18+</span>
@@ -894,10 +1320,10 @@
                     <span class="tag">диджитал</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- 12 -->
-        <a href="#" class="art-card">
+        <div class="art-card" data-title="Алый закат" data-author="ScarletSunset" data-symbol="♥" data-tag="живопись" data-desc="Закат цвета крови. Мы на крыше. Всё, что нужно знать друг о друге — уже сказано." data-likes="3520" data-views="15100" data-tags="живопись,закат,алый,крыша">
             <div class="thumb">
                 <div class="placeholder">♥</div>
                 <span class="badge-18">18+</span>
@@ -913,7 +1339,7 @@
                     <span class="tag">живопись</span>
                 </div>
             </div>
-        </a>
+        </div>
 
         <!-- Кнопка "Загрузить ещё" -->
         <div class="load-more">
@@ -927,6 +1353,166 @@
         <a href="index.html" class="back-link">← Вернуться в главное меню</a>
         <div>✦ FENBO · ПЛОТЬ ✦ 2025 ✦ <span>Только 18+</span> ✦</div>
     </footer>
+
+    <!-- ============================================
+         ЛАЙТБОКС
+         ============================================ -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-inner">
+            <button class="lb-close" id="lbClose" aria-label="Закрыть">✕</button>
+
+            <!-- Левая сторона — превью -->
+            <div class="lb-image">
+                <span class="badge-18">18+</span>
+            </div>
+
+            <!-- Правая сторона — инфо -->
+            <div class="lb-info">
+
+                <!-- Автор -->
+                <div class="lb-author">
+                    <div class="author-avatar" id="lbAuthorAvatar">V</div>
+                    <div class="author-info">
+                        <div class="author-name" id="lbAuthorName">Velvet_Rose</div>
+                        <div class="author-subs" id="lbAuthorSubs">12.4k подписчиков</div>
+                    </div>
+                    <button class="btn-subscribe" id="lbSubscribe" type="button">Подписаться</button>
+                </div>
+
+                <!-- Название -->
+                <h2 class="lb-title" id="lbTitle">Бархатный вечер</h2>
+
+                <!-- Хэштеги -->
+                <div class="lb-tags" id="lbTags"></div>
+
+                <!-- Описание -->
+                <div class="lb-desc" id="lbDesc"></div>
+
+                <!-- Статистика -->
+                <div class="lb-stats">
+                    <div class="lb-stat">
+                        <span class="stat-value" id="lbLikes">1.2k</span>
+                        <span class="stat-label">Лайков</span>
+                    </div>
+                    <div class="lb-stat">
+                        <span class="stat-value" id="lbViews">4.5k</span>
+                        <span class="stat-label">Просмотров</span>
+                    </div>
+                </div>
+
+                <!-- Действия -->
+                <div class="lb-actions">
+                    <button class="lb-btn-like" id="lbLike" type="button">♥ Лайк</button>
+                    <button class="lb-btn-order" id="lbOrder" type="button">✦ Заказать арт</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         СКРИПТ: лайтбокс + переворот карточек
+         ============================================ -->
+    <script>
+        /* ---------- ЛАЙТБОКС ---------- */
+        const lightbox = document.getElementById('lightbox');
+        const lbClose = document.getElementById('lbClose');
+        const lbTitle = document.getElementById('lbTitle');
+        const lbAuthorName = document.getElementById('lbAuthorName');
+        const lbAuthorAvatar = document.getElementById('lbAuthorAvatar');
+        const lbAuthorSubs = document.getElementById('lbAuthorSubs');
+        const lbDesc = document.getElementById('lbDesc');
+        const lbTags = document.getElementById('lbTags');
+        const lbLikes = document.getElementById('lbLikes');
+        const lbViews = document.getElementById('lbViews');
+        const lbLike = document.getElementById('lbLike');
+        const lbSubscribe = document.getElementById('lbSubscribe');
+        const lbOrder = document.getElementById('lbOrder');
+
+        function formatNumber(n) {
+            n = parseInt(n, 10) || 0;
+            if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+            if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+            return n.toString();
+        }
+
+        function openLightbox(card) {
+            const title = card.dataset.title || 'Без названия';
+            const author = card.dataset.author || 'Аноним';
+            const symbol = card.dataset.symbol || '❦';
+            const desc = card.dataset.desc || 'Описание отсутствует.';
+            const likes = card.dataset.likes || '0';
+            const views = card.dataset.views || '0';
+            const tagsRaw = card.dataset.tags || '';
+
+            lbTitle.textContent = title;
+            lbAuthorName.textContent = author;
+            lbAuthorAvatar.textContent = author.charAt(0).toUpperCase();
+            lbAuthorSubs.textContent = formatNumber(Math.floor(Math.random() * 30000) + 500) + ' подписчиков';
+            lbDesc.textContent = desc;
+            lbLikes.textContent = formatNumber(likes);
+            lbViews.textContent = formatNumber(views);
+
+            // Теги
+            lbTags.innerHTML = '';
+            if (tagsRaw) {
+                tagsRaw.split(',').forEach(t => {
+                    t = t.trim();
+                    if (!t) return;
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.className = 'lb-tag';
+                    a.textContent = '#' + t;
+                    a.addEventListener('click', e => e.preventDefault());
+                    lbTags.appendChild(a);
+                });
+            }
+
+            // Сброс кнопок
+            lbLike.classList.remove('liked');
+            lbLike.innerHTML = '♥ Лайк';
+            lbSubscribe.classList.remove('subscribed');
+            lbSubscribe.textContent = 'Подписаться';
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.art-card').forEach(card => {
+            card.addEventListener('click', e => {
+                e.preventDefault();
+                openLightbox(card);
+            });
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        /* Кнопки внутри лайтбокса */
+        lbLike.addEventListener('click', () => {
+            lbLike.classList.toggle('liked');
+            lbLike.innerHTML = lbLike.classList.contains('liked') ? '♥ Понравилось' : '♥ Лайк';
+        });
+
+        lbSubscribe.addEventListener('click', () => {
+            lbSubscribe.classList.toggle('subscribed');
+            lbSubscribe.textContent = lbSubscribe.classList.contains('subscribed') ? 'Вы подписаны' : 'Подписаться';
+        });
+
+        lbOrder.addEventListener('click', () => {
+            alert('Форма заказа арта появится в следующей версии ✦');
+        });
+    </script>
 
 </body>
 </html>
