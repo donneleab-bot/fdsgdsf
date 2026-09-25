@@ -706,7 +706,6 @@
             z-index: 5;
         }
 
-        /* Левая сторона — превью */
         .lb-image {
             position: relative;
             background: 
@@ -754,7 +753,6 @@
             z-index: 5;
         }
 
-        /* Правая сторона */
         .lb-info {
             padding: 32px 32px 28px;
             display: flex;
@@ -897,7 +895,7 @@
             transform: translateY(-2px);
         }
 
-        /* ---------- ОПИСАНИЕ (переделано) ---------- */
+        /* Описание */
         .lb-desc {
             position: relative;
             font-family: 'Cormorant Garamond', serif;
@@ -906,8 +904,7 @@
             line-height: 1.85;
             color: #E8D8C8;
             padding: 26px 30px 26px 55px;
-            background: 
-                linear-gradient(90deg, rgba(60, 0, 0, 0.5) 0%, rgba(20, 0, 0, 0.25) 100%);
+            background: linear-gradient(90deg, rgba(60, 0, 0, 0.5) 0%, rgba(20, 0, 0, 0.25) 100%);
             border: 1px solid rgba(212, 175, 55, 0.25);
             border-left: 3px solid #FFD700;
             border-radius: 0 12px 12px 0;
@@ -942,10 +939,10 @@
             pointer-events: none;
         }
 
-        /* Статистика */
+        /* Статистика — теперь 2 плашки */
         .lb-stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 20px;
         }
@@ -954,7 +951,7 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
-            padding: 14px 8px;
+            padding: 16px 8px;
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 10px;
@@ -969,15 +966,15 @@
         }
         .lb-stat .stat-value {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #FFD700;
             letter-spacing: 2px;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
         }
-        .lb-stat .stat-value .heart { color: #FF4444; font-size: 1.1rem; }
+        .lb-stat .stat-value .heart { color: #FF4444; font-size: 1.2rem; }
         .lb-stat .stat-label {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             color: rgba(197, 160, 89, 0.8);
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -1036,7 +1033,7 @@
 
         .lb-actions-2 {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
         .lb-btn-mini {
@@ -1066,20 +1063,19 @@
         }
 
         /* ============================================
-           КНОПКА ЗАКРЫТИЯ — теперь вынесена и не мешает
+           КНОПКА ЗАКРЫТИЯ — внутри, в правом верхнем углу
            ============================================ */
         .lb-close {
             position: absolute;
-            top: -18px;
-            right: 20px;
-            width: 46px;
-            height: 46px;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: 
-                radial-gradient(circle at 30% 30%, #4A0505, #1A0505);
-            border: 2px solid rgba(255, 215, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 215, 0, 0.6);
             color: #FFD700;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -1087,16 +1083,14 @@
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             z-index: 30;
             font-family: 'Cinzel', serif;
-            box-shadow: 
-                0 0 25px rgba(255, 215, 0, 0.5),
-                0 8px 25px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 18px rgba(255, 215, 0, 0.35);
         }
 
         .lb-close:hover {
             background: #FFD700;
             color: #1A0505;
-            box-shadow: 0 0 45px rgba(255, 215, 0, 1);
-            transform: rotate(90deg) scale(1.08);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 1);
+            transform: rotate(90deg) scale(1.06);
             border-color: #FFFFFF;
         }
 
@@ -1116,7 +1110,6 @@
             .lb-image::after { font-size: 8rem; }
             .lb-info { padding: 26px 22px; }
             .lb-title { font-size: 1.7rem; letter-spacing: 4px; }
-            .lb-close { top: -14px; right: 14px; width: 42px; height: 42px; }
         }
 
         @media (max-width: 768px) {
@@ -1152,7 +1145,7 @@
             .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; letter-spacing: 4px; }
             .footer .back-link { font-size: 0.9rem; }
 
-            .lightbox { padding: 30px 8px 12px; }
+            .lightbox { padding: 12px 8px; }
             .lightbox-inner { border-radius: 14px; }
             .lb-image { min-height: 260px; }
             .lb-image .badge-18 { top: 14px; left: 14px; font-size: 0.6rem; padding: 4px 10px; }
@@ -1174,11 +1167,11 @@
             .lb-desc::before { font-size: 3.5rem; top: 4px; left: 10px; }
             .lb-desc::after { font-size: 3.5rem; bottom: -16px; right: 14px; }
 
-            .lb-stat .stat-value { font-size: 1.1rem; }
+            .lb-stat .stat-value { font-size: 1.2rem; }
             .lb-stat .stat-label { font-size: 0.6rem; }
             .lb-actions button { padding: 13px 10px; font-size: 0.62rem; letter-spacing: 3px; }
             .lb-btn-mini { font-size: 0.55rem; padding: 10px 4px; }
-            .lb-close { width: 40px; height: 40px; font-size: 1rem; top: -14px; right: 14px; }
+            .lb-close { width: 36px; height: 36px; font-size: 1rem; top: 12px; right: 12px; }
         }
 
         @media (max-width: 480px) {
@@ -1394,10 +1387,6 @@
                         <span class="stat-value">👁 <span id="lbViews">4.5k</span></span>
                         <span class="stat-label">Просмотров</span>
                     </div>
-                    <div class="lb-stat" id="lbStatComments">
-                        <span class="stat-value">💬 <span id="lbComments">128</span></span>
-                        <span class="stat-label">Отзывов</span>
-                    </div>
                 </div>
 
                 <div class="lb-actions">
@@ -1408,14 +1397,12 @@
                 <div class="lb-actions-2">
                     <button class="lb-btn-mini" id="lbFav" type="button"><span class="mini-icon">★</span>В избранное</button>
                     <button class="lb-btn-mini" id="lbShare" type="button"><span class="mini-icon">➤</span>Поделиться</button>
-                    <button class="lb-btn-mini" id="lbTip" type="button"><span class="mini-icon">✦</span>Чаевые</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        /* Фоновая пыль */
         (function dustBg(){
             const c = document.getElementById('dustBg');
             if (!c) return;
@@ -1444,16 +1431,13 @@
         const lbTags = document.getElementById('lbTags');
         const lbLikes = document.getElementById('lbLikes');
         const lbViews = document.getElementById('lbViews');
-        const lbComments = document.getElementById('lbComments');
         const lbLike = document.getElementById('lbLike');
         const lbSubscribe = document.getElementById('lbSubscribe');
         const lbOrder = document.getElementById('lbOrder');
         const lbFav = document.getElementById('lbFav');
         const lbShare = document.getElementById('lbShare');
-        const lbTip = document.getElementById('lbTip');
         const lbStatLikes = document.getElementById('lbStatLikes');
         const lbStatViews = document.getElementById('lbStatViews');
-        const lbStatComments = document.getElementById('lbStatComments');
         const lbAuthorClick = document.getElementById('lbAuthorClick');
 
         function formatNumber(n) {
@@ -1472,7 +1456,6 @@
             lbDesc.textContent = card.dataset.desc || 'Описание отсутствует.';
             lbLikes.textContent = formatNumber(card.dataset.likes);
             lbViews.textContent = formatNumber(card.dataset.views);
-            lbComments.textContent = formatNumber(Math.floor(Math.random() * 500) + 12);
 
             lbTags.innerHTML = '';
             (card.dataset.tags || '').split(',').forEach(t => {
@@ -1525,11 +1508,9 @@
             if (navigator.share) navigator.share({ title: lbTitle.textContent, text: 'Смотри на FENBO · Плоть' });
             else alert('Ссылка скопирована (заглушка)');
         });
-        lbTip.addEventListener('click', e => { e.stopPropagation(); alert('Чаевые автору — в следующей версии ✦'); });
 
         lbStatLikes.addEventListener('click', () => alert('Список тех, кто лайкнул — в следующей версии'));
         lbStatViews.addEventListener('click', () => alert('Детальная статистика — в следующей версии'));
-        lbStatComments.addEventListener('click', () => alert('Отзывы и комментарии — в следующей версии'));
         lbAuthorClick.addEventListener('click', e => { if (e.target === lbSubscribe) return; alert('Профиль автора — в следующей версии'); });
     </script>
 
