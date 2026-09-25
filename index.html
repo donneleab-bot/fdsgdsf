@@ -99,6 +99,31 @@
             to { transform: translate(30px, -20px) scale(1.1); }
         }
 
+        /* Плавающие частицы пыли на фоне */
+        .dust-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .dust-bg .mote {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 240, 180, 1) 0%, rgba(255, 215, 0, 0.8) 40%, transparent 100%);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.7), 0 0 16px rgba(255, 200, 80, 0.4);
+            opacity: 0;
+            animation: moteFloat linear infinite;
+        }
+
+        @keyframes moteFloat {
+            0% { opacity: 0; transform: translate3d(0, 0, 0); }
+            20% { opacity: 0.9; }
+            80% { opacity: 0.6; }
+            100% { opacity: 0; transform: translate3d(var(--mx, 30px), -100vh, 0); }
+        }
+
         /* ============================================
            ШАПКА
            ============================================ */
@@ -112,8 +137,19 @@
             position: relative;
             z-index: 20;
             border-bottom: 1px solid rgba(212, 175, 55, 0.18);
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 1px 0 rgba(255, 215, 0, 0.08), 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .topbar::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.5), transparent);
         }
 
         .logo {
@@ -123,7 +159,18 @@
             color: #FFD700;
             letter-spacing: 9px;
             text-decoration: none;
-            text-shadow: 0 0 22px rgba(255, 215, 0, 0.6), 0 0 45px rgba(180, 0, 0, 0.5);
+            text-shadow: 
+                0 0 22px rgba(255, 215, 0, 0.6), 
+                0 0 45px rgba(180, 0, 0, 0.5),
+                0 2px 4px rgba(0, 0, 0, 1);
+            transition: text-shadow 0.4s ease;
+        }
+
+        .logo:hover {
+            text-shadow: 
+                0 0 35px rgba(255, 215, 0, 0.9), 
+                0 0 70px rgba(180, 0, 0, 0.8),
+                0 2px 4px rgba(0, 0, 0, 1);
         }
 
         .logo span {
@@ -149,6 +196,7 @@
             text-decoration: none;
             transition: color 0.3s ease, text-shadow 0.3s ease;
             position: relative;
+            padding: 6px 0;
         }
 
         .topbar-nav a:hover,
@@ -169,8 +217,8 @@
         }
 
         .topbar-user .avatar {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             background: linear-gradient(135deg, #2B0A0A, #4A0505);
             border: 2px solid rgba(255, 215, 0, 0.55);
@@ -180,14 +228,17 @@
             font-family: 'Cinzel', serif;
             font-size: 1rem;
             color: #FFD700;
-            box-shadow: 0 0 18px rgba(255, 215, 0, 0.35);
+            box-shadow: 
+                0 0 18px rgba(255, 215, 0, 0.35),
+                inset 0 0 12px rgba(0, 0, 0, 0.6);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .topbar-user .avatar:hover {
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
-            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
+            transform: scale(1.06) rotate(5deg);
+            border-color: #FFD700;
         }
 
         /* ============================================
@@ -271,6 +322,32 @@
             text-shadow: 0 0 15px rgba(0, 0, 0, 1);
         }
 
+        /* Разделитель под героем */
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin: 45px auto 0;
+            max-width: 700px;
+            width: 90%;
+        }
+
+        .hero-divider .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #B8860B, #FFD700, #FFFFFF, #FFD700, #B8860B, transparent);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .hero-divider .symbol {
+            color: #FFD700;
+            font-size: 1.4rem;
+            letter-spacing: 18px;
+            font-family: 'Cinzel', serif;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+        }
+
         /* ============================================
            ФИЛЬТРЫ
            ============================================ */
@@ -292,27 +369,51 @@
             letter-spacing: 3.5px;
             text-transform: uppercase;
             color: rgba(232, 216, 200, 0.7);
-            padding: 9px 22px;
+            padding: 10px 24px;
             border: 1px solid rgba(212, 175, 55, 0.35);
             background: rgba(0, 0, 0, 0.5);
-            border-radius: 22px;
+            border-radius: 24px;
             cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-chip::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .filter-chip:hover::before {
+            width: 200%;
+            height: 200%;
         }
 
         .filter-chip:hover {
             color: #FFD700;
-            border-color: rgba(255, 215, 0, 0.8);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
-            transform: translateY(-2px);
+            border-color: rgba(255, 215, 0, 0.9);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: translateY(-3px);
         }
 
         .filter-chip.active {
             color: #1A0505;
-            background: #FFD700;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
             border-color: #FFD700;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+            box-shadow: 
+                0 0 35px rgba(255, 215, 0, 0.8),
+                inset 0 -2px 8px rgba(120, 80, 0, 0.3);
+            font-weight: 700;
         }
 
         .filter-chip.adult {
@@ -321,10 +422,10 @@
         }
 
         .filter-chip.adult.active {
-            background: #FF0000;
+            background: linear-gradient(135deg, #FF0000, #8B0000);
             color: #FFFFFF;
             border-color: #FF0000;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+            box-shadow: 0 0 35px rgba(255, 0, 0, 0.8);
         }
 
         /* ============================================
@@ -335,323 +436,130 @@
             max-width: 1600px;
             padding: 30px 45px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 28px;
             position: relative;
             z-index: 5;
         }
 
         /* ============================================
-           КАРТОЧКА — КАДР ИЗ КЛУБА
+           КАРТОЧКА (простой вид — как было)
            ============================================ */
         .art-card {
             position: relative;
             display: block;
             text-decoration: none;
             color: inherit;
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
-            background: #0A0101;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: linear-gradient(165deg, #1A0505 0%, #0D0202 100%);
+            border: 1px solid rgba(212, 175, 55, 0.28);
             box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.85),
-                0 0 0 1px rgba(255, 215, 0, 0.06),
-                inset 0 0 40px rgba(0, 0, 0, 0.7);
+                0 12px 35px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 215, 0, 0.05),
+                inset 0 0 30px rgba(0, 0, 0, 0.6);
             transition: 
-                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1),
                 border-color 0.4s ease;
             cursor: pointer;
         }
 
         .art-card:hover {
-            transform: translateY(-12px) scale(1.02);
+            transform: translateY(-10px) scale(1.02);
             border-color: #FFD700;
             box-shadow: 
-                0 35px 80px rgba(180, 0, 0, 0.95),
-                0 0 0 2px rgba(255, 215, 0, 0.8),
-                0 0 60px rgba(255, 215, 0, 0.5),
-                0 0 120px rgba(180, 0, 0, 0.6);
+                0 30px 70px rgba(180, 0, 0, 0.9),
+                0 0 0 2px rgba(255, 215, 0, 0.7),
+                0 0 50px rgba(255, 215, 0, 0.5),
+                0 0 100px rgba(180, 0, 0, 0.5);
         }
 
-        /* ---------- Сцена внутри карточки ---------- */
         .art-card .thumb {
             position: relative;
             width: 100%;
             aspect-ratio: 3 / 4;
             overflow: hidden;
-            background: #050000;
-            isolation: isolate;
+            background: #0A0000;
         }
 
-        /* Задник сцены: занавес, бархат, софит */
-        .art-card .thumb .scene {
+        .art-card .thumb .placeholder {
             position: absolute;
             inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            color: rgba(255, 215, 0, 0.18);
             background: 
-                /* Софит сверху */
-                radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 220, 120, 0.35) 0%, rgba(255, 200, 80, 0.1) 35%, transparent 65%),
-                /* Глубина сцены */
-                radial-gradient(ellipse at 50% 100%, rgba(60, 0, 0, 0.7) 0%, transparent 60%),
-                /* Боковые занавеси */
-                linear-gradient(90deg, rgba(80, 0, 20, 0.9) 0%, transparent 20%, transparent 80%, rgba(80, 0, 20, 0.9) 100%),
-                /* Общий фон */
-                linear-gradient(180deg, #1A0202 0%, #0A0000 50%, #1A0202 100%);
+                radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.55) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.45) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 215, 0, 0.03) 20px, rgba(255, 215, 0, 0.03) 21px),
+                linear-gradient(165deg, #2B0A0A 0%, #0D0202 100%);
             transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
         }
 
-        /* Полоски бархата (складки занавеса) */
-        .art-card .thumb .scene::before {
+        .art-card:hover .thumb .placeholder {
+            transform: scale(1.1);
+        }
+
+        .art-card .thumb .placeholder::after {
+            content: '❦';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 22px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Пробегающий блик по карточке */
+        .art-card .thumb::before {
             content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                repeating-linear-gradient(90deg,
-                    transparent 0,
-                    transparent 30px,
-                    rgba(0, 0, 0, 0.35) 30px,
-                    rgba(0, 0, 0, 0.35) 32px,
-                    transparent 32px,
-                    transparent 60px,
-                    rgba(120, 0, 30, 0.15) 60px,
-                    rgba(120, 0, 30, 0.15) 62px);
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        /* Софит-луч */
-        .art-card .thumb .scene::after {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 70%;
-            background: 
-                linear-gradient(180deg,
-                    rgba(255, 220, 120, 0.35) 0%,
-                    rgba(255, 200, 80, 0.15) 40%,
-                    transparent 100%);
-            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-            filter: blur(15px);
-            pointer-events: none;
-            animation: lightSway 6s ease-in-out infinite;
-        }
-
-        @keyframes lightSway {
-            0%, 100% { transform: translateX(-50%) rotate(-1deg); opacity: 0.8; }
-            50% { transform: translateX(-50%) rotate(1deg); opacity: 1; }
-        }
-
-        /* ---------- Шест по центру ---------- */
-        .art-card .thumb .pole {
-            position: absolute;
-            top: 8%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 84%;
-            background: linear-gradient(180deg,
-                rgba(255, 215, 0, 0.9) 0%,
-                rgba(255, 215, 0, 0.5) 20%,
-                rgba(180, 120, 0, 0.7) 50%,
-                rgba(255, 215, 0, 0.5) 80%,
-                rgba(255, 215, 0, 0.9) 100%);
-            border-radius: 3px;
-            box-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.7),
-                0 0 40px rgba(255, 200, 80, 0.5),
-                inset 0 0 8px rgba(255, 255, 255, 0.3);
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        /* Отражение шеста на полу */
-        .art-card .thumb .pole::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 20px;
-            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.6) 0%, transparent 70%);
-            filter: blur(6px);
-        }
-
-        /* ---------- Силуэт человека (девушки) ---------- */
-        .art-card .thumb .silhouette {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40%;
-            height: 78%;
-            z-index: 2;
-            pointer-events: none;
-            filter: drop-shadow(0 0 30px rgba(255, 100, 150, 0.5)) drop-shadow(0 0 60px rgba(180, 0, 60, 0.4));
-            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        /* SVG-силуэт: изгиб тела + рука вверх (танец у шеста) */
-        .art-card .thumb .silhouette svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .art-card .thumb .silhouette svg path {
-            fill: rgba(0, 0, 0, 0.92);
-            stroke: rgba(255, 120, 150, 0.35);
-            stroke-width: 1.5;
-        }
-
-        .art-card:hover .thumb .silhouette {
-            transform: translate(-50%, -50%) scale(1.06);
-        }
-
-        .art-card:hover .thumb .scene {
-            transform: scale(1.05);
-        }
-
-        /* ---------- Свет на коже (пробегающий блик) ---------- */
-        .art-card .thumb .shine {
             position: absolute;
             top: 0;
             left: -80%;
             width: 60%;
             height: 100%;
-            background: linear-gradient(105deg,
-                transparent 0%,
-                rgba(255, 240, 200, 0.0) 30%,
-                rgba(255, 240, 200, 0.25) 50%,
-                rgba(255, 240, 200, 0.0) 70%,
-                transparent 100%);
+            background: linear-gradient(105deg, transparent 0%, rgba(255, 240, 200, 0.15) 50%, transparent 100%);
             transform: skewX(-18deg);
-            z-index: 4;
+            z-index: 2;
             pointer-events: none;
             transition: left 0.9s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .art-card:hover .thumb .shine {
+        .art-card:hover .thumb::before {
             left: 130%;
         }
 
-        /* ---------- Плашки "сцена / vip / приват" ---------- */
-        .art-card .thumb .room-tag {
-            position: absolute;
-            bottom: 14px;
-            right: 14px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.55rem;
-            letter-spacing: 4px;
-            padding: 5px 12px;
-            color: #FFD700;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 215, 0, 0.5);
-            border-radius: 2px;
-            text-transform: uppercase;
-            z-index: 5;
-            backdrop-filter: blur(4px);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-        }
-
-        .art-card .thumb .room-tag.vip {
-            color: #FFFFFF;
-            border-color: rgba(255, 68, 68, 0.8);
-            background: rgba(180, 0, 0, 0.8);
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-        }
-
-        .art-card .thumb .room-tag.private {
-            color: #FFFFFF;
-            border-color: rgba(180, 120, 255, 0.8);
-            background: rgba(80, 0, 120, 0.8);
-            text-shadow: 0 0 10px rgba(180, 120, 255, 0.9);
-        }
-
-        /* ---------- Плашка 18+ ---------- */
         .art-card .badge-18 {
             position: absolute;
             top: 14px;
             left: 14px;
             font-family: 'Cinzel', serif;
-            font-size: 0.62rem;
+            font-size: 0.65rem;
             letter-spacing: 3.5px;
             padding: 5px 12px;
             background: rgba(180, 0, 0, 0.95);
             color: #FFFFFF;
             border: 1px solid #FF4444;
-            border-radius: 3px;
+            border-radius: 2px;
             text-shadow: 0 0 12px rgba(255, 0, 0, 1);
-            box-shadow: 0 0 22px rgba(255, 0, 0, 0.75);
-            z-index: 5;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            z-index: 3;
         }
 
-        /* ---------- Цветовые схемы по тегу ---------- */
-        .art-card[data-tag="живопись"] .thumb .scene {
-            background: 
-                radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 220, 120, 0.4) 0%, rgba(255, 200, 80, 0.12) 35%, transparent 65%),
-                radial-gradient(ellipse at 50% 100%, rgba(80, 20, 0, 0.7) 0%, transparent 60%),
-                linear-gradient(90deg, rgba(100, 20, 0, 0.9) 0%, transparent 25%, transparent 75%, rgba(100, 20, 0, 0.9) 100%),
-                linear-gradient(180deg, #2A0A02 0%, #0A0000 50%, #2A0A02 100%);
-        }
-
-        .art-card[data-tag="аниме"] .thumb .scene {
-            background: 
-                radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 180, 220, 0.4) 0%, rgba(255, 120, 180, 0.12) 35%, transparent 65%),
-                radial-gradient(ellipse at 50% 100%, rgba(80, 0, 60, 0.7) 0%, transparent 60%),
-                linear-gradient(90deg, rgba(120, 0, 80, 0.85) 0%, transparent 25%, transparent 75%, rgba(120, 0, 80, 0.85) 100%),
-                linear-gradient(180deg, #2A0220 0%, #0A0000 50%, #2A0220 100%);
-        }
-
-        .art-card[data-tag="бдсм"] .thumb .scene {
-            background: 
-                radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 80, 80, 0.35) 0%, rgba(200, 0, 0, 0.1) 35%, transparent 65%),
-                radial-gradient(ellipse at 50% 100%, rgba(20, 0, 0, 0.9) 0%, transparent 60%),
-                linear-gradient(90deg, rgba(40, 0, 0, 0.95) 0%, transparent 20%, transparent 80%, rgba(40, 0, 0, 0.95) 100%),
-                linear-gradient(180deg, #1A0000 0%, #000000 50%, #1A0000 100%);
-        }
-
-        .art-card[data-tag="лесби"] .thumb .scene {
-            background: 
-                radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 150, 200, 0.4) 0%, rgba(255, 100, 180, 0.12) 35%, transparent 65%),
-                radial-gradient(ellipse at 50% 100%, rgba(120, 20, 60, 0.7) 0%, transparent 60%),
-                linear-gradient(90deg, rgba(140, 0, 80, 0.85) 0%, transparent 25%, transparent 75%, rgba(140, 0, 80, 0.85) 100%),
-                linear-gradient(180deg, #2A0220 0%, #0A0000 50%, #2A0220 100%);
-        }
-
-        .art-card[data-tag="диджитал"] .thumb .scene {
-            background: 
-                radial-gradient(ellipse 90% 60% at 50% -10%, rgba(180, 200, 255, 0.35) 0%, rgba(120, 150, 255, 0.1) 35%, transparent 65%),
-                radial-gradient(ellipse at 50% 100%, rgba(20, 20, 80, 0.7) 0%, transparent 60%),
-                linear-gradient(90deg, rgba(20, 0, 80, 0.85) 0%, transparent 25%, transparent 75%, rgba(20, 0, 80, 0.85) 100%),
-                linear-gradient(180deg, #0A0220 0%, #0A0000 50%, #0A0220 100%);
-        }
-
-        /* Разный цвет свечения силуэта по тегу */
-        .art-card[data-tag="живопись"] .thumb .silhouette { filter: drop-shadow(0 0 30px rgba(255, 180, 80, 0.6)) drop-shadow(0 0 60px rgba(180, 60, 0, 0.5)); }
-        .art-card[data-tag="аниме"] .thumb .silhouette { filter: drop-shadow(0 0 30px rgba(255, 120, 200, 0.65)) drop-shadow(0 0 60px rgba(180, 0, 120, 0.5)); }
-        .art-card[data-tag="бдсм"] .thumb .silhouette { filter: drop-shadow(0 0 30px rgba(255, 60, 60, 0.7)) drop-shadow(0 0 60px rgba(120, 0, 0, 0.6)); }
-        .art-card[data-tag="лесби"] .thumb .silhouette { filter: drop-shadow(0 0 30px rgba(255, 120, 200, 0.7)) drop-shadow(0 0 60px rgba(180, 0, 100, 0.5)); }
-        .art-card[data-tag="диджитал"] .thumb .silhouette { filter: drop-shadow(0 0 30px rgba(140, 180, 255, 0.7)) drop-shadow(0 0 60px rgba(60, 80, 180, 0.5)); }
-        .art-card[data-tag="фетиш"] .thumb .silhouette { filter: drop-shadow(0 0 30px rgba(255, 200, 80, 0.7)) drop-shadow(0 0 60px rgba(140, 0, 0, 0.5)); }
-
-        /* ---------- Инфо-блок ---------- */
         .art-card .info {
-            padding: 18px 20px 20px;
-            position: relative;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 16px 18px 18px;
         }
 
         .art-card .info .title {
             font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: #FFD700;
-            letter-spacing: 2.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             white-space: nowrap;
             overflow: hidden;
@@ -661,7 +569,7 @@
 
         .art-card .info .author {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-style: italic;
             color: #C5A059;
             margin-top: 5px;
@@ -679,9 +587,9 @@
 
         .art-card .info .stats {
             display: flex;
-            gap: 16px;
+            gap: 15px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: rgba(232, 216, 200, 0.7);
         }
 
@@ -692,8 +600,8 @@
             font-size: 0.6rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: rgba(255, 215, 0, 0.7);
-            padding: 3px 10px;
+            color: rgba(255, 215, 0, 0.65);
+            padding: 3px 9px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 2px;
         }
@@ -727,6 +635,7 @@
             text-decoration: none;
             letter-spacing: 2px;
             text-transform: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .footer .back-link:hover {
@@ -803,73 +712,35 @@
             z-index: 5;
         }
 
-        /* Левая сторона лайтбокса — тот же кадр, но крупнее */
+        /* Левая сторона — превью */
         .lb-image {
             position: relative;
-            overflow: hidden;
-            min-height: 500px;
-            background: #050000;
-        }
-
-        .lb-image .scene {
-            position: absolute;
-            inset: 0;
             background: 
-                radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 220, 120, 0.35) 0%, rgba(255, 200, 80, 0.1) 35%, transparent 65%),
-                radial-gradient(ellipse at 50% 100%, rgba(60, 0, 0, 0.7) 0%, transparent 60%),
-                linear-gradient(90deg, rgba(80, 0, 20, 0.9) 0%, transparent 25%, transparent 75%, rgba(80, 0, 20, 0.9) 100%),
-                linear-gradient(180deg, #1A0202 0%, #0A0000 50%, #1A0202 100%);
+                radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.55) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.45) 0%, transparent 55%),
+                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 215, 0, 0.03) 40px, rgba(255, 215, 0, 0.03) 41px),
+                linear-gradient(165deg, #2B0A0A 0%, #0D0202 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            overflow: hidden;
         }
 
-        .lb-image .scene::before {
-            content: '';
+        .lb-image::after {
+            content: '❦';
             position: absolute;
-            inset: 0;
-            background-image: 
-                repeating-linear-gradient(90deg,
-                    transparent 0, transparent 40px,
-                    rgba(0, 0, 0, 0.4) 40px, rgba(0, 0, 0, 0.4) 43px,
-                    transparent 43px, transparent 80px,
-                    rgba(120, 0, 30, 0.18) 80px, rgba(120, 0, 30, 0.18) 83px);
+            font-family: 'Cinzel', serif;
+            font-size: 16rem;
+            color: rgba(255, 215, 0, 0.12);
+            text-shadow: 0 0 80px rgba(255, 215, 0, 0.4);
+            pointer-events: none;
+            animation: symbolGlow 5s ease-in-out infinite;
         }
 
-        .lb-image .pole {
-            position: absolute;
-            top: 6%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 88%;
-            background: linear-gradient(180deg,
-                rgba(255, 215, 0, 1) 0%,
-                rgba(255, 215, 0, 0.6) 20%,
-                rgba(180, 120, 0, 0.8) 50%,
-                rgba(255, 215, 0, 0.6) 80%,
-                rgba(255, 215, 0, 1) 100%);
-            border-radius: 4px;
-            box-shadow: 
-                0 0 25px rgba(255, 215, 0, 0.8),
-                0 0 55px rgba(255, 200, 80, 0.6),
-                inset 0 0 10px rgba(255, 255, 255, 0.4);
-            z-index: 3;
-        }
-
-        .lb-image .silhouette {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 42%;
-            height: 82%;
-            z-index: 2;
-            filter: drop-shadow(0 0 40px rgba(255, 100, 150, 0.6)) drop-shadow(0 0 80px rgba(180, 0, 60, 0.5));
-        }
-
-        .lb-image .silhouette svg { width: 100%; height: 100%; display: block; }
-        .lb-image .silhouette svg path {
-            fill: rgba(0, 0, 0, 0.92);
-            stroke: rgba(255, 120, 150, 0.4);
-            stroke-width: 1.5;
+        @keyframes symbolGlow {
+            0%, 100% { text-shadow: 0 0 80px rgba(255, 215, 0, 0.4); opacity: 0.85; }
+            50% { text-shadow: 0 0 140px rgba(255, 215, 0, 0.7); opacity: 1; }
         }
 
         .lb-image .badge-18 {
@@ -889,24 +760,7 @@
             z-index: 5;
         }
 
-        .lb-image .room-tag {
-            position: absolute;
-            bottom: 22px;
-            right: 22px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
-            letter-spacing: 4px;
-            padding: 6px 14px;
-            color: #FFD700;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 215, 0, 0.6);
-            border-radius: 2px;
-            text-transform: uppercase;
-            z-index: 5;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-        }
-
-        /* Правая сторона лайтбокса */
+        /* Правая сторона */
         .lb-info {
             padding: 32px 32px 28px;
             display: flex;
@@ -929,10 +783,21 @@
             border: 1px solid rgba(212, 175, 55, 0.35);
             border-radius: 12px;
             cursor: pointer;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
         }
+
+        .lb-author::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .lb-author:hover::before { left: 100%; }
 
         .lb-author:hover {
             border-color: rgba(255, 215, 0, 0.7);
@@ -986,6 +851,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
+            position: relative;
+            z-index: 2;
         }
         .lb-author .btn-subscribe:hover {
             background: #FFD700;
@@ -1211,10 +1078,11 @@
             .hero { padding: 50px 25px 30px; }
             .hero h1 { font-size: 3.8rem; letter-spacing: 14px; }
             .hero h1 span { font-size: 2.6rem; }
-            .gallery { padding: 25px; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+            .gallery { padding: 25px; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
             .filters { padding: 25px; }
             .lightbox-inner { grid-template-columns: 1fr; max-height: 94vh; }
-            .lb-image { min-height: 340px; }
+            .lb-image { min-height: 320px; }
+            .lb-image::after { font-size: 8rem; }
             .lb-info { padding: 26px 22px; }
             .lb-title { font-size: 1.7rem; letter-spacing: 4px; }
         }
@@ -1229,32 +1097,34 @@
             }
             .logo { font-size: 1.3rem; letter-spacing: 5px; }
             .logo span { font-size: 0.85rem; }
+            .topbar-user .avatar { width: 34px; height: 34px; font-size: 0.85rem; }
 
             .hero { padding: 32px 16px 20px; }
             .hero-badge { font-size: 0.55rem; letter-spacing: 7px; padding: 7px 16px; margin-bottom: 20px; }
             .hero h1 { font-size: 2.4rem; letter-spacing: 7px; }
             .hero h1 span { font-size: 1.7rem; display: block; margin: 8px 0 0; }
             .hero p { font-size: 0.88rem; letter-spacing: 2.5px; margin-top: 15px; }
+            .hero-divider { margin-top: 30px; }
 
             .filters { padding: 18px 16px 5px; gap: 8px; }
             .filter-chip { font-size: 0.6rem; letter-spacing: 2px; padding: 7px 15px; }
 
-            .gallery { padding: 18px 16px; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-            .art-card .info { padding: 12px 14px 14px; }
-            .art-card .info .title { font-size: 0.85rem; letter-spacing: 1.5px; }
-            .art-card .info .author { font-size: 0.78rem; }
-            .art-card .info .stats { font-size: 0.8rem; gap: 10px; }
-            .art-card .info .tag { font-size: 0.55rem; padding: 2px 7px; }
-            .art-card .badge-18 { font-size: 0.55rem; padding: 3px 8px; top: 10px; left: 10px; }
-            .art-card .thumb .room-tag { font-size: 0.5rem; padding: 4px 8px; bottom: 10px; right: 10px; }
+            .gallery { padding: 18px 16px; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .art-card .info { padding: 11px 13px 13px; }
+            .art-card .info .title { font-size: 0.82rem; letter-spacing: 1.5px; }
+            .art-card .info .author { font-size: 0.76rem; }
+            .art-card .info .stats { font-size: 0.78rem; gap: 10px; }
+            .art-card .info .tag { font-size: 0.55rem; padding: 2px 6px; }
+            .art-card .badge-18 { font-size: 0.55rem; padding: 3px 8px; top: 8px; left: 8px; }
 
             .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; letter-spacing: 4px; }
+            .footer .back-link { font-size: 0.9rem; }
 
             .lightbox { padding: 12px 8px; }
             .lightbox-inner { border-radius: 14px; }
-            .lb-image { min-height: 300px; }
+            .lb-image { min-height: 260px; }
             .lb-image .badge-18 { top: 14px; left: 14px; font-size: 0.6rem; padding: 4px 10px; }
-            .lb-image .room-tag { bottom: 14px; right: 14px; font-size: 0.55rem; }
+            .lb-image::after { font-size: 6rem; }
             .lb-info { padding: 20px 16px; }
             .lb-title { font-size: 1.4rem; letter-spacing: 3px; margin-bottom: 12px; }
             .lb-author { padding: 11px; gap: 11px; }
@@ -1276,11 +1146,11 @@
             .hero h1 span { font-size: 1.4rem; }
             .hero-badge { font-size: 0.5rem; letter-spacing: 4px; }
 
-            .gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 14px 10px; }
-            .art-card .info { padding: 9px 11px 11px; }
-            .art-card .info .title { font-size: 0.75rem; letter-spacing: 1px; }
-            .art-card .info .author { font-size: 0.7rem; }
-            .art-card .info .stats { font-size: 0.7rem; gap: 8px; }
+            .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 14px 10px; }
+            .art-card .info { padding: 8px 10px 10px; }
+            .art-card .info .title { font-size: 0.72rem; letter-spacing: 1px; }
+            .art-card .info .author { font-size: 0.68rem; }
+            .art-card .info .stats { font-size: 0.68rem; gap: 8px; }
             .art-card .info .tag { display: none; }
             .topbar-nav { font-size: 0.55rem; letter-spacing: 1.5px; gap: 10px; }
 
@@ -1293,6 +1163,7 @@
 
     <div class="spotlight"></div>
     <div class="smoke"></div>
+    <div class="dust-bg" id="dustBg"></div>
 
     <!-- ШАПКА -->
     <header class="topbar">
@@ -1314,6 +1185,11 @@
         <div class="hero-badge">18+ · Порно-арты · Стриптиз-клуб</div>
         <h1>Плоть<span>искусство</span></h1>
         <p>Где бархат встречается с желанием. Только для взрослых.</p>
+        <div class="hero-divider">
+            <div class="line"></div>
+            <div class="symbol">♠ ♥ ♦ ♣</div>
+            <div class="line"></div>
+        </div>
     </section>
 
     <!-- ФИЛЬТРЫ -->
@@ -1331,24 +1207,10 @@
     <!-- ГАЛЕРЕЯ -->
     <main class="gallery" id="gallery">
 
-        <!-- 1 -->
-        <div class="art-card" data-title="Бархатный вечер" data-author="Velvet_Rose" data-tag="живопись" data-room="Сцена" data-desc="Тихий вечер в бархатном кресле. Только я, вино и твои глаза напротив. Иногда самое интимное — это пауза перед тем, как всё начнётся." data-likes="1245" data-views="4520" data-tags="живопись,неон,бархат,интим,вечер,желание">
+        <div class="art-card" data-title="Бархатный вечер" data-author="Velvet_Rose" data-tag="живопись" data-desc="Тихий вечер в бархатном кресле. Только я, вино и твои глаза напротив. Иногда самое интимное — это пауза перед тем, как всё начнётся." data-likes="1245" data-views="4520" data-tags="живопись,неон,бархат,интим,вечер,желание">
             <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
+                <div class="placeholder">❦</div>
                 <span class="badge-18">18+</span>
-                <span class="room-tag">Сцена</span>
             </div>
             <div class="info">
                 <div class="title">Бархатный вечер</div>
@@ -1360,25 +1222,8 @@
             </div>
         </div>
 
-        <!-- 2 -->
-        <div class="art-card" data-title="Ночная смена" data-author="Noir_Art" data-tag="диджитал" data-room="VIP" data-desc="Когда клуб закрывается, а свет ещё горит — начинается настоящая магия. Тени, дым, отблески на коже." data-likes="856" data-views="2140" data-tags="диджитал,неон,тени,бар,ночь,vip">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag vip">VIP</span>
-            </div>
+        <div class="art-card" data-title="Ночная смена" data-author="Noir_Art" data-tag="диджитал" data-desc="Когда клуб закрывается, а свет ещё горит — начинается настоящая магия. Тени, дым, отблески на коже." data-likes="856" data-views="2140" data-tags="диджитал,неон,тени,бар,ночь">
+            <div class="thumb"><div class="placeholder">♠</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Ночная смена</div>
                 <div class="author">by Noir_Art</div>
@@ -1386,25 +1231,8 @@
             </div>
         </div>
 
-        <!-- 3 -->
-        <div class="art-card" data-title="Красный шёлк" data-author="ScarletDream" data-tag="аниме" data-room="Сцена" data-desc="Шёлк скользит по коже. Я знаю, что ты смотришь. Позволь мне продолжить." data-likes="2415" data-views="8930" data-tags="аниме,шёлк,красный,соблазн,кожа,танец">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag">Сцена</span>
-            </div>
+        <div class="art-card" data-title="Красный шёлк" data-author="ScarletDream" data-tag="аниме" data-desc="Шёлк скользит по коже. Я знаю, что ты смотришь. Позволь мне продолжить." data-likes="2415" data-views="8930" data-tags="аниме,шёлк,красный,соблазн,кожа">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Красный шёлк</div>
                 <div class="author">by ScarletDream</div>
@@ -1412,25 +1240,8 @@
             </div>
         </div>
 
-        <!-- 4 -->
-        <div class="art-card" data-title="Сцена · 03:00" data-author="MidnightLux" data-tag="фетиш" data-room="Приват" data-desc="Три часа ночи. Последний танец. Софит оставляет только самое важное." data-likes="631" data-views="1720" data-tags="фетиш,сцена,софит,танец,ночь,приват">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag private">Приват</span>
-            </div>
+        <div class="art-card" data-title="Сцена · 03:00" data-author="MidnightLux" data-tag="фетиш" data-desc="Три часа ночи. Последний танец. Софит оставляет только самое важное." data-likes="631" data-views="1720" data-tags="фетиш,сцена,софит,танец,ночь">
+            <div class="thumb"><div class="placeholder">♦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Сцена · 03:00</div>
                 <div class="author">by MidnightLux</div>
@@ -1438,25 +1249,8 @@
             </div>
         </div>
 
-        <!-- 5 -->
-        <div class="art-card" data-title="Шёлковые оковы" data-author="BoundElegance" data-tag="бдсм" data-room="Приват" data-desc="Нежные путы из шёлка. Никакой боли — только доверие, ритм и полное присутствие." data-likes="1830" data-views="5210" data-tags="бдсм,шёлк,доверие,оковы,нежность,приват">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag private">Приват</span>
-            </div>
+        <div class="art-card" data-title="Шёлковые оковы" data-author="BoundElegance" data-tag="бдсм" data-desc="Нежные путы из шёлка. Никакой боли — только доверие, ритм и полное присутствие." data-likes="1830" data-views="5210" data-tags="бдсм,шёлк,доверие,оковы,нежность">
+            <div class="thumb"><div class="placeholder">♣</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Шёлковые оковы</div>
                 <div class="author">by BoundElegance</div>
@@ -1464,25 +1258,8 @@
             </div>
         </div>
 
-        <!-- 6 -->
-        <div class="art-card" data-title="Две свечи" data-author="TwinFlame" data-tag="лесби" data-room="VIP" data-desc="Два огня рядом. Один взгляд — и мы уже всё поняли друг о друге." data-likes="3120" data-views="12040" data-tags="лесби,свечи,интим,взгляд,огонь,vip">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag vip">VIP</span>
-            </div>
+        <div class="art-card" data-title="Две свечи" data-author="TwinFlame" data-tag="лесби" data-desc="Два огня рядом. Один взгляд — и мы уже всё поняли друг о друге." data-likes="3120" data-views="12040" data-tags="лесби,свечи,интим,взгляд,огонь">
+            <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Две свечи</div>
                 <div class="author">by TwinFlame</div>
@@ -1490,25 +1267,8 @@
             </div>
         </div>
 
-        <!-- 7 -->
-        <div class="art-card" data-title="За кулисами" data-author="Backstage_" data-tag="диджитал" data-room="За кулисами" data-desc="То, что происходит за занавесом, важнее самого выступления. Шёпот, дыхание, ожидание." data-likes="921" data-views="3420" data-tags="диджитал,занавес,тайна,ожидание,шёпот">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag">За кулисами</span>
-            </div>
+        <div class="art-card" data-title="За кулисами" data-author="Backstage_" data-tag="диджитал" data-desc="То, что происходит за занавесом, важнее самого выступления. Шёпот, дыхание, ожидание." data-likes="921" data-views="3420" data-tags="диджитал,занавес,тайна,ожидание,шёпот">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">За кулисами</div>
                 <div class="author">by Backstage_</div>
@@ -1516,25 +1276,8 @@
             </div>
         </div>
 
-        <!-- 8 -->
-        <div class="art-card" data-title="Тёмный бархат" data-author="DarkVelvet" data-tag="живопись" data-room="Приват" data-desc="Тёмный бархат скрывает всё, кроме самого главного. Ищи меня глазами." data-likes="1410" data-views="4120" data-tags="живопись,бархат,тени,взгляд,тайна,приват">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag private">Приват</span>
-            </div>
+        <div class="art-card" data-title="Тёмный бархат" data-author="DarkVelvet" data-tag="живопись" data-desc="Тёмный бархат скрывает всё, кроме самого главного. Ищи меня глазами." data-likes="1410" data-views="4120" data-tags="живопись,бархат,тени,взгляд,тайна">
+            <div class="thumb"><div class="placeholder">♠</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Тёмный бархат</div>
                 <div class="author">by DarkVelvet</div>
@@ -1542,25 +1285,8 @@
             </div>
         </div>
 
-        <!-- 9 -->
-        <div class="art-card" data-title="Золотая клетка" data-author="GoldenCage" data-tag="фетиш" data-room="VIP" data-desc="Иногда свобода — это позволить кому-то закрыть для тебя дверь. И держать ключ." data-likes="2740" data-views="9840" data-tags="фетиш,золото,клетка,власть,свобода,vip">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag vip">VIP</span>
-            </div>
+        <div class="art-card" data-title="Золотая клетка" data-author="GoldenCage" data-tag="фетиш" data-desc="Иногда свобода — это позволить кому-то закрыть для тебя дверь. И держать ключ." data-likes="2740" data-views="9840" data-tags="фетиш,золото,клетка,власть,свобода">
+            <div class="thumb"><div class="placeholder">♦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Золотая клетка</div>
                 <div class="author">by GoldenCage</div>
@@ -1568,25 +1294,8 @@
             </div>
         </div>
 
-        <!-- 10 -->
-        <div class="art-card" data-title="Пурпурный дым" data-author="PurpleSmoke" data-tag="аниме" data-room="Сцена" data-desc="Дым клубится, свет распадается. Всё, что осталось — мои руки и твой запах." data-likes="1120" data-views="2960" data-tags="аниме,дым,пурпур,руки,запах">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag">Сцена</span>
-            </div>
+        <div class="art-card" data-title="Пурпурный дым" data-author="PurpleSmoke" data-tag="аниме" data-desc="Дым клубится, свет распадается. Всё, что осталось — мои руки и твой запах." data-likes="1120" data-views="2960" data-tags="аниме,дым,пурпур,руки,запах">
+            <div class="thumb"><div class="placeholder">♣</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Пурпурный дым</div>
                 <div class="author">by PurpleSmoke</div>
@@ -1594,25 +1303,8 @@
             </div>
         </div>
 
-        <!-- 11 -->
-        <div class="art-card" data-title="Шёпот в темноте" data-author="WhisperArt" data-tag="диджитал" data-room="Приват" data-desc="Слова не нужны. Только шёпот у самого уха и тепло на коже." data-likes="1940" data-views="6340" data-tags="диджитал,шёпот,темнота,тепло,кожа,приват">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag private">Приват</span>
-            </div>
+        <div class="art-card" data-title="Шёпот в темноте" data-author="WhisperArt" data-tag="диджитал" data-desc="Слова не нужны. Только шёпот у самого уха и тепло на коже." data-likes="1940" data-views="6340" data-tags="диджитал,шёпот,темнота,тепло,кожа">
+            <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Шёпот в темноте</div>
                 <div class="author">by WhisperArt</div>
@@ -1620,25 +1312,8 @@
             </div>
         </div>
 
-        <!-- 12 -->
-        <div class="art-card" data-title="Алый закат" data-author="ScarletSunset" data-tag="живопись" data-room="VIP" data-desc="Закат цвета крови. Мы на крыше. Всё, что нужно знать друг о друге — уже сказано." data-likes="3520" data-views="15100" data-tags="живопись,закат,алый,крыша,кровь,vip">
-            <div class="thumb">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
-                <div class="shine"></div>
-                <span class="badge-18">18+</span>
-                <span class="room-tag vip">VIP</span>
-            </div>
+        <div class="art-card" data-title="Алый закат" data-author="ScarletSunset" data-tag="живопись" data-desc="Закат цвета крови. Мы на крыше. Всё, что нужно знать друг о друге — уже сказано." data-likes="3520" data-views="15100" data-tags="живопись,закат,алый,крыша,кровь">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
             <div class="info">
                 <div class="title">Алый закат</div>
                 <div class="author">by ScarletSunset</div>
@@ -1648,38 +1323,21 @@
 
     </main>
 
-    <!-- ПОДВАЛ -->
     <footer class="footer">
         <a href="index.html" class="back-link">← Вернуться в главное меню</a>
         <div>✦ FENBO · ПЛОТЬ ✦ 2025 ✦ <span>Только 18+</span> ✦</div>
     </footer>
 
-    <!-- ============================================
-         ЛАЙТБОКС
-         ============================================ -->
+    <!-- ЛАЙТБОКС -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-inner">
             <button class="lb-close" id="lbClose" aria-label="Закрыть">✕</button>
 
-            <div class="lb-image" id="lbImage">
-                <div class="scene"></div>
-                <div class="pole"></div>
-                <div class="silhouette">
-                    <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
-                        <path d="M50 10 C 45 10, 42 14, 42 20 C 42 26, 46 30, 50 30 C 54 30, 58 26, 58 20 C 58 14, 55 10, 50 10 Z
-                                 M 42 32 C 36 36, 32 44, 30 54 C 28 62, 30 72, 34 80 C 36 84, 38 88, 38 92 C 38 100, 36 110, 34 120 L 32 140 L 40 145 L 42 120 C 44 110, 46 100, 50 96 C 54 100, 56 110, 58 120 L 60 145 L 68 140 L 66 120 C 64 110, 62 100, 62 92 C 62 88, 64 84, 66 80 C 70 72, 72 62, 70 54 C 68 44, 64 36, 58 32 Z
-                                 M 30 56 C 26 58, 22 62, 20 68 L 16 84 L 22 86 L 28 70 C 30 66, 32 62, 34 60 Z
-                                 M 70 56 C 74 58, 78 62, 80 68 L 84 84 L 78 86 L 72 70 C 70 66, 68 62, 66 60 Z
-                                 M 38 92 C 30 96, 24 104, 22 114 L 20 130 L 26 132 L 30 116 C 32 108, 36 102, 42 98 Z
-                                 M 62 92 C 70 96, 76 104, 78 114 L 80 130 L 74 132 L 70 116 C 68 108, 64 102, 58 98 Z"/>
-                    </svg>
-                </div>
+            <div class="lb-image">
                 <span class="badge-18">18+</span>
-                <span class="room-tag" id="lbRoomTag">Сцена</span>
             </div>
 
             <div class="lb-info">
-
                 <div class="lb-author" id="lbAuthorClick">
                     <div class="author-avatar" id="lbAuthorAvatar">V</div>
                     <div class="author-info">
@@ -1718,12 +1376,31 @@
                     <button class="lb-btn-mini" id="lbShare" type="button"><span class="mini-icon">➤</span>Поделиться</button>
                     <button class="lb-btn-mini" id="lbTip" type="button"><span class="mini-icon">✦</span>Чаевые</button>
                 </div>
-
             </div>
         </div>
     </div>
 
     <script>
+        /* Фоновая пыль */
+        (function dustBg(){
+            const c = document.getElementById('dustBg');
+            if (!c) return;
+            for (let i = 0; i < 25; i++) {
+                const m = document.createElement('div');
+                m.className = 'mote';
+                const s = Math.random() * 2.5 + 1;
+                m.style.width = s + 'px';
+                m.style.height = s + 'px';
+                m.style.left = (Math.random() * 100) + '%';
+                m.style.bottom = '-10px';
+                m.style.setProperty('--mx', (Math.random() * 80 - 40) + 'px');
+                m.style.animationDuration = (Math.random() * 12 + 15) + 's';
+                m.style.animationDelay = (Math.random() * 15) + 's';
+                c.appendChild(m);
+            }
+        })();
+
+        /* Лайтбокс */
         const lightbox = document.getElementById('lightbox');
         const lbClose = document.getElementById('lbClose');
         const lbTitle = document.getElementById('lbTitle');
@@ -1745,8 +1422,6 @@
         const lbStatViews = document.getElementById('lbStatViews');
         const lbStatComments = document.getElementById('lbStatComments');
         const lbAuthorClick = document.getElementById('lbAuthorClick');
-        const lbImage = document.getElementById('lbImage');
-        const lbRoomTag = document.getElementById('lbRoomTag');
 
         function formatNumber(n) {
             n = parseInt(n, 10) || 0;
@@ -1766,18 +1441,6 @@
             lbViews.textContent = formatNumber(card.dataset.views);
             lbComments.textContent = formatNumber(Math.floor(Math.random() * 500) + 12);
 
-            // Комната
-            lbRoomTag.textContent = card.dataset.room || 'Сцена';
-            lbRoomTag.className = 'room-tag';
-            if (card.dataset.room === 'VIP') lbRoomTag.classList.add('vip');
-            if (card.dataset.room === 'Приват') lbRoomTag.classList.add('private');
-
-            // Цвет сцены в лайтбоксе по тегу
-            const tag = card.dataset.tag || 'живопись';
-            lbImage.dataset.tag = tag;
-            lbImage.querySelector('.scene').style.background = '';
-
-            // Теги
             lbTags.innerHTML = '';
             (card.dataset.tags || '').split(',').forEach(t => {
                 t = t.trim();
