@@ -1,130 +1,339 @@
 /* ============================================
    FENBO · ЛАЙТБОКС
    ============================================ */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    background: radial-gradient(ellipse at 50% 30%, rgba(80, 0, 0, 0.5) 0%, transparent 60%), rgba(0, 0, 0, 0.94);
+    backdrop-filter: blur(22px);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    overflow-y: auto;
+}
+.lightbox.active { opacity: 1; visibility: visible; }
 
-(function lightbox() {
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox) return; // если нет лайтбокса на странице — не запускаем
+.lightbox-inner {
+    position: relative;
+    width: 100%;
+    max-width: 1480px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    background: radial-gradient(ellipse at 20% 0%, rgba(120, 0, 0, 0.35) 0%, transparent 50%), linear-gradient(165deg, #120202 0%, #080101 100%);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 50px 150px rgba(0, 0, 0, 1), 0 0 0 1px rgba(255, 215, 0, 0.2), 0 0 120px rgba(180, 0, 0, 0.7), 0 0 240px rgba(255, 0, 0, 0.35);
+    transform: scale(0.94) translateY(20px);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    max-height: 92vh;
+}
+.lightbox.active .lightbox-inner { transform: scale(1) translateY(0); }
+.lightbox-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FFD700, #FF4444, #FFD700, transparent);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    z-index: 5;
+}
 
-    const lbClose       = document.getElementById('lbClose');
-    const lbTitle       = document.getElementById('lbTitle');
-    const lbAuthorName  = document.getElementById('lbAuthorName');
-    const lbAuthorAvatar= document.getElementById('lbAuthorAvatar');
-    const lbAuthorSubs  = document.getElementById('lbAuthorSubs');
-    const lbDesc        = document.getElementById('lbDesc');
-    const lbTags        = document.getElementById('lbTags');
-    const lbLikes       = document.getElementById('lbLikes');
-    const lbViews       = document.getElementById('lbViews');
-    const lbLike        = document.getElementById('lbLike');
-    const lbSubscribe   = document.getElementById('lbSubscribe');
-    const lbOrder       = document.getElementById('lbOrder');
-    const lbFav         = document.getElementById('lbFav');
-    const lbShare       = document.getElementById('lbShare');
-    const lbTip         = document.getElementById('lbTip');
+/* Картинка */
+.lb-image {
+    position: relative;
+    background: radial-gradient(ellipse at 30% 20%, rgba(180, 0, 0, 0.55) 0%, transparent 55%), radial-gradient(ellipse at 70% 80%, rgba(120, 0, 60, 0.45) 0%, transparent 55%), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 215, 0, 0.03) 40px, rgba(255, 215, 0, 0.03) 41px), linear-gradient(165deg, #2B0A0A 0%, #0D0202 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    overflow: hidden;
+}
+.lb-image::after {
+    content: '❦';
+    position: absolute;
+    font-family: 'Cinzel', serif;
+    font-size: 16rem;
+    color: rgba(255, 215, 0, 0.12);
+    text-shadow: 0 0 80px rgba(255, 215, 0, 0.4);
+    pointer-events: none;
+    animation: symbolGlow 5s ease-in-out infinite;
+}
+@keyframes symbolGlow {
+    0%, 100% { text-shadow: 0 0 80px rgba(255, 215, 0, 0.4); opacity: 0.85; }
+    50% { text-shadow: 0 0 140px rgba(255, 215, 0, 0.7); opacity: 1; }
+}
+.lb-image .badge-18 {
+    position: absolute;
+    top: 22px; left: 22px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    padding: 7px 16px;
+    background: rgba(180, 0, 0, 0.95);
+    color: #FFFFFF;
+    border: 1px solid #FF4444;
+    border-radius: 3px;
+    text-shadow: 0 0 12px rgba(255, 0, 0, 1);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+    z-index: 5;
+}
 
-    /* Сокращение чисел: 1245 → 1.2k */
-    function formatNumber(n) {
-        n = parseInt(n, 10) || 0;
-        if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
-        if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
-        return n.toString();
-    }
+/* Инфо-панель */
+.lb-info {
+    padding: 32px 32px 28px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 215, 0, 0.4) transparent;
+}
+.lb-info::-webkit-scrollbar { width: 6px; }
+.lb-info::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.4); border-radius: 3px; }
 
-    /* Текущий автор — чтобы order.js мог его забрать */
-    window.currentAuthor = '';
+.lb-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(60, 0, 0, 0.5) 0%, rgba(20, 0, 0, 0.3) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.lb-author .author-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #4A0505, #1A0505);
+    border: 2px solid rgba(255, 215, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #FFD700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+    flex-shrink: 0;
+}
+.lb-author .author-info { flex: 1; min-width: 0; }
+.lb-author .author-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: #FFD700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+.lb-author .author-subs {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #C5A059;
+    margin-top: 3px;
+}
+.lb-author .btn-subscribe {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FFD700;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 215, 0, 0.7);
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.lb-author .btn-subscribe:hover { background: #FFD700; color: #1A0505; }
+.lb-author .btn-subscribe.subscribed { background: rgba(180, 0, 0, 0.5); border-color: #FF4444; color: #FF4444; }
 
-    /* Открыть лайтбокс по карточке */
-    function openLightbox(card) {
-        lbTitle.textContent = card.dataset.title || 'Без названия';
+.lb-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #FFD700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 50px rgba(255, 215, 0, 0.6);
+}
 
-        const author = card.dataset.author || 'Аноним';
-        window.currentAuthor = author;
-        lbAuthorName.textContent = author;
-        lbAuthorAvatar.textContent = author.charAt(0).toUpperCase();
-        lbAuthorSubs.textContent = formatNumber(Math.floor(Math.random() * 30000) + 500) + ' подписчиков';
+.lb-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.lb-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255, 215, 0, 0.9);
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    border-radius: 20px;
+    background: rgba(255, 215, 0, 0.05);
+    text-decoration: none;
+    transition: all 0.35s ease;
+}
+.lb-tag:hover { background: #FFD700; color: #1A0505; }
 
-        lbDesc.textContent = card.dataset.desc || 'Описание отсутствует.';
-        lbLikes.textContent = formatNumber(card.dataset.likes);
-        lbViews.textContent = formatNumber(card.dataset.views);
+.lb-desc {
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.85;
+    color: #E8D8C8;
+    padding: 26px 30px 26px 55px;
+    background: linear-gradient(90deg, rgba(60, 0, 0, 0.5) 0%, rgba(20, 0, 0, 0.25) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-left: 3px solid #FFD700;
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 24px;
+}
+.lb-desc::before {
+    content: '“';
+    position: absolute;
+    top: 6px; left: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    color: rgba(255, 215, 0, 0.5);
+    line-height: 1;
+}
+.lb-desc::after {
+    content: '”';
+    position: absolute;
+    bottom: -20px; right: 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    color: rgba(255, 215, 0, 0.3);
+    line-height: 1;
+}
 
-        /* Теги */
-        lbTags.innerHTML = '';
-        (card.dataset.tags || '').split(',').forEach(t => {
-            t = t.trim();
-            if (!t) return;
-            const a = document.createElement('a');
-            a.href = '#';
-            a.className = 'lb-tag';
-            a.textContent = '#' + t;
-            a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); });
-            lbTags.appendChild(a);
-        });
+.lb-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.lb-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 8px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.35s ease;
+}
+.lb-stat:hover { border-color: rgba(255, 215, 0, 0.7); background: rgba(60, 0, 0, 0.4); }
+.lb-stat .stat-value {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: #FFD700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+}
+.lb-stat .stat-value .heart { color: #FF4444; font-size: 1.2rem; }
+.lb-stat .stat-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    color: rgba(197, 160, 89, 0.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
 
-        /* Сброс кнопок */
-        lbLike.classList.remove('liked');
-        lbLike.innerHTML = '♥ Лайк';
-        lbSubscribe.classList.remove('subscribed');
-        lbSubscribe.textContent = 'Подписаться';
+.lb-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.lb-actions button {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    padding: 15px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.lb-btn-like {
+    color: #FF4444;
+    background: rgba(180, 0, 0, 0.15);
+    border: 1px solid rgba(255, 68, 68, 0.6);
+}
+.lb-btn-like:hover { background: #FF0000; color: #FFFFFF; }
+.lb-btn-like.liked { background: linear-gradient(135deg, #FF0000, #8B0000); color: #FFFFFF; }
 
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+.lb-btn-order {
+    color: #1A0505;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border: 1px solid #FFD700;
+    font-weight: 700;
+}
+.lb-btn-order:hover { background: linear-gradient(135deg, #FFFFFF, #FFD700); letter-spacing: 5px; }
 
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+.lb-actions-2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.lb-btn-mini {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(232, 216, 200, 0.8);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 12px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.lb-btn-mini .mini-icon { font-size: 1rem; color: #FFD700; }
+.lb-btn-mini:hover { border-color: rgba(255, 215, 0, 0.8); color: #FFD700; background: rgba(60, 0, 0, 0.4); }
+.lb-btn-mini.tip:hover { border-color: #FFD700; background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(180, 0, 0, 0.3)); }
 
-    /* Открытие по клику на карточку */
-    document.querySelectorAll('.art-card').forEach(card => {
-        card.addEventListener('click', e => {
-            e.preventDefault();
-            openLightbox(card);
-        });
-    });
+.lb-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(255, 215, 0, 0.6);
+    color: #FFD700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    z-index: 30;
+}
+.lb-close:hover { background: #FFD700; color: #1A0505; transform: rotate(90deg); }
 
-    /* Закрытие */
-    lbClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', e => {
-        if (e.target === lightbox) closeLightbox();
-    });
-
-    /* Лайк */
-    lbLike.addEventListener('click', e => {
-        e.stopPropagation();
-        lbLike.classList.toggle('liked');
-        lbLike.innerHTML = lbLike.classList.contains('liked') ? '♥ Понравилось' : '♥ Лайк';
-    });
-
-    /* Подписка */
-    lbSubscribe.addEventListener('click', e => {
-        e.stopPropagation();
-        lbSubscribe.classList.toggle('subscribed');
-        lbSubscribe.textContent = lbSubscribe.classList.contains('subscribed') ? 'Вы подписаны' : 'Подписаться';
-    });
-
-    /* Избранное / поделиться / чаевые */
-    lbFav.addEventListener('click', e => { e.stopPropagation(); alert('Добавлено в избранное ✦'); });
-    lbShare.addEventListener('click', e => {
-        e.stopPropagation();
-        if (navigator.share) {
-            navigator.share({ title: lbTitle.textContent, text: 'FENBO · Плоть' });
-        } else {
-            alert('Ссылка скопирована');
-        }
-    });
-    lbTip.addEventListener('click', e => {
-        e.stopPropagation();
-        alert('Чаевые автору — можно добавить в конструкторе заказа');
-    });
-
-    /* Экспорт наружу — чтобы order.js знал, как закрыть лайтбокс */
-    window.closeLightbox = closeLightbox;
-
-    /* Esc обрабатывается в order.js (универсальный), но если его нет — продублируем тут */
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active') && !document.querySelector('.order-modal.active')) {
-            closeLightbox();
-        }
-    });
-})();
+@media (max-width: 1024px) {
+    .lightbox-inner { grid-template-columns: 1fr; }
+    .lb-image { min-height: 320px; }
+}
+@media (max-width: 768px) {
+    .lightbox { padding: 12px 8px; }
+    .lb-image { min-height: 260px; }
+    .lb-image::after { font-size: 6rem; }
+    .lb-info { padding: 20px 16px; }
+    .lb-title { font-size: 1.4rem; letter-spacing: 3px; }
+    .lb-author { padding: 11px; gap: 11px; }
+    .lb-author .author-avatar { width: 46px; height: 46px; font-size: 1.2rem; }
+    .lb-author .author-name { font-size: 0.85rem; }
+    .lb-author .author-subs { font-size: 0.75rem; }
+    .lb-author .btn-subscribe { font-size: 0.55rem; padding: 8px 12px; letter-spacing: 2px; }
+    .lb-desc { font-size: 0.95rem; line-height: 1.7; padding: 20px 22px 20px 42px; margin-bottom: 18px; }
+    .lb-stat .stat-value { font-size: 1.2rem; }
+    .lb-stat .stat-label { font-size: 0.6rem; }
+    .lb-actions button { padding: 13px 10px; font-size: 0.62rem; letter-spacing: 3px; }
+    .lb-btn-mini { font-size: 0.55rem; padding: 10px 4px; }
+    .lb-close { width: 36px; height: 36px; font-size: 1rem; top: 12px; right: 12px; }
+}
