@@ -3189,65 +3189,111 @@
 
             </div>
 
-            <!-- ============================================
-                 ЧЕК (вместо старого order-success)
-                 ============================================ -->
-            <div class="order-receipt" id="orderReceipt">
-                <div class="receipt-paper" id="receiptPaper">
-                    <div class="receipt-header">
-                        <div class="receipt-logo">FENBO <span>плоть</span></div>
-                        <div class="receipt-subtitle">✦ Кассовый чек ✦</div>
-                        <div class="receipt-order-num">Заказ №<span id="receiptOrderNum">FEN-0000</span></div>
-                    </div>
+<!-- ============================================
+     ЧЕК FENBO (казино-стиль + печать кролика)
+     ============================================ -->
+<div class="order-receipt" id="orderReceipt">
 
-                    <div class="receipt-info">
-                        <div class="row"><span class="label">Дата:</span><span class="value" id="receiptDate">01.01.2025</span></div>
-                        <div class="row"><span class="label">Время:</span><span class="value" id="receiptTime">00:00:00</span></div>
-                        <div class="row"><span class="label">Художник:</span><span class="value" id="receiptArtist">Velvet_Rose</span></div>
-                        <div class="row"><span class="label">Контакт:</span><span class="value" id="receiptContact">—</span></div>
-                    </div>
+    <div class="receipt-scene">
 
-                    <div class="receipt-items" id="receiptItems">
-                        <!-- сюда добавляются позиции -->
-                    </div>
+        <div class="receipt-paper" id="receiptPaper">
 
-                    <div class="receipt-total-block">
-                        <span class="receipt-total-label">ИТОГО:</span>
-                        <span class="receipt-total-value" id="receiptTotal">0 FEN
-                            <span class="usdt-small">≈ 0.00 USDT</span>
-                        </span>
-                    </div>
+            <div class="receipt-edge top"></div>
 
-                    <div class="receipt-payment">
-                        <span class="pay-badge active">TRC-20</span>
-                        <span class="pay-badge">USDT</span>
-                        <span class="pay-badge">Оплачено ✓</span>
-                    </div>
+            <div class="receipt-head">
+                <div class="receipt-logo">FENBO</div>
+                <div class="receipt-script">плоть</div>
+                <div class="receipt-sub">✦ КАССОВЫЙ ЧЕК ✦</div>
+                <div class="receipt-order-num">Заказ №<span id="receiptOrderNum">FEN-0000</span></div>
+            </div>
 
-                    <div class="receipt-barcode">
-                        <div class="bars" id="receiptBars"></div>
-                        <div class="barcode-num" id="receiptBarcodeNum">0000 0000 0000 0000</div>
-                    </div>
+            <div class="receipt-rule"></div>
 
-                    <div class="receipt-qr">
-                        <div class="qr-box">QR<br>FENBO</div>
-                        <div class="qr-hint">Отсканируйте<br>для проверки заказа</div>
-                    </div>
+            <div class="receipt-info">
+                <div class="row"><span class="label">Дата</span><span class="value" id="receiptDate">01.01.2025</span></div>
+                <div class="row"><span class="label">Время</span><span class="value" id="receiptTime">00:00:00</span></div>
+                <div class="row"><span class="label">Художник</span><span class="value" id="receiptArtist">—</span></div>
+                <div class="row"><span class="label">Контакт</span><span class="value" id="receiptContact">—</span></div>
+            </div>
 
-                    <div class="receipt-footer">
-                        Спасибо за игру. Желаем вдохновения.
-                        <div class="hearts">♥ ♠ ♦ ♣</div>
-                    </div>
-                </div>
+            <div class="receipt-rule"></div>
 
-                <div class="receipt-actions">
-                    <button class="receipt-btn print" id="receiptPrint" type="button">🖨 Распечатать</button>
-                    <button class="receipt-btn close-btn" id="receiptClose" type="button">Вернуться к галерее</button>
+            <div class="receipt-items" id="receiptItems"></div>
+
+            <div class="receipt-rule"></div>
+
+            <div class="receipt-total-block">
+                <span class="receipt-total-label">ИТОГО</span>
+                <span class="receipt-total-value">
+                    <span id="receiptTotal">0</span> FEN
+                    <span class="usdt-small">≈ <span id="receiptTotalUsdt">0.00</span> USDT</span>
+                </span>
+            </div>
+
+            <div class="receipt-payment">
+                <span class="pay-badge active">TRC-20</span>
+                <span class="pay-badge">USDT</span>
+                <span class="pay-badge paid">ОПЛАЧЕНО ✓</span>
+            </div>
+
+            <div class="receipt-barcode">
+                <div class="bars" id="receiptBars"></div>
+                <div class="barcode-num" id="receiptBarcodeNum">0000 0000 0000 0000</div>
+            </div>
+
+            <div class="receipt-qr-row">
+                <div class="qr-box"><div class="qr-grid"></div></div>
+                <div class="qr-hint">
+                    Отсканируйте,<br>чтобы проверить<br>подлинность заказа
                 </div>
             </div>
 
+            <div class="receipt-rule dashed"></div>
+
+            <div class="receipt-footer">
+                Спасибо за игру. Желаем вдохновения.
+                <div class="hearts">♥ ♠ ♦ ♣</div>
+            </div>
+
+            <!-- ПЕЧАТЬ КРОЛИКА -->
+            <div class="receipt-stamp" aria-hidden="true">
+                <svg viewBox="0 0 200 200" class="stamp-svg">
+                    <defs>
+                        <path id="stampCircle" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"/>
+                    </defs>
+                    <circle cx="100" cy="100" r="92" class="stamp-ring-outer"/>
+                    <circle cx="100" cy="100" r="78" class="stamp-ring-inner"/>
+                    <text class="stamp-text">
+                        <textPath xlink:href="#stampCircle" startOffset="0%">
+                            ✦ FENBO · ПЛОТЬ · 18+ · FENBO · ПЛОТЬ · 18+ ·
+                        </textPath>
+                    </text>
+                    <g class="stamp-rabbit">
+                        <ellipse cx="78" cy="52" rx="10" ry="30" transform="rotate(-12 78 52)"/>
+                        <ellipse cx="122" cy="52" rx="10" ry="30" transform="rotate(12 122 52)"/>
+                        <ellipse cx="78" cy="54" rx="4.5" ry="22" transform="rotate(-12 78 54)" class="ear-inner"/>
+                        <ellipse cx="122" cy="54" rx="4.5" ry="22" transform="rotate(12 122 54)" class="ear-inner"/>
+                        <circle cx="100" cy="100" r="34"/>
+                        <circle cx="88" cy="94" r="3.5" class="eye"/>
+                        <circle cx="112" cy="94" r="3.5" class="eye"/>
+                        <path d="M 100,104 l -6,6 h 12 z" class="nose"/>
+                        <path d="M 100,110 q -6,6 -12,2 M 100,110 q 6,6 12,2" class="whisker"/>
+                    </g>
+                    <text class="stamp-word" x="100" y="150">FENBO</text>
+                </svg>
+            </div>
+
+            <div class="receipt-edge bottom"></div>
         </div>
+
     </div>
+
+    <div class="receipt-actions">
+        <button class="receipt-btn print" id="receiptPrint" type="button">🖨 Распечатать</button>
+        <button class="receipt-btn close-btn" id="receiptClose" type="button">Вернуться к галерее</button>
+    </div>
+
+</div>
 
     <script>
         /* Пыль */
@@ -3370,9 +3416,6 @@
 
         lbClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && !orderModal.classList.contains('active')) closeLightbox();
-        });
 
         lbLike.addEventListener('click', e => {
             e.stopPropagation();
@@ -3544,162 +3587,178 @@
 
         orderClose.addEventListener('click', closeOrder);
         orderModal.addEventListener('click', e => { if (e.target === orderModal) closeOrder(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape' && orderModal.classList.contains('active')) closeOrder(); });
 
-        /* ============================================
-           ГЕНЕРАЦИЯ ЧЕКА
-           ============================================ */
-        const receiptOrderNum = document.getElementById('receiptOrderNum');
-        const receiptDate = document.getElementById('receiptDate');
-        const receiptTime = document.getElementById('receiptTime');
-        const receiptArtist = document.getElementById('receiptArtist');
-        const receiptContact = document.getElementById('receiptContact');
-        const receiptItems = document.getElementById('receiptItems');
-        const receiptTotal = document.getElementById('receiptTotal');
-        const receiptBars = document.getElementById('receiptBars');
-        const receiptBarcodeNum = document.getElementById('receiptBarcodeNum');
-        const receiptPrint = document.getElementById('receiptPrint');
-        const receiptClose = document.getElementById('receiptClose');
-
-        function generateOrderNumber() {
-            return 'FEN-' + Math.floor(Math.random() * 9000 + 1000);
-        }
-
-        function pad(n) { return n < 10 ? '0' + n : n; }
-
-        function buildBarcode(seed) {
-            receiptBars.innerHTML = '';
-            const types = ['', 'thin', 'wide'];
-            for (let i = 0; i < 40; i++) {
-                const bar = document.createElement('div');
-                bar.className = 'bar ' + (types[(seed + i) % 3] || '');
-                receiptBars.appendChild(bar);
+        /* Универсальный Esc */
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'Escape') return;
+            if (orderModal.classList.contains('active')) {
+                closeOrder();
+            } else if (lightbox.classList.contains('active')) {
+                closeLightbox();
             }
-        }
-
-        orderSubmit.addEventListener('click', () => {
-            if (selectedTotal === 0) return;
-
-            const orderNum = generateOrderNumber();
-            const now = new Date();
-            const dateStr = `${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()}`;
-            const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-
-            receiptOrderNum.textContent = orderNum;
-            receiptDate.textContent = dateStr;
-            receiptTime.textContent = timeStr;
-            receiptArtist.textContent = orderAuthorEl.textContent;
-            receiptContact.textContent = contactInput.value.trim() || '—';
-
-            /* Позиции чека */
-            receiptItems.innerHTML = '';
-            let subtotal = 0;
-
-            document.querySelectorAll('.order-option.checked').forEach(o => {
-                const price = parseInt(o.dataset.price, 10) || 0;
-                const name = o.querySelector('.opt-name').textContent;
-                const desc = o.querySelector('.opt-desc') ? o.querySelector('.opt-desc').textContent : '';
-
-                const item = document.createElement('div');
-                item.className = 'receipt-item';
-                item.innerHTML = `
-                    <div class="item-label">${name}
-                        ${desc ? `<span class="item-extra">${desc}</span>` : ''}
-                    </div>
-                    <div class="item-price">${price.toLocaleString('ru-RU')} FEN</div>
-                `;
-                receiptItems.appendChild(item);
-                subtotal += price;
-            });
-
-            /* Множитель персонажей */
-            if (charMultiplier !== 1) {
-                const multItem = document.createElement('div');
-                multItem.className = 'receipt-item';
-                multItem.innerHTML = `
-                    <div class="item-label">Множитель персонажей
-                        <span class="item-extra">×${charMultiplier.toFixed(1)} (${charCount} персонажа)</span>
-                    </div>
-                    <div class="item-price">+${Math.round((subtotal * charMultiplier) - subtotal).toLocaleString('ru-RU')} FEN</div>
-                `;
-                receiptItems.appendChild(multItem);
-            }
-
-            /* Чаевые */
-            const tipVal = parseInt(tipCustom.value, 10) || tipValue || 0;
-            if (tipVal > 0) {
-                const tipItem = document.createElement('div');
-                tipItem.className = 'receipt-item';
-                tipItem.innerHTML = `
-                    <div class="item-label">Чаевые автору</div>
-                    <div class="item-price">+${tipVal.toLocaleString('ru-RU')} FEN</div>
-                `;
-                receiptItems.appendChild(tipItem);
-            }
-
-            /* Итого */
-            const totalWithTip = selectedTotal;
-            receiptTotal.innerHTML = `${totalWithTip.toLocaleString('ru-RU')} FEN
-                <span class="usdt-small">≈ ${(totalWithTip / 100).toFixed(2)} USDT</span>
-            `;
-
-            /* Штрих-код */
-            const seed = parseInt(orderNum.replace(/\D/g, ''), 10) || 1234;
-            buildBarcode(seed);
-            receiptBarcodeNum.textContent = String(seed).padStart(16, '0').replace(/(\d{4})(?=\d)/g, '$1 ');
-
-            /* Показать чек */
-            orderContent.style.display = 'none';
-            orderReceipt.classList.add('active');
         });
 
-        /* Печать чека */
-        receiptPrint.addEventListener('click', () => {
-            const paper = document.getElementById('receiptPaper');
-            const w = window.open('', '', 'width=600,height=800');
-            w.document.write(`
-                <html><head><title>Чек FENBO</title>
-                <style>
-                    body { margin: 0; padding: 20px; background: #fff; font-family: 'Courier New', monospace; }
-                    .receipt-paper { max-width: 400px; margin: 0 auto; background: #FDF8F0; color: #2B1A0A; padding: 24px; border-radius: 4px; box-shadow: 0 0 0 1px #ccc; }
-                    .receipt-logo { font-family: serif; font-size: 1.4rem; color: #8B0000; text-align: center; letter-spacing: 6px; }
-                    .receipt-logo span { font-style: italic; color: #B8860B; }
-                    .receipt-subtitle { text-align: center; font-size: 0.65rem; letter-spacing: 4px; color: #888; margin-top: 4px; }
-                    .receipt-order-num { text-align: center; font-size: 0.9rem; color: #8B0000; margin: 8px 0 12px; padding: 6px; border: 1px solid #ddd; display: block; }
-                    .receipt-info .row { display: flex; justify-content: space-between; font-size: 0.7rem; margin: 3px 0; }
-                    .receipt-items { margin: 12px 0; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc; padding: 10px 0; }
-                    .receipt-item { display: flex; justify-content: space-between; font-size: 0.72rem; padding: 4px 0; border-bottom: 1px dotted #eee; }
-                    .item-extra { display: block; font-size: 0.6rem; color: #999; }
-                    .receipt-total-block { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 2px solid #ccc; margin: 8px 0; }
-                    .receipt-total-value { font-size: 1.3rem; color: #8B0000; }
-                    .usdt-small { font-size: 0.7rem; color: #26A17B; display: block; }
-                    .receipt-payment { display: flex; gap: 6px; justify-content: center; margin: 10px 0; }
-                    .pay-badge { font-size: 0.6rem; padding: 4px 10px; border: 1px solid #ccc; border-radius: 3px; }
-                    .pay-badge.active { background: #8B0000; color: #fff; border-color: #8B0000; }
-                    .receipt-barcode { text-align: center; margin: 12px 0; }
-                    .bars { display: flex; gap: 2px; justify-content: center; height: 36px; }
-                    .bar { width: 3px; background: #2B1A0A; }
-                    .bar.thin { width: 1px; }
-                    .bar.wide { width: 5px; }
-                    .barcode-num { font-size: 0.6rem; letter-spacing: 4px; color: #888; margin-top: 4px; }
-                    .receipt-qr { text-align: center; margin: 10px 0; }
-                    .qr-box { display: inline-block; width: 56px; height: 56px; background: #2B1A0A; color: #fff; font-size: 0.55rem; padding: 6px; border-radius: 4px; }
-                    .receipt-footer { text-align: center; font-size: 0.6rem; color: #888; border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 10px; }
-                    .hearts { font-size: 0.7rem; letter-spacing: 3px; color: #8B0000; margin-top: 4px; }
-                </style></head><body>
-                ${paper.outerHTML}
-                </body></html>
-            `);
-            w.document.close();
-            w.focus();
-            w.print();
-        });
+ /* ============================================
+   ГЕНЕРАЦИЯ ЧЕКА
+   ============================================ */
+const receiptOrderNum   = document.getElementById('receiptOrderNum');
+const receiptDate       = document.getElementById('receiptDate');
+const receiptTime       = document.getElementById('receiptTime');
+const receiptArtist     = document.getElementById('receiptArtist');
+const receiptContact    = document.getElementById('receiptContact');
+const receiptItems      = document.getElementById('receiptItems');
+const receiptTotal      = document.getElementById('receiptTotal');
+const receiptTotalUsdt  = document.getElementById('receiptTotalUsdt');
+const receiptBars       = document.getElementById('receiptBars');
+const receiptBarcodeNum = document.getElementById('receiptBarcodeNum');
+const receiptPrint      = document.getElementById('receiptPrint');
+const receiptClose      = document.getElementById('receiptClose');
 
-        receiptClose.addEventListener('click', () => {
-            orderReceipt.classList.remove('active');
-            closeOrder();
-        });
+function generateOrderNumber() {
+    return 'FEN-' + Math.floor(Math.random() * 9000 + 1000);
+}
+function pad(n) { return n < 10 ? '0' + n : n; }
 
+function buildBarcode(seed) {
+    receiptBars.innerHTML = '';
+    const types = ['', 'thin', 'wide'];
+    for (let i = 0; i < 42; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'bar ' + (types[(seed + i) % 3] || '');
+        receiptBars.appendChild(bar);
+    }
+}
+
+orderSubmit.addEventListener('click', () => {
+    if (selectedTotal === 0) return;
+
+    const orderNum = generateOrderNumber();
+    const now = new Date();
+    const dateStr = `${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()}`;
+    const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+
+    receiptOrderNum.textContent = orderNum;
+    receiptDate.textContent = dateStr;
+    receiptTime.textContent = timeStr;
+    receiptArtist.textContent = orderAuthorEl.textContent;
+    receiptContact.textContent = contactInput.value.trim() || '—';
+
+    receiptItems.innerHTML = '';
+    let subtotal = 0;
+
+    document.querySelectorAll('.order-option.checked').forEach(o => {
+        const price = parseInt(o.dataset.price, 10) || 0;
+        const name = o.querySelector('.opt-name').textContent;
+        const desc = o.querySelector('.opt-desc') ? o.querySelector('.opt-desc').textContent : '';
+
+        const item = document.createElement('div');
+        item.className = 'receipt-item';
+        item.innerHTML = `
+            <div class="item-label">${name}
+                ${desc ? `<span class="item-extra">${desc}</span>` : ''}
+            </div>
+            <div class="item-price">${price.toLocaleString('ru-RU')} FEN</div>
+        `;
+        receiptItems.appendChild(item);
+        subtotal += price;
+    });
+
+    if (charMultiplier !== 1) {
+        const multItem = document.createElement('div');
+        multItem.className = 'receipt-item';
+        multItem.innerHTML = `
+            <div class="item-label">Множитель персонажей
+                <span class="item-extra">×${charMultiplier.toFixed(1)} (${charCount} персонажа)</span>
+            </div>
+            <div class="item-price">+${Math.round((subtotal * charMultiplier) - subtotal).toLocaleString('ru-RU')} FEN</div>
+        `;
+        receiptItems.appendChild(multItem);
+    }
+
+    const tipVal = parseInt(tipCustom.value, 10) || tipValue || 0;
+    if (tipVal > 0) {
+        const tipItem = document.createElement('div');
+        tipItem.className = 'receipt-item';
+        tipItem.innerHTML = `
+            <div class="item-label">Чаевые автору</div>
+            <div class="item-price">+${tipVal.toLocaleString('ru-RU')} FEN</div>
+        `;
+        receiptItems.appendChild(tipItem);
+    }
+
+    receiptTotal.textContent = selectedTotal.toLocaleString('ru-RU');
+    receiptTotalUsdt.textContent = (selectedTotal / 100).toFixed(2);
+
+    const seed = parseInt(orderNum.replace(/\D/g, ''), 10) || 1234;
+    buildBarcode(seed);
+    receiptBarcodeNum.textContent = String(seed).padStart(16, '0').replace(/(\d{4})(?=\d)/g, '$1 ');
+
+    orderContent.style.display = 'none';
+    orderReceipt.classList.add('active');
+});
+
+/* Печать чека */
+receiptPrint.addEventListener('click', () => {
+    const paper = document.getElementById('receiptPaper');
+    const w = window.open('', '', 'width=600,height=900');
+    w.document.write(`
+        <html><head><title>Чек FENBO</title>
+        <style>
+            body { margin: 0; padding: 20px; background: #fff; }
+            .receipt-edge { display: none; }
+            .receipt-paper { max-width: 420px; margin: 0 auto; background: #F4E9D2; color: #2B1A0A; padding: 30px; border-radius: 4px; box-shadow: 0 0 0 1px #ccc; font-family: 'Courier New', monospace; position: relative; }
+            .receipt-logo { font-family: serif; font-size: 1.6rem; color: #8B0000; text-align: center; letter-spacing: 8px; font-weight: 900; }
+            .receipt-script { text-align: center; font-style: italic; color: #B8860B; font-size: 1.2rem; margin-top: -4px; }
+            .receipt-sub { text-align: center; font-size: 0.65rem; letter-spacing: 5px; color: #888; margin-top: 6px; }
+            .receipt-order-num { text-align: center; font-size: 0.85rem; color: #8B0000; margin: 10px auto 14px; padding: 6px 12px; border: 1px solid #ddd; display: table; }
+            .receipt-rule { height: 1px; background: repeating-linear-gradient(90deg, #999 0 6px, transparent 6px 12px); margin: 14px 0; }
+            .receipt-info .row { display: flex; justify-content: space-between; font-size: 0.72rem; margin: 3px 0; }
+            .receipt-items { margin: 8px 0; }
+            .receipt-item { display: flex; justify-content: space-between; font-size: 0.74rem; padding: 5px 0; border-bottom: 1px dotted #ccc; }
+            .item-extra { display: block; font-size: 0.6rem; color: #999; font-style: italic; }
+            .item-price { color: #8B0000; font-weight: 700; }
+            .receipt-total-block { display: flex; justify-content: space-between; padding: 10px 0; margin: 6px 0; }
+            .receipt-total-label { font-weight: 900; letter-spacing: 4px; }
+            .receipt-total-value { font-size: 1.3rem; color: #8B0000; font-weight: 900; text-align: right; }
+            .usdt-small { font-size: 0.72rem; color: #26A17B; display: block; font-weight: 400; }
+            .receipt-payment { display: flex; gap: 6px; justify-content: center; margin: 10px 0; }
+            .pay-badge { font-size: 0.6rem; padding: 4px 10px; border: 1px solid #ccc; border-radius: 3px; }
+            .pay-badge.active { background: #8B0000; color: #fff; border-color: #8B0000; }
+            .pay-badge.paid { background: #1F7A4D; color: #fff; border-color: #1F7A4D; }
+            .receipt-barcode { text-align: center; margin: 12px 0; }
+            .bars { display: flex; gap: 2px; justify-content: center; height: 38px; }
+            .bar { width: 3px; background: #2B1A0A; }
+            .bar.thin { width: 1px; }
+            .bar.wide { width: 5px; }
+            .barcode-num { font-size: 0.6rem; letter-spacing: 4px; color: #888; margin-top: 4px; }
+            .receipt-qr-row { display: flex; gap: 14px; justify-content: center; align-items: center; margin: 12px 0; }
+            .qr-box { width: 60px; height: 60px; background: #fff; border: 1px solid #999; padding: 5px; }
+            .qr-grid { width: 100%; height: 100%; background-image: linear-gradient(90deg, #2B1A0A 25%, transparent 25% 50%, #2B1A0A 50% 75%, transparent 75%), linear-gradient(0deg, #2B1A0A 20%, transparent 20% 40%, #2B1A0A 40% 60%, transparent 60% 80%, #2B1A0A 80%); background-size: 12px 12px; }
+            .qr-hint { font-size: 0.65rem; color: #888; font-style: italic; }
+            .receipt-footer { text-align: center; font-size: 0.62rem; color: #888; font-style: italic; margin-top: 12px; }
+            .hearts { font-size: 0.75rem; letter-spacing: 4px; color: #8B0000; margin-top: 5px; }
+            .receipt-stamp { position: absolute; right: 8px; bottom: 40px; width: 120px; height: 120px; transform: rotate(-14deg); opacity: 0.9; }
+            .receipt-stamp svg { width: 100%; height: 100%; }
+            .stamp-ring-outer { fill: none; stroke: #B01818; stroke-width: 4; }
+            .stamp-ring-inner { fill: none; stroke: #B01818; stroke-width: 1.6; }
+            .stamp-text { font-family: serif; font-size: 10px; letter-spacing: 2.2px; fill: #B01818; font-weight: 700; }
+            .stamp-rabbit ellipse, .stamp-rabbit circle, .stamp-rabbit path { fill: #B01818; }
+            .stamp-rabbit .ear-inner, .stamp-rabbit .eye, .stamp-rabbit .nose { fill: #F4E9D2; }
+            .stamp-rabbit .whisker { stroke: #F4E9D2; stroke-width: 1.2; fill: none; }
+            .stamp-word { font-family: serif; font-size: 13px; font-weight: 900; fill: #B01818; letter-spacing: 3px; text-anchor: middle; }
+        </style></head><body>
+        ${paper.outerHTML}
+        </body></html>
+    `);
+    w.document.close();
+    w.focus();
+    setTimeout(() => w.print(), 300);
+});
+
+receiptClose.addEventListener('click', () => {
+    orderReceipt.classList.remove('active');
+    closeOrder();
+});
         /* Инициализация */
         updateCharMult();
     </script>
