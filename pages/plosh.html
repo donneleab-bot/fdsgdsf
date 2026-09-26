@@ -1,1 +1,564 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#060000">
+    <title>✦ FENBO | Плоть ✦ 18+</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Общие стили -->
+    <link rel="stylesheet" href="../css/base.css">
+    <!-- Стили галереи «Плоть» -->
+    <link rel="stylesheet" href="../css/plosh.css">
+    <!-- Лайтбокс -->
+    <link rel="stylesheet" href="../css/lightbox.css">
+    <!-- Модалка заказа -->
+    <link rel="stylesheet" href="../css/order.css">
+    <!-- Чек -->
+    <link rel="stylesheet" href="../css/receipt.css">
+</head>
+<body>
+
+    <!-- Фоновые эффекты -->
+    <div class="spotlight"></div>
+    <div class="neon-left"></div>
+    <div class="neon-right"></div>
+    <div class="smoke"></div>
+    <div class="dust-bg" id="dustBg"></div>
+
+    <!-- ============================================
+         ШАПКА
+         ============================================ -->
+    <div class="topbar-wrap">
+        <header class="topbar">
+            <a href="../index.html" class="logo">FENBO<span class="sub">плоть</span></a>
+
+            <nav class="topbar-nav">
+                <a href="#" class="active">Лента</a>
+                <a href="#">Популярное</a>
+                <a href="#">Новое</a>
+                <a href="#">Теги</a>
+                <a href="#">Авторы</a>
+            </nav>
+
+            <div class="topbar-user">
+                <div class="wallet" id="walletBtn" title="Кошелёк FENBO">
+                    <div class="chip-icon"></div>
+                    <div class="balance">
+                        <div class="chips">1 250<span class="unit">FEN</span></div>
+                        <div class="usdt"><span class="usdt-icon">₮</span>12.50</div>
+                    </div>
+                    <div class="plus">+</div>
+                </div>
+
+                <div class="avatar" title="Профиль">F</div>
+
+                <div class="wallet-dropdown" id="walletDropdown">
+                    <h4>✦ Кошелёк ✦</h4>
+                    <div class="subtitle">Фишки клуба FENBO</div>
+                    <div class="balance-full">
+                        <div class="label">Ваш баланс</div>
+                        <div class="value-chips"><div class="mini-chip"></div>1 250</div>
+                        <div class="value-usdt"><span class="usdt-icon">₮</span>12.50 USDT</div>
+                    </div>
+                    <div class="rate-info">
+                        <div class="rate-label">Курс обмена:</div>
+                        <div class="rate-value"><span class="green">1 USDT</span> = 100 фишек</div>
+                    </div>
+                    <div class="packages-title">Пополнить фишки</div>
+                    <div class="packages">
+                        <div class="pkg" data-chips="500" data-usdt="5"><div class="chips-amount">500</div><div class="usdt-amount">5 USDT</div></div>
+                        <div class="pkg best" data-chips="1500" data-usdt="15"><div class="chips-amount">1 500</div><div class="usdt-amount">15 USDT</div><div class="bonus">+10% бонус</div></div>
+                        <div class="pkg" data-chips="3000" data-usdt="30"><div class="chips-amount">3 000</div><div class="usdt-amount">30 USDT</div><div class="bonus">+5% бонус</div></div>
+                        <div class="pkg" data-chips="7000" data-usdt="70"><div class="chips-amount">7 000</div><div class="usdt-amount">70 USDT</div><div class="bonus">+10% бонус</div></div>
+                    </div>
+                    <div class="methods">
+                        <div class="method active">TRC-20</div>
+                        <div class="method">ERC-20</div>
+                        <div class="method">BEP-20</div>
+                    </div>
+                    <button class="deposit-btn" id="depositBtn">Пополнить через USDT</button>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- ============================================
+         ГЕРОЙ
+         ============================================ -->
+    <section class="hero">
+        <div class="hero-topline">
+            <div class="line-s"></div>
+            <div class="suits">♠ ♥ ♦ ♣</div>
+            <div class="line-s r"></div>
+        </div>
+        <div class="hero-badge">Стриптиз-Казино · Искусство Желания</div>
+        <h1>Плоть<span>искусство</span></h1>
+        <p>Где бархат встречается с <span class="accent">желанием</span>. Только для взрослых.</p>
+        <div class="hero-divider">
+            <div class="line"></div>
+            <div class="symbol">♠ ♥ ♦ ♣</div>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         КАЗИНО-СТАТИСТИКА
+         ============================================ -->
+    <div class="casino-stats">
+        <div class="casino-stat"><div class="stat-icon">♠</div><div class="stat-body"><div class="stat-value">2 480</div><div class="stat-label">Работ на сцене</div></div></div>
+        <div class="casino-stat"><div class="stat-icon">♥</div><div class="stat-body"><div class="stat-value">320</div><div class="stat-label">Художников</div></div></div>
+        <div class="casino-stat"><div class="stat-icon">♦</div><div class="stat-body"><div class="stat-value">18 500</div><div class="stat-label">Фишек в ставках</div></div></div>
+        <div class="casino-stat"><div class="stat-icon">♣</div><div class="stat-body"><div class="stat-value">24/7</div><div class="stat-label">Сцена открыта</div></div></div>
+    </div>
+
+    <!-- ============================================
+         ГОРЯЧИЕ СТАВКИ
+         ============================================ -->
+    <div class="hot-bets">
+        <div class="hot-bets-inner">
+            <div class="hot-bets-label"><span class="dot"></span>Горячие ставки</div>
+            <div class="hot-bets-track">
+                <div class="hot-bet"><span class="bet-suit">♥</span> <span class="bet-artist">Velvet_Rose</span> ставит <span class="bet-amount">500 FEN</span> на «Бархатный вечер»</div>
+                <div class="hot-bet"><span class="bet-suit">♠</span> <span class="bet-artist">Noir_Art</span> ставит <span class="bet-amount">1 200 FEN</span> на «Ночную смену»</div>
+                <div class="hot-bet"><span class="bet-suit">♦</span> <span class="bet-artist">ScarletDream</span> ставит <span class="bet-amount">800 FEN</span> на «Красный шёлк»</div>
+                <div class="hot-bet"><span class="bet-suit">♣</span> <span class="bet-artist">MidnightLux</span> ставит <span class="bet-amount">300 FEN</span> на «Сцену · 03:00»</div>
+                <div class="hot-bet"><span class="bet-suit">♥</span> <span class="bet-artist">Velvet_Rose</span> ставит <span class="bet-amount">500 FEN</span> на «Бархатный вечер»</div>
+                <div class="hot-bet"><span class="bet-suit">♠</span> <span class="bet-artist">Noir_Art</span> ставит <span class="bet-amount">1 200 FEN</span> на «Ночную смену»</div>
+                <div class="hot-bet"><span class="bet-suit">♦</span> <span class="bet-artist">ScarletDream</span> ставит <span class="bet-amount">800 FEN</span> на «Красный шёлк»</div>
+                <div class="hot-bet"><span class="bet-suit">♣</span> <span class="bet-artist">MidnightLux</span> ставит <span class="bet-amount">300 FEN</span> на «Сцену · 03:00»</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         ФИЛЬТРЫ
+         ============================================ -->
+    <div class="filters">
+        <a href="#" class="filter-chip active">Все</a>
+        <a href="#" class="filter-chip">Живопись</a>
+        <a href="#" class="filter-chip">Диджитал</a>
+        <a href="#" class="filter-chip">Аниме</a>
+        <a href="#" class="filter-chip">Фетиш</a>
+        <a href="#" class="filter-chip">БДСМ</a>
+        <a href="#" class="filter-chip">Лесби</a>
+        <a href="#" class="filter-chip adult">Экстрим 18+</a>
+    </div>
+
+    <!-- ============================================
+         ГАЛЕРЕЯ
+         ============================================ -->
+    <main class="gallery" id="gallery">
+
+        <div class="art-card" data-title="Бархатный вечер" data-author="Velvet_Rose" data-tag="живопись" data-desc="Тихий вечер в бархатном кресле. Только я, вино и твои глаза напротив. Иногда самое интимное — это пауза перед тем, как всё начнётся." data-likes="1245" data-views="4520" data-tags="живопись,неон,бархат,интим,вечер,желание">
+            <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Бархатный вечер</div><div class="author">by Velvet_Rose</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.2k</span><span>👁 4.5k</span></div><span class="tag">живопись</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Ночная смена" data-author="Noir_Art" data-tag="диджитал" data-desc="Когда клуб закрывается, а свет ещё горит — начинается настоящая магия. Тени, дым, отблески на коже." data-likes="856" data-views="2140" data-tags="диджитал,неон,тени,бар,ночь">
+            <div class="thumb"><div class="placeholder">♠</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Ночная смена</div><div class="author">by Noir_Art</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 856</span><span>👁 2.1k</span></div><span class="tag">диджитал</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Красный шёлк" data-author="ScarletDream" data-tag="аниме" data-desc="Шёлк скользит по коже. Я знаю, что ты смотришь. Позволь мне продолжить." data-likes="2415" data-views="8930" data-tags="аниме,шёлк,красный,соблазн,кожа">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Красный шёлк</div><div class="author">by ScarletDream</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 2.4k</span><span>👁 8.9k</span></div><span class="tag">аниме</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Сцена · 03:00" data-author="MidnightLux" data-tag="фетиш" data-desc="Три часа ночи. Последний танец. Софит оставляет только самое важное." data-likes="631" data-views="1720" data-tags="фетиш,сцена,софит,танец,ночь">
+            <div class="thumb"><div class="placeholder">♦</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Сцена · 03:00</div><div class="author">by MidnightLux</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 631</span><span>👁 1.7k</span></div><span class="tag">фетиш</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Шёлковые оковы" data-author="BoundElegance" data-tag="бдсм" data-desc="Нежные путы из шёлка. Никакой боли — только доверие, ритм и полное присутствие." data-likes="1830" data-views="5210" data-tags="бдсм,шёлк,доверие,оковы,нежность">
+            <div class="thumb"><div class="placeholder">♣</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Шёлковые оковы</div><div class="author">by BoundElegance</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.8k</span><span>👁 5.2k</span></div><span class="tag">бдсм</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Две свечи" data-author="TwinFlame" data-tag="лесби" data-desc="Два огня рядом. Один взгляд — и мы уже всё поняли друг о друге." data-likes="3120" data-views="12040" data-tags="лесби,свечи,интим,взгляд,огонь">
+            <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Две свечи</div><div class="author">by TwinFlame</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 3.1k</span><span>👁 12k</span></div><span class="tag">лесби</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="За кулисами" data-author="Backstage_" data-tag="диджитал" data-desc="То, что происходит за занавесом, важнее самого выступления. Шёпот, дыхание, ожидание." data-likes="921" data-views="3420" data-tags="диджитал,занавес,тайна,ожидание,шёпот">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">За кулисами</div><div class="author">by Backstage_</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 921</span><span>👁 3.4k</span></div><span class="tag">диджитал</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Тёмный бархат" data-author="DarkVelvet" data-tag="живопись" data-desc="Тёмный бархат скрывает всё, кроме самого главного. Ищи меня глазами." data-likes="1410" data-views="4120" data-tags="живопись,бархат,тени,взгляд,тайна">
+            <div class="thumb"><div class="placeholder">♠</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Тёмный бархат</div><div class="author">by DarkVelvet</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.4k</span><span>👁 4.1k</span></div><span class="tag">живопись</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Золотая клетка" data-author="GoldenCage" data-tag="фетиш" data-desc="Иногда свобода — это позволить кому-то закрыть для тебя дверь. И держать ключ." data-likes="2740" data-views="9840" data-tags="фетиш,золото,клетка,власть,свобода">
+            <div class="thumb"><div class="placeholder">♦</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Золотая клетка</div><div class="author">by GoldenCage</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 2.7k</span><span>👁 9.8k</span></div><span class="tag">фетиш</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Пурпурный дым" data-author="PurpleSmoke" data-tag="аниме" data-desc="Дым клубится, свет распадается. Всё, что осталось — мои руки и твой запах." data-likes="1120" data-views="2960" data-tags="аниме,дым,пурпур,руки,запах">
+            <div class="thumb"><div class="placeholder">♣</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Пурпурный дым</div><div class="author">by PurpleSmoke</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.1k</span><span>👁 2.9k</span></div><span class="tag">аниме</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Шёпот в темноте" data-author="WhisperArt" data-tag="диджитал" data-desc="Слова не нужны. Только шёпот у самого уха и тепло на коже." data-likes="1940" data-views="6340" data-tags="диджитал,шёпот,темнота,тепло,кожа">
+            <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Шёпот в темноте</div><div class="author">by WhisperArt</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.9k</span><span>👁 6.3k</span></div><span class="tag">диджитал</span></div></div>
+        </div>
+
+        <div class="art-card" data-title="Алый закат" data-author="ScarletSunset" data-tag="живопись" data-desc="Закат цвета крови. Мы на крыше. Всё, что нужно знать друг о друге — уже сказано." data-likes="3520" data-views="15100" data-tags="живопись,закат,алый,крыша,кровь">
+            <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
+            <div class="info"><div class="title">Алый закат</div><div class="author">by ScarletSunset</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 3.5k</span><span>👁 15k</span></div><span class="tag">живопись</span></div></div>
+        </div>
+
+    </main>
+
+    <!-- ============================================
+         ЗА КУЛИСАМИ
+         ============================================ -->
+    <section class="backstage">
+        <div class="backstage-header">
+            <div class="label">✦ Только для своих ✦</div>
+            <h3>За кулисами<span>приват</span></h3>
+            <p>То, что не попадает на главную сцену. Приватные заказы и закрытые лоты.</p>
+        </div>
+        <div class="backstage-grid">
+            <div class="bkg-card">
+                <div class="bkg-tag">Приват · 18+</div>
+                <div class="bkg-title">Индивидуальный заказ</div>
+                <div class="bkg-desc">Личный арт по вашему сценарию. Анонимно. Деликатно.</div>
+                <div class="bkg-meta"><span>от 100 фишек</span><span class="bkg-price">Открыть</span></div>
+            </div>
+            <div class="bkg-card">
+                <div class="bkg-tag">VIP · 18+</div>
+                <div class="bkg-title">Закрытый аукцион</div>
+                <div class="bkg-desc">Работы, которые не выставляются публично. Ставки фишками.</div>
+                <div class="bkg-meta"><span>вход 500 фишек</span><span class="bkg-price">Войти</span></div>
+            </div>
+            <div class="bkg-card">
+                <div class="bkg-tag">Сцена · 18+</div>
+                <div class="bkg-title">Ночь желаний</div>
+                <div class="bkg-desc">Тематический вечер каждую субботу. Призовой фонд фишками.</div>
+                <div class="bkg-meta"><span>сб · 00:00</span><span class="bkg-price">Узнать</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ПОДВАЛ
+         ============================================ -->
+    <footer class="footer">
+        <a href="../index.html" class="back-link">← Вернуться в главное меню</a>
+        <div>✦ FENBO · ПЛОТЬ ✦ 2025 ✦ <span>Только 18+</span> ✦</div>
+    </footer>
+
+    <!-- ============================================
+         ЛАЙТБОКС
+         ============================================ -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-inner">
+            <button class="lb-close" id="lbClose">✕</button>
+            <div class="lb-image"><span class="badge-18">18+</span></div>
+            <div class="lb-info">
+                <div class="lb-author" id="lbAuthorClick">
+                    <div class="author-avatar" id="lbAuthorAvatar">V</div>
+                    <div class="author-info">
+                        <div class="author-name"><span id="lbAuthorName">Velvet_Rose</span> ✦</div>
+                        <div class="author-subs" id="lbAuthorSubs">12.4k подписчиков</div>
+                    </div>
+                    <button class="btn-subscribe" id="lbSubscribe" type="button">Подписаться</button>
+                </div>
+                <h2 class="lb-title" id="lbTitle">Бархатный вечер</h2>
+                <div class="lb-tags" id="lbTags"></div>
+                <div class="lb-desc" id="lbDesc"></div>
+                <div class="lb-stats">
+                    <div class="lb-stat" id="lbStatLikes"><span class="stat-value"><span class="heart">♥</span> <span id="lbLikes">1.2k</span></span><span class="stat-label">Лайков</span></div>
+                    <div class="lb-stat" id="lbStatViews"><span class="stat-value">👁 <span id="lbViews">4.5k</span></span><span class="stat-label">Просмотров</span></div>
+                </div>
+                <div class="lb-actions">
+                    <button class="lb-btn-like" id="lbLike" type="button">♥ Лайк</button>
+                    <button class="lb-btn-order" id="lbOrder" type="button">✦ Заказать арт</button>
+                </div>
+                <div class="lb-actions-2">
+                    <button class="lb-btn-mini" id="lbFav"><span class="mini-icon">★</span>В избранное</button>
+                    <button class="lb-btn-mini" id="lbShare"><span class="mini-icon">➤</span>Поделиться</button>
+                    <button class="lb-btn-mini tip" id="lbTip"><span class="mini-icon">✦</span>Чаевые</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         МОДАЛЬНОЕ ОКНО ЗАКАЗА
+         ============================================ -->
+    <div class="order-modal" id="orderModal">
+        <div class="order-inner">
+
+            <div id="orderContent" style="display: flex; flex-direction: column; flex: 1; min-height: 0;">
+
+                <div class="order-header">
+                    <div class="order-title-block">
+                        <div class="order-label">✦ Заказ арта ✦</div>
+                        <h2>Собрать заказ<span>у художника</span></h2>
+                        <div class="order-author" id="orderAuthor">Velvet_Rose</div>
+                    </div>
+                    <button class="order-close" id="orderClose">✕</button>
+                </div>
+
+                <div class="order-body">
+
+                    <!-- 1. Стиль -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">1</span>Стиль работы</div>
+                        <div class="order-options" data-group="style">
+                            <div class="order-option" data-price="500"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Живопись</div><div class="opt-desc">Масляная фактура, классика</div></div><div class="opt-price">500</div></div>
+                            <div class="order-option" data-price="400"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Диджитал</div><div class="opt-desc">Чистый digital-art</div></div><div class="opt-price">400</div></div>
+                            <div class="order-option" data-price="450"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Аниме</div><div class="opt-desc">Аниме-стилистика</div></div><div class="opt-price">450</div></div>
+                            <div class="order-option" data-price="250"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Пиксель-арт / Монохром</div><div class="opt-desc">Простой и быстрый</div></div><div class="opt-price">250</div></div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Формат -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">2</span>Формат</div>
+                        <div class="order-options" data-group="format">
+                            <div class="order-option" data-price="200"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Портрет</div><div class="opt-desc">Лицо и плечи</div></div><div class="opt-price">200</div></div>
+                            <div class="order-option" data-price="400"><div class="check">✓</div><div class="opt-body"><div class="opt-name">По пояс</div><div class="opt-desc">Классический халфбоди</div></div><div class="opt-price">400</div></div>
+                            <div class="order-option" data-price="700"><div class="check">✓</div><div class="opt-body"><div class="opt-name">В полный рост</div><div class="opt-desc">Полная фигура</div></div><div class="opt-price">700</div></div>
+                            <div class="order-option" data-price="1200"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Сцена / Иллюстрация</div><div class="opt-desc">Сложная композиция</div></div><div class="opt-price">1 200</div></div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Количество персонажей -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">3</span>Количество персонажей</div>
+                        <div class="char-counter" id="charCounter">
+                            <button class="cc-btn" id="charMinus" type="button">−</button>
+                            <div class="cc-value">
+                                <div class="cc-num" id="charNum">1</div>
+                                <div class="cc-label">персонаж</div>
+                                <div class="cc-mult" id="charMult">Базовая цена</div>
+                            </div>
+                            <button class="cc-btn" id="charPlus" type="button">+</button>
+                        </div>
+                    </div>
+
+                    <!-- 4. Детализация и Фон -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">4</span>Детализация и фон</div>
+                        <div class="order-options" data-group="detail">
+                            <div class="order-option" data-price="0"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Эскиз / Скетч</div><div class="opt-desc">Линии, без цвета</div></div><div class="opt-price">0</div></div>
+                            <div class="order-option" data-price="300"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Стандарт</div><div class="opt-desc">Тени, цвет, форма</div></div><div class="opt-price">300</div></div>
+                            <div class="order-option" data-price="800"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Премиум</div><div class="opt-desc">Максимум деталей, свет</div></div><div class="opt-price">800</div></div>
+                            <div class="order-option" data-price="0"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Без фона</div><div class="opt-desc">Простой градиент</div></div><div class="opt-price">0</div></div>
+                            <div class="order-option" data-price="350"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Атмосферный фон</div><div class="opt-desc">Комната, природа, неон</div></div><div class="opt-price">350</div></div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Дополнительно -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">5</span>Дополнительно</div>
+                        <div class="order-options" data-group="extra">
+                            <div class="order-option" data-price="200"><div class="check">✓</div><div class="opt-body"><div class="opt-name">18+ контент</div><div class="opt-desc">Обнажённая натура, откровенно</div></div><div class="opt-price">200</div></div>
+                            <div class="order-option" data-price="300"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Фетиш-элемент</div><div class="opt-desc">Кастомный запрос</div></div><div class="opt-price">300</div></div>
+                            <div class="order-option" data-price="500"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Срочно (24ч)</div><div class="opt-desc">Вне очереди</div></div><div class="opt-price">500</div></div>
+                            <div class="order-option" data-price="400"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Коммерческое использование</div><div class="opt-desc">Права на мерч, публикацию</div></div><div class="opt-price">400</div></div>
+                            <div class="order-option" data-price="600"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Приватность</div><div class="opt-desc">Не публикуется в портфолио</div></div><div class="opt-price">600</div></div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Связь -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">6</span>Связь с вами</div>
+                        <div class="contact-grid">
+                            <div class="platform-picker" id="platformPicker">
+                                <div class="platform-opt active" data-platform="Telegram">Telegram</div>
+                                <div class="platform-opt" data-platform="Discord">Discord</div>
+                            </div>
+                            <input type="text" class="contact-input" id="contactInput" placeholder="@username — чтобы художник связался с вами">
+                        </div>
+                    </div>
+
+                    <!-- 7. Описание -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">7</span>Описание заказа</div>
+                        <div class="order-textarea-wrap">
+                            <textarea class="order-textarea" id="orderDesc" maxlength="1500" placeholder="Опишите, что вы хотите увидеть: персонажи, поза, атмосфера, настроение, детали. Чем подробнее — тем лучше художник поймёт задумку."></textarea>
+                            <div class="char-count"><span id="charCount">0</span> / 1500</div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Референсы -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">8</span>Референсы (до 5)</div>
+                        <div class="order-refs" id="orderRefs">
+                            <div class="order-ref-add" id="refAdd" title="Добавить">+</div>
+                        </div>
+                        <div class="order-ref-hint">Референсы персонажей, палитры, позы.</div>
+                    </div>
+
+                    <!-- 9. Чаевые -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">9</span>Добавить чаевые автору</div>
+                        <div class="tip-block" id="tipBlock">
+                            <div class="tip-option active" data-tip="0">
+                                <div class="tip-icon">🪙</div>
+                                <div class="tip-label">Без чаевых</div>
+                            </div>
+                            <div class="tip-option" data-tip="50">
+                                <div class="tip-icon">🪙</div>
+                                <div class="tip-label">+50 FEN</div>
+                                <div class="tip-desc">на кофе</div>
+                            </div>
+                            <div class="tip-option" data-tip="150">
+                                <div class="tip-icon">🪙</div>
+                                <div class="tip-label">+150 FEN</div>
+                                <div class="tip-desc">для вдохновения</div>
+                            </div>
+                            <div class="tip-option" data-tip="300">
+                                <div class="tip-icon">🪙</div>
+                                <div class="tip-label">+300 FEN</div>
+                                <div class="tip-desc">VIP-отношение</div>
+                            </div>
+                            <div class="tip-custom">
+                                <span class="tip-custom-icon">✏️</span>
+                                <input type="number" id="tipCustom" placeholder="своя" min="0" step="10">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="order-footer">
+                    <div class="order-total">
+                        <div class="total-label">Итого к оплате</div>
+                        <div class="total-value"><span id="orderTotal">0</span><span class="unit">FEN</span></div>
+                        <div class="total-usdt">≈ <span class="usdt-icon">₮</span><span id="orderTotalUsdt">0.00</span> USDT</div>
+                    </div>
+                    <button class="order-submit" id="orderSubmit" type="button" disabled>Оформить заказ</button>
+                </div>
+
+            </div>
+
+            <!-- ============================================
+                 ЧЕК FENBO
+                 ============================================ -->
+            <div class="order-receipt" id="orderReceipt">
+
+                <div class="receipt-scene">
+
+                    <div class="receipt-paper" id="receiptPaper">
+
+                        <div class="receipt-edge top"></div>
+
+                        <div class="receipt-head">
+                            <div class="receipt-logo">FENBO</div>
+                            <div class="receipt-script">плоть</div>
+                            <div class="receipt-sub">✦ КАССОВЫЙ ЧЕК ✦</div>
+                            <div class="receipt-order-num">Заказ №<span id="receiptOrderNum">FEN-0000</span></div>
+                        </div>
+
+                        <div class="receipt-rule"></div>
+
+                        <div class="receipt-info">
+                            <div class="row"><span class="label">Дата</span><span class="value" id="receiptDate">01.01.2025</span></div>
+                            <div class="row"><span class="label">Время</span><span class="value" id="receiptTime">00:00:00</span></div>
+                            <div class="row"><span class="label">Художник</span><span class="value" id="receiptArtist">—</span></div>
+                            <div class="row"><span class="label">Контакт</span><span class="value" id="receiptContact">—</span></div>
+                        </div>
+
+                        <div class="receipt-rule"></div>
+
+                        <div class="receipt-items" id="receiptItems"></div>
+
+                        <div class="receipt-rule"></div>
+
+                        <div class="receipt-total-block">
+                            <span class="receipt-total-label">ИТОГО</span>
+                            <span class="receipt-total-value">
+                                <span id="receiptTotal">0</span> FEN
+                                <span class="usdt-small">≈ <span id="receiptTotalUsdt">0.00</span> USDT</span>
+                            </span>
+                        </div>
+
+                        <div class="receipt-payment">
+                            <span class="pay-badge active">TRC-20</span>
+                            <span class="pay-badge">USDT</span>
+                            <span class="pay-badge paid">ОПЛАЧЕНО ✓</span>
+                        </div>
+
+                        <div class="receipt-barcode">
+                            <div class="bars" id="receiptBars"></div>
+                            <div class="barcode-num" id="receiptBarcodeNum">0000 0000 0000 0000</div>
+                        </div>
+
+                        <div class="receipt-qr-row">
+                            <div class="qr-box"><div class="qr-grid"></div></div>
+                            <div class="qr-hint">
+                                Отсканируйте,<br>чтобы проверить<br>подлинность заказа
+                            </div>
+                        </div>
+
+                        <div class="receipt-rule dashed"></div>
+
+                        <div class="receipt-footer">
+                            Спасибо за игру. Желаем вдохновения.
+                            <div class="hearts">♥ ♠ ♦ ♣</div>
+                        </div>
+
+                        <!-- ПЕЧАТЬ КРОЛИКА -->
+                        <div class="receipt-stamp" aria-hidden="true">
+                            <svg viewBox="0 0 200 200" class="stamp-svg">
+                                <defs>
+                                    <path id="stampCircle" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"/>
+                                </defs>
+                                <circle cx="100" cy="100" r="92" class="stamp-ring-outer"/>
+                                <circle cx="100" cy="100" r="78" class="stamp-ring-inner"/>
+                                <text class="stamp-text">
+                                    <textPath xlink:href="#stampCircle" startOffset="0%">
+                                        ✦ FENBO · ПЛОТЬ · 18+ · FENBO · ПЛОТЬ · 18+ ·
+                                    </textPath>
+                                </text>
+                                <g class="stamp-rabbit">
+                                    <ellipse cx="78" cy="52" rx="10" ry="30" transform="rotate(-12 78 52)"/>
+                                    <ellipse cx="122" cy="52" rx="10" ry="30" transform="rotate(12 122 52)"/>
+                                    <ellipse cx="78" cy="54" rx="4.5" ry="22" transform="rotate(-12 78 54)" class="ear-inner"/>
+                                    <ellipse cx="122" cy="54" rx="4.5" ry="22" transform="rotate(12 122 54)" class="ear-inner"/>
+                                    <circle cx="100" cy="100" r="34"/>
+                                    <circle cx="88" cy="94" r="3.5" class="eye"/>
+                                    <circle cx="112" cy="94" r="3.5" class="eye"/>
+                                    <path d="M 100,104 l -6,6 h 12 z" class="nose"/>
+                                    <path d="M 100,110 q -6,6 -12,2 M 100,110 q 6,6 12,2" class="whisker"/>
+                                </g>
+                                <text class="stamp-word" x="100" y="150">FENBO</text>
+                            </svg>
+                        </div>
+
+                        <div class="receipt-edge bottom"></div>
+                    </div>
+
+                </div>
+
+                <div class="receipt-actions">
+                    <button class="receipt-btn print" id="receiptPrint" type="button">🖨 Распечатать</button>
+                    <button class="receipt-btn close-btn" id="receiptClose" type="button">Вернуться к галерее</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================
+         СКРИПТЫ
+         ============================================ -->
+    <script src="../js/main.js"></script>
+    <script src="../js/lightbox.js"></script>
+    <script src="../js/order.js"></script>
+    <script src="../js/receipt.js"></script>
+
+</body>
+</html>
