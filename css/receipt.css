@@ -1,197 +1,393 @@
 /* ============================================
-   FENBO · ГЕНЕРАЦИЯ ЧЕКА
+   FENBO · ЧЕК
    ============================================ */
+.order-receipt {
+    padding: 34px 36px 28px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+.order-receipt.active { display: flex; }
 
-(function receipt() {
-    const receiptItems      = document.getElementById('receiptItems');
-    if (!receiptItems) return; // нет чека на странице — не запускаем
+.receipt-scene {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+}
 
-    const orderSubmit       = document.getElementById('orderSubmit');
-    const orderContent      = document.getElementById('orderContent');
-    const orderReceipt      = document.getElementById('orderReceipt');
-    const orderAuthorEl     = document.getElementById('orderAuthor');
-    const contactInput      = document.getElementById('contactInput');
-    const tipCustom         = document.getElementById('tipCustom');
+.receipt-paper {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    background:
+        radial-gradient(ellipse at 20% 0%, rgba(255, 215, 0, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 100%, rgba(180, 0, 0, 0.06) 0%, transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.012) 3px, rgba(0,0,0,0.012) 4px),
+        linear-gradient(165deg, #FBF3E4 0%, #F4E9D2 50%, #EFE2C6 100%);
+    color: #2B1A0A;
+    padding: 38px 30px 30px;
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(212, 175, 55, 0.35),
+        0 0 70px rgba(180, 0, 0, 0.45),
+        inset 0 0 60px rgba(180, 140, 60, 0.10);
+    border-radius: 3px;
+    font-family: 'Courier New', 'Cormorant Garamond', monospace;
+    overflow: hidden;
+}
+.receipt-paper::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(139, 100, 20, 0.35);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 1;
+}
+.receipt-paper::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px dashed rgba(139, 100, 20, 0.22);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 1;
+}
 
-    const receiptOrderNum   = document.getElementById('receiptOrderNum');
-    const receiptDate       = document.getElementById('receiptDate');
-    const receiptTime       = document.getElementById('receiptTime');
-    const receiptArtist     = document.getElementById('receiptArtist');
-    const receiptContact    = document.getElementById('receiptContact');
-    const receiptTotal      = document.getElementById('receiptTotal');
-    const receiptTotalUsdt  = document.getElementById('receiptTotalUsdt');
-    const receiptBars       = document.getElementById('receiptBars');
-    const receiptBarcodeNum = document.getElementById('receiptBarcodeNum');
-    const receiptPrint      = document.getElementById('receiptPrint');
-    const receiptClose      = document.getElementById('receiptClose');
+.receipt-edge {
+    position: absolute;
+    left: 0; right: 0;
+    height: 10px;
+    background:
+        radial-gradient(circle at 5px 5px, transparent 4.5px, #F4E9D2 5px) repeat-x;
+    background-size: 10px 10px;
+    z-index: 3;
+}
+.receipt-edge.top { top: -1px; }
+.receipt-edge.bottom { bottom: -1px; transform: rotate(180deg); }
 
-    /* --- Номер заказа --- */
-    function generateOrderNumber() {
-        return 'FEN-' + Math.floor(Math.random() * 9000 + 1000);
-    }
-    function pad(n) { return n < 10 ? '0' + n : n; }
+.receipt-head { text-align: center; position: relative; z-index: 2; }
+.receipt-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.7rem;
+    font-weight: 900;
+    letter-spacing: 10px;
+    color: #8B0000;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.receipt-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    color: #B8860B;
+    margin-top: -6px;
+    letter-spacing: 2px;
+}
+.receipt-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 7px;
+    color: rgba(43, 26, 10, 0.6);
+    margin-top: 8px;
+}
+.receipt-order-num {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: #8B0000;
+    padding: 6px 16px;
+    background: rgba(180, 0, 0, 0.07);
+    border: 1px solid rgba(180, 0, 0, 0.3);
+    border-radius: 3px;
+}
 
-    /* --- Штрих-код (из полосок) --- */
-    function buildBarcode(seed) {
-        receiptBars.innerHTML = '';
-        const types = ['', 'thin', 'wide'];
-        for (let i = 0; i < 42; i++) {
-            const bar = document.createElement('div');
-            bar.className = 'bar ' + (types[(seed + i) % 3] || '');
-            receiptBars.appendChild(bar);
-        }
-    }
+.receipt-rule {
+    height: 1px;
+    background: repeating-linear-gradient(90deg, rgba(43,26,10,0.35) 0 6px, transparent 6px 12px);
+    margin: 16px 0;
+    position: relative;
+    z-index: 2;
+}
+.receipt-rule.dashed {
+    background: repeating-linear-gradient(90deg, rgba(43,26,10,0.25) 0 4px, transparent 4px 10px);
+}
 
-    /* --- Сформировать чек при клике на «Оформить заказ» --- */
-    orderSubmit.addEventListener('click', () => {
-        /* Забираем итог из order.js — он лежит в глобальном selectedTotal
-           Но чтобы не зависеть от порядка, посчитаем заново */
+.receipt-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+    z-index: 2;
+}
+.receipt-info .row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+}
+.receipt-info .row .label { color: rgba(43, 26, 10, 0.55); font-style: italic; }
+.receipt-info .row .value { color: #2B1A0A; font-weight: 700; }
 
-        let subtotal = 0;
-        document.querySelectorAll('.order-option.checked').forEach(o => {
-            subtotal += parseInt(o.dataset.price, 10) || 0;
-        });
+.receipt-items { position: relative; z-index: 2; }
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.74rem;
+    padding: 6px 0;
+    font-family: 'Courier New', monospace;
+    border-bottom: 1px dotted rgba(43, 26, 10, 0.18);
+}
+.receipt-item:last-child { border-bottom: none; }
+.receipt-item .item-label { flex: 1; padding-right: 8px; text-align: left; }
+.receipt-item .item-label .item-extra {
+    display: block;
+    font-size: 0.6rem;
+    font-style: italic;
+    color: rgba(43, 26, 10, 0.55);
+    font-family: 'Cormorant Garamond', serif;
+    margin-top: 2px;
+}
+.receipt-item .item-price {
+    font-weight: 700;
+    color: #8B0000;
+    white-space: nowrap;
+}
 
-        const charNumEl = document.getElementById('charNum');
-        const charCount = parseInt(charNumEl ? charNumEl.textContent : '1', 10) || 1;
+.receipt-total-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    position: relative;
+    z-index: 2;
+}
+.receipt-total-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: #2B1A0A;
+    text-transform: uppercase;
+}
+.receipt-total-value {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #8B0000;
+    letter-spacing: 1px;
+    text-align: right;
+}
+.receipt-total-value .usdt-small {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: #26A17B;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-top: 2px;
+}
 
-        let charMultiplier = 1;
-        if (charCount === 2) charMultiplier = 1.7;
-        else if (charCount > 2) charMultiplier = 1.7 + (charCount - 2) * 0.5;
+.receipt-payment {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin: 4px 0 10px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+.receipt-payment .pay-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 2px;
+    padding: 5px 12px;
+    border: 1px solid rgba(43, 26, 10, 0.3);
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    color: rgba(43, 26, 10, 0.75);
+    text-transform: uppercase;
+}
+.receipt-payment .pay-badge.active {
+    background: #8B0000;
+    color: #FFFFFF;
+    border-color: #8B0000;
+}
+.receipt-payment .pay-badge.paid {
+    background: #1F7A4D;
+    color: #FFFFFF;
+    border-color: #1F7A4D;
+}
 
-        const totalBase = Math.round(subtotal * charMultiplier);
-        const tipVal = parseInt(tipCustom.value, 10) || 0;
-        const selectedTotal = totalBase + tipVal;
+.receipt-barcode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0 12px;
+    position: relative;
+    z-index: 2;
+}
+.receipt-barcode .bars {
+    display: flex;
+    gap: 2px;
+    height: 42px;
+    align-items: stretch;
+}
+.receipt-barcode .bar { width: 3px; background: #2B1A0A; border-radius: 1px; }
+.receipt-barcode .bar.thin { width: 1px; }
+.receipt-barcode .bar.wide { width: 5px; }
+.receipt-barcode .barcode-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: rgba(43, 26, 10, 0.6);
+}
 
-        if (selectedTotal === 0) return;
+.receipt-qr-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    margin: 6px 0 4px;
+    position: relative;
+    z-index: 2;
+}
+.receipt-qr-row .qr-box {
+    width: 66px; height: 66px;
+    background: #FFFFFF;
+    border: 1px solid rgba(43, 26, 10, 0.4);
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.receipt-qr-row .qr-grid {
+    width: 100%; height: 100%;
+    background-image:
+        linear-gradient(90deg, #2B1A0A 25%, transparent 25% 50%, #2B1A0A 50% 75%, transparent 75%),
+        linear-gradient(0deg, #2B1A0A 20%, transparent 20% 40%, #2B1A0A 40% 60%, transparent 60% 80%, #2B1A0A 80%);
+    background-size: 14px 14px;
+    border-radius: 2px;
+}
+.receipt-qr-row .qr-hint {
+    font-size: 0.65rem;
+    color: rgba(43, 26, 10, 0.65);
+    font-style: italic;
+    text-align: left;
+    line-height: 1.4;
+}
 
-        /* Заполняем шапку */
-        const orderNum = generateOrderNumber();
-        const now = new Date();
-        const dateStr = pad(now.getDate()) + '.' + pad(now.getMonth() + 1) + '.' + now.getFullYear();
-        const timeStr = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+.receipt-footer {
+    text-align: center;
+    font-size: 0.62rem;
+    color: rgba(43, 26, 10, 0.6);
+    letter-spacing: 0.5px;
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+}
+.receipt-footer .hearts {
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    margin-top: 5px;
+    color: #8B0000;
+}
 
-        receiptOrderNum.textContent = orderNum;
-        receiptDate.textContent = dateStr;
-        receiptTime.textContent = timeStr;
-        receiptArtist.textContent = orderAuthorEl.textContent;
-        receiptContact.textContent = contactInput.value.trim() || '—';
+.receipt-stamp {
+    position: absolute;
+    right: 6px;
+    bottom: 40px;
+    width: 130px;
+    height: 130px;
+    z-index: 6;
+    transform: rotate(-14deg);
+    opacity: 0.88;
+    pointer-events: none;
+}
+.receipt-stamp .stamp-svg { width: 100%; height: 100%; overflow: visible; }
+.receipt-stamp .stamp-ring-outer { fill: none; stroke: #B01818; stroke-width: 4; opacity: 0.9; }
+.receipt-stamp .stamp-ring-inner { fill: none; stroke: #B01818; stroke-width: 1.6; opacity: 0.8; }
+.receipt-stamp .stamp-text {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2.2px;
+    fill: #B01818;
+    font-weight: 700;
+}
+.receipt-stamp .stamp-rabbit ellipse,
+.receipt-stamp .stamp-rabbit circle,
+.receipt-stamp .stamp-rabbit path { fill: #B01818; opacity: 0.92; }
+.receipt-stamp .stamp-rabbit .ear-inner { fill: #F4E9D2; opacity: 0.9; }
+.receipt-stamp .stamp-rabbit .eye { fill: #F4E9D2; }
+.receipt-stamp .stamp-rabbit .nose { fill: #F4E9D2; }
+.receipt-stamp .stamp-rabbit .whisker {
+    stroke: #F4E9D2;
+    stroke-width: 1.2;
+    fill: none;
+    stroke-linecap: round;
+}
+.receipt-stamp .stamp-word {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 900;
+    fill: #B01818;
+    letter-spacing: 3px;
+    text-anchor: middle;
+}
 
-        /* Заполняем позиции */
-        receiptItems.innerHTML = '';
+.receipt-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4px;
+}
+.receipt-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.receipt-btn.print {
+    color: #1A0505;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border: 1px solid #FFD700;
+    font-weight: 700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+.receipt-btn.print:hover {
+    background: linear-gradient(135deg, #FFFFFF, #FFD700);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 1);
+}
+.receipt-btn.close-btn {
+    color: #FFD700;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1.5px solid rgba(255, 215, 0, 0.7);
+}
+.receipt-btn.close-btn:hover {
+    background: #FFD700;
+    color: #1A0505;
+}
 
-        document.querySelectorAll('.order-option.checked').forEach(o => {
-            const price = parseInt(o.dataset.price, 10) || 0;
-            const name = o.querySelector('.opt-name').textContent;
-            const descEl = o.querySelector('.opt-desc');
-            const desc = descEl ? descEl.textContent : '';
-
-            const item = document.createElement('div');
-            item.className = 'receipt-item';
-            item.innerHTML =
-                '<div class="item-label">' + name +
-                    (desc ? '<span class="item-extra">' + desc + '</span>' : '') +
-                '</div>' +
-                '<div class="item-price">' + price.toLocaleString('ru-RU') + ' FEN</div>';
-            receiptItems.appendChild(item);
-        });
-
-        if (charMultiplier !== 1) {
-            const multItem = document.createElement('div');
-            multItem.className = 'receipt-item';
-            multItem.innerHTML =
-                '<div class="item-label">Множитель персонажей' +
-                    '<span class="item-extra">×' + charMultiplier.toFixed(1) + ' (' + charCount + ' персонажа)</span>' +
-                '</div>' +
-                '<div class="item-price">+' +
-                    Math.round((subtotal * charMultiplier) - subtotal).toLocaleString('ru-RU') +
-                ' FEN</div>';
-            receiptItems.appendChild(multItem);
-        }
-
-        if (tipVal > 0) {
-            const tipItem = document.createElement('div');
-            tipItem.className = 'receipt-item';
-            tipItem.innerHTML =
-                '<div class="item-label">Чаевые автору</div>' +
-                '<div class="item-price">+' + tipVal.toLocaleString('ru-RU') + ' FEN</div>';
-            receiptItems.appendChild(tipItem);
-        }
-
-        receiptTotal.textContent = selectedTotal.toLocaleString('ru-RU');
-        receiptTotalUsdt.textContent = (selectedTotal / 100).toFixed(2);
-
-        /* Штрих-код */
-        const seed = parseInt(orderNum.replace(/\D/g, ''), 10) || 1234;
-        buildBarcode(seed);
-        receiptBarcodeNum.textContent = String(seed).padStart(16, '0').replace(/(\d{4})(?=\d)/g, '$1 ');
-
-        /* Показываем чек, скрываем форму */
-        orderContent.style.display = 'none';
-        orderReceipt.classList.add('active');
-    });
-
-    /* --- Печать чека --- */
-    receiptPrint.addEventListener('click', () => {
-        const paper = document.getElementById('receiptPaper');
-        const w = window.open('', '', 'width=600,height=900');
-        w.document.write(`
-            <html><head><title>Чек FENBO</title>
-            <style>
-                body { margin: 0; padding: 20px; background: #fff; }
-                .receipt-edge { display: none; }
-                .receipt-paper { max-width: 420px; margin: 0 auto; background: #F4E9D2; color: #2B1A0A; padding: 30px; border-radius: 4px; box-shadow: 0 0 0 1px #ccc; font-family: 'Courier New', monospace; position: relative; }
-                .receipt-logo { font-family: serif; font-size: 1.6rem; color: #8B0000; text-align: center; letter-spacing: 8px; font-weight: 900; }
-                .receipt-script { text-align: center; font-style: italic; color: #B8860B; font-size: 1.2rem; margin-top: -4px; }
-                .receipt-sub { text-align: center; font-size: 0.65rem; letter-spacing: 5px; color: #888; margin-top: 6px; }
-                .receipt-order-num { text-align: center; font-size: 0.85rem; color: #8B0000; margin: 10px auto 14px; padding: 6px 12px; border: 1px solid #ddd; display: table; }
-                .receipt-rule { height: 1px; background: repeating-linear-gradient(90deg, #999 0 6px, transparent 6px 12px); margin: 14px 0; }
-                .receipt-info .row { display: flex; justify-content: space-between; font-size: 0.72rem; margin: 3px 0; }
-                .receipt-items { margin: 8px 0; }
-                .receipt-item { display: flex; justify-content: space-between; font-size: 0.74rem; padding: 5px 0; border-bottom: 1px dotted #ccc; }
-                .item-extra { display: block; font-size: 0.6rem; color: #999; font-style: italic; }
-                .item-price { color: #8B0000; font-weight: 700; }
-                .receipt-total-block { display: flex; justify-content: space-between; padding: 10px 0; margin: 6px 0; }
-                .receipt-total-label { font-weight: 900; letter-spacing: 4px; }
-                .receipt-total-value { font-size: 1.3rem; color: #8B0000; font-weight: 900; text-align: right; }
-                .usdt-small { font-size: 0.72rem; color: #26A17B; display: block; font-weight: 400; }
-                .receipt-payment { display: flex; gap: 6px; justify-content: center; margin: 10px 0; }
-                .pay-badge { font-size: 0.6rem; padding: 4px 10px; border: 1px solid #ccc; border-radius: 3px; }
-                .pay-badge.active { background: #8B0000; color: #fff; border-color: #8B0000; }
-                .pay-badge.paid { background: #1F7A4D; color: #fff; border-color: #1F7A4D; }
-                .receipt-barcode { text-align: center; margin: 12px 0; }
-                .bars { display: flex; gap: 2px; justify-content: center; height: 38px; }
-                .bar { width: 3px; background: #2B1A0A; }
-                .bar.thin { width: 1px; }
-                .bar.wide { width: 5px; }
-                .barcode-num { font-size: 0.6rem; letter-spacing: 4px; color: #888; margin-top: 4px; }
-                .receipt-qr-row { display: flex; gap: 14px; justify-content: center; align-items: center; margin: 12px 0; }
-                .qr-box { width: 60px; height: 60px; background: #fff; border: 1px solid #999; padding: 5px; }
-                .qr-grid { width: 100%; height: 100%; background-image: linear-gradient(90deg, #2B1A0A 25%, transparent 25% 50%, #2B1A0A 50% 75%, transparent 75%), linear-gradient(0deg, #2B1A0A 20%, transparent 20% 40%, #2B1A0A 40% 60%, transparent 60% 80%, #2B1A0A 80%); background-size: 12px 12px; }
-                .qr-hint { font-size: 0.65rem; color: #888; font-style: italic; }
-                .receipt-footer { text-align: center; font-size: 0.62rem; color: #888; font-style: italic; margin-top: 12px; }
-                .hearts { font-size: 0.75rem; letter-spacing: 4px; color: #8B0000; margin-top: 5px; }
-                .receipt-stamp { position: absolute; right: 8px; bottom: 40px; width: 120px; height: 120px; transform: rotate(-14deg); opacity: 0.9; }
-                .receipt-stamp svg { width: 100%; height: 100%; }
-                .stamp-ring-outer { fill: none; stroke: #B01818; stroke-width: 4; }
-                .stamp-ring-inner { fill: none; stroke: #B01818; stroke-width: 1.6; }
-                .stamp-text { font-family: serif; font-size: 10px; letter-spacing: 2.2px; fill: #B01818; font-weight: 700; }
-                .stamp-rabbit ellipse, .stamp-rabbit circle, .stamp-rabbit path { fill: #B01818; }
-                .stamp-rabbit .ear-inner, .stamp-rabbit .eye, .stamp-rabbit .nose { fill: #F4E9D2; }
-                .stamp-rabbit .whisker { stroke: #F4E9D2; stroke-width: 1.2; fill: none; }
-                .stamp-word { font-family: serif; font-size: 13px; font-weight: 900; fill: #B01818; letter-spacing: 3px; text-anchor: middle; }
-            </style></head><body>
-            ${paper.outerHTML}
-            </body></html>
-        `);
-        w.document.close();
-        w.focus();
-        setTimeout(() => w.print(), 300);
-    });
-
-    /* --- Возврат к галерее --- */
-    receiptClose.addEventListener('click', () => {
-        orderReceipt.classList.remove('active');
-        if (window.closeOrder) window.closeOrder();
-    });
-})();
+@media (max-width: 768px) {
+    .order-receipt { padding: 20px 12px 16px; }
+    .receipt-paper { padding: 30px 18px 24px; max-width: 100%; }
+    .receipt-total-value { font-size: 1.15rem; }
+    .receipt-actions { flex-direction: column; width: 100%; }
+    .receipt-btn { width: 100%; justify-content: center; }
+}
