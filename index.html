@@ -283,12 +283,7 @@
             text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
             z-index: 2;
         }
-        .wallet .balance {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-            min-width: 78px;
-        }
+        .wallet .balance { display: flex; flex-direction: column; line-height: 1.1; min-width: 78px; }
         .wallet .balance .chips {
             font-family: 'Cinzel', serif;
             font-size: 1.05rem;
@@ -373,7 +368,7 @@
             border-color: #FFD700;
         }
 
-        /* Выпадающее меню пополнения */
+        /* Кошелёк дропдаун */
         .wallet-dropdown {
             position: absolute;
             top: calc(100% + 16px);
@@ -646,11 +641,6 @@
             padding: 60px 45px 30px;
             position: relative;
             z-index: 5;
-            animation: fadeInDown 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-40px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         .hero-topline {
             display: inline-flex;
@@ -688,7 +678,6 @@
             text-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
             margin-bottom: 26px;
             box-shadow: 0 0 30px rgba(180, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1);
-            animation: badgePulse 3s ease-in-out infinite;
             position: relative;
         }
         .hero-badge::before {
@@ -708,10 +697,6 @@
             font-size: 0.85rem;
             text-shadow: 0 0 12px rgba(255, 0, 0, 1);
         }
-        @keyframes badgePulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(180, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1); }
-            50% { box-shadow: 0 0 50px rgba(255, 0, 0, 0.7), inset 0 0 30px rgba(255, 0, 0, 0.2); }
-        }
         .hero h1 {
             font-family: 'Cinzel', serif;
             font-size: 5.5rem;
@@ -721,13 +706,8 @@
             text-transform: uppercase;
             line-height: 1;
             text-shadow: 
-                0 0 20px rgba(0, 0, 0, 1),
-                0 0 45px rgba(0, 0, 0, 0.9),
-                0 0 70px rgba(255, 215, 0, 0.65),
-                0 0 120px rgba(180, 0, 0, 0.8),
-                0 0 200px rgba(255, 0, 0, 0.4),
-                0 5px 0 rgba(120, 80, 0, 1),
-                0 8px 12px rgba(0, 0, 0, 1);
+                0 0 20px rgba(0, 0, 0, 1), 0 0 45px rgba(0, 0, 0, 0.9), 0 0 70px rgba(255, 215, 0, 0.65),
+                0 0 120px rgba(180, 0, 0, 0.8), 0 0 200px rgba(255, 0, 0, 0.4), 0 5px 0 rgba(120, 80, 0, 1), 0 8px 12px rgba(0, 0, 0, 1);
         }
         .hero h1 span {
             font-family: 'Great Vibes', cursive;
@@ -795,8 +775,7 @@
             background: linear-gradient(135deg, rgba(60, 0, 0, 0.5) 0%, rgba(20, 0, 0, 0.4) 100%);
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            cursor: pointer;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
@@ -1170,11 +1149,7 @@
             letter-spacing: 3px;
             margin-top: 14px;
         }
-        .backstage-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+        .backstage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .bkg-card {
             position: relative;
             padding: 26px 24px;
@@ -1632,8 +1607,6 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
             z-index: 5;
         }
-
-        /* Шапка модалки */
         .order-header {
             padding: 26px 36px 22px;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -1641,13 +1614,8 @@
             align-items: center;
             justify-content: space-between;
             gap: 20px;
-            position: relative;
         }
-        .order-header .order-title-block {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+        .order-header .order-title-block { display: flex; flex-direction: column; gap: 6px; }
         .order-header .order-label {
             font-family: 'Cinzel', serif;
             font-size: 0.6rem;
@@ -1687,7 +1655,6 @@
             content: '✦';
             color: #FFD700;
             font-size: 0.8rem;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
         .order-close {
             width: 40px; height: 40px;
@@ -1704,8 +1671,6 @@
             flex-shrink: 0;
         }
         .order-close:hover { background: #FFD700; color: #1A0505; transform: rotate(90deg); }
-
-        /* Скроллящееся тело модалки */
         .order-body {
             padding: 28px 36px;
             overflow-y: auto;
@@ -1716,10 +1681,7 @@
         .order-body::-webkit-scrollbar { width: 6px; }
         .order-body::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.4); border-radius: 3px; }
 
-        /* Секция */
-        .order-section {
-            margin-bottom: 26px;
-        }
+        .order-section { margin-bottom: 26px; }
         .order-section-title {
             font-family: 'Cinzel', serif;
             font-size: 0.7rem;
@@ -1750,7 +1712,6 @@
             color: #FFD700;
         }
 
-        /* Сетка опций */
         .order-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -1798,13 +1759,7 @@
             border-color: #FFD700;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
         }
-        .order-option .opt-body {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            flex: 1;
-            min-width: 0;
-        }
+        .order-option .opt-body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
         .order-option .opt-name {
             font-family: 'Cinzel', serif;
             font-size: 0.78rem;
@@ -1838,10 +1793,77 @@
             opacity: 0.7;
         }
 
-        /* Поле описания */
-        .order-textarea-wrap {
-            position: relative;
+        /* Счётчик персонажей */
+        .char-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 22px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 14px;
         }
+        .char-counter .cc-btn {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: rgba(60, 0, 0, 0.5);
+            border: 1.5px solid rgba(255, 215, 0, 0.6);
+            color: #FFD700;
+            font-size: 1.6rem;
+            font-weight: 300;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .char-counter .cc-btn:hover:not(:disabled) {
+            background: #FFD700;
+            color: #1A0505;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+            transform: scale(1.08);
+        }
+        .char-counter .cc-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .char-counter .cc-value {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 130px;
+        }
+        .char-counter .cc-value .cc-num {
+            font-family: 'Cinzel', serif;
+            font-size: 2.4rem;
+            color: #FFD700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+            line-height: 1;
+        }
+        .char-counter .cc-value .cc-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            font-style: italic;
+            color: rgba(197, 160, 89, 0.85);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .char-counter .cc-value .cc-mult {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            color: #FF4444;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+            margin-top: 2px;
+        }
+
+        /* Поле описания */
+        .order-textarea-wrap { position: relative; }
         .order-textarea {
             width: 100%;
             min-height: 130px;
@@ -1862,10 +1884,7 @@
             border-color: #FFD700;
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.05);
         }
-        .order-textarea::placeholder {
-            color: rgba(197, 160, 89, 0.6);
-            font-style: italic;
-        }
+        .order-textarea::placeholder { color: rgba(197, 160, 89, 0.6); font-style: italic; }
         .order-textarea-wrap .char-count {
             position: absolute;
             bottom: 10px;
@@ -1877,15 +1896,36 @@
             pointer-events: none;
         }
 
-        /* Референсы — превью-загрузка */
+        /* Референсы */
         .order-refs {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 10px;
         }
+        .order-ref {
+            width: 80px; height: 80px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFD700;
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .order-ref .ref-num {
+            position: absolute;
+            bottom: 3px; right: 5px;
+            font-size: 0.55rem;
+            color: rgba(255, 215, 0, 0.6);
+            letter-spacing: 1px;
+        }
         .order-ref-add {
-            width: 70px; height: 70px;
+            width: 80px; height: 80px;
             border-radius: 8px;
             border: 1.5px dashed rgba(255, 215, 0, 0.5);
             background: rgba(0, 0, 0, 0.3);
@@ -1893,10 +1933,9 @@
             align-items: center;
             justify-content: center;
             color: #FFD700;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
         }
         .order-ref-add:hover {
             border-color: #FFD700;
@@ -1911,7 +1950,144 @@
             margin-top: 8px;
         }
 
-        /* Футер модалки с итогом */
+        /* Связь */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 12px;
+            align-items: center;
+        }
+        .platform-picker {
+            display: flex;
+            gap: 8px;
+        }
+        .platform-opt {
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
+            letter-spacing: 2px;
+            padding: 10px 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: rgba(232, 216, 200, 0.7);
+            border-radius: 8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .platform-opt:hover {
+            border-color: rgba(255, 215, 0, 0.7);
+            color: #FFD700;
+        }
+        .platform-opt.active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(60, 0, 0, 0.5));
+            border-color: #FFD700;
+            color: #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+        .contact-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 8px;
+            color: #E8D8C8;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .contact-input:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+        }
+        .contact-input::placeholder { color: rgba(197, 160, 89, 0.6); font-style: italic; }
+
+        /* ЧАЕВЫЕ */
+        .tip-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .tip-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tip-option:hover {
+            border-color: rgba(255, 215, 0, 0.7);
+            background: rgba(60, 0, 0, 0.5);
+        }
+        .tip-option.active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(60, 0, 0, 0.5));
+            border-color: #FFD700;
+            box-shadow: 0 0 22px rgba(255, 215, 0, 0.5);
+        }
+        .tip-option .tip-icon {
+            font-size: 1rem;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        .tip-option .tip-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            color: #E8D8C8;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .tip-option.active .tip-label { color: #FFD700; }
+        .tip-option .tip-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem;
+            font-style: italic;
+            color: rgba(197, 160, 89, 0.8);
+            margin-left: 4px;
+        }
+        .tip-custom {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1.5px dashed rgba(255, 215, 0, 0.5);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        .tip-custom:focus-within {
+            border-style: solid;
+            border-color: #FFD700;
+            box-shadow: 0 0 22px rgba(255, 215, 0, 0.4);
+        }
+        .tip-custom .tip-custom-icon {
+            color: #FFD700;
+            font-size: 1rem;
+        }
+        .tip-custom input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #FFD700;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            width: 90px;
+        }
+        .tip-custom input::placeholder {
+            color: rgba(197, 160, 89, 0.6);
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* Футер модалки */
         .order-footer {
             padding: 22px 36px;
             border-top: 1px solid rgba(212, 175, 55, 0.25);
@@ -1922,11 +2098,7 @@
             gap: 20px;
             flex-wrap: wrap;
         }
-        .order-total {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+        .order-total { display: flex; flex-direction: column; gap: 4px; }
         .order-total .total-label {
             font-family: 'Cinzel', serif;
             font-size: 0.6rem;
@@ -1987,7 +2159,7 @@
             transition: all 0.4s ease;
             white-space: nowrap;
         }
-        .order-submit:hover {
+        .order-submit:hover:not(:disabled) {
             background: linear-gradient(135deg, #FFFFFF, #FFD700);
             box-shadow: 0 0 60px rgba(255, 215, 0, 1);
             letter-spacing: 6px;
@@ -2025,8 +2197,8 @@
             animation: successPulse 2s ease-in-out infinite;
         }
         @keyframes successPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 80px rgba(255, 180, 0, 0.6), inset 0 -8px 16px rgba(120, 80, 0, 0.7), inset 0 8px 16px rgba(255, 255, 255, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255, 215, 0, 1), 0 0 120px rgba(255, 180, 0, 0.8), inset 0 -8px 16px rgba(120, 80, 0, 0.7), inset 0 8px 16px rgba(255, 255, 255, 0.4); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         .order-success h3 {
             font-family: 'Cinzel', serif;
@@ -2055,7 +2227,6 @@
             border-radius: 6px;
             background: rgba(180, 0, 0, 0.15);
             text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-            margin-top: 6px;
         }
         .order-success .success-btn {
             margin-top: 14px;
@@ -2138,11 +2309,9 @@
             .hero-topline .line-s { width: 50px; }
             .hero-topline .suits { font-size: 0.9rem; letter-spacing: 4px; }
             .hero-badge { font-size: 0.5rem; letter-spacing: 5px; padding: 7px 14px; margin-bottom: 18px; }
-            .hero-badge::before { font-size: 0.65rem; padding: 2px 6px; }
             .hero h1 { font-size: 2.4rem; letter-spacing: 7px; }
             .hero h1 span { font-size: 1.7rem; display: block; margin: 8px 0 0; }
             .hero p { font-size: 0.88rem; letter-spacing: 2.5px; margin-top: 15px; }
-            .hero-divider { margin-top: 25px; }
 
             .casino-stats { grid-template-columns: 1fr 1fr; gap: 10px; padding: 18px 16px 0; }
             .casino-stat { padding: 12px 14px; gap: 10px; }
@@ -2161,22 +2330,18 @@
             .backstage { padding: 40px 16px 15px; }
             .backstage-header h3 { font-size: 1.6rem; letter-spacing: 6px; }
             .backstage-header h3 span { font-size: 1.4rem; }
-            .backstage-header p { font-size: 0.85rem; letter-spacing: 2px; }
             .backstage-grid { grid-template-columns: 1fr; gap: 14px; }
-            .bkg-card { padding: 20px 18px; }
-            .bkg-card .bkg-title { font-size: 0.95rem; letter-spacing: 2px; }
-            .bkg-card .bkg-desc { font-size: 0.85rem; }
 
             .gallery { padding: 18px 16px; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
             .art-card .info { padding: 11px 13px 13px; }
-            .art-card .info .title { font-size: 0.82rem; letter-spacing: 1.5px; }
+            .art-card .info .title { font-size: 0.82rem; }
             .art-card .info .author { font-size: 0.76rem; }
-            .art-card .info .stats { font-size: 0.78rem; gap: 10px; }
-            .art-card .info .tag { font-size: 0.55rem; padding: 2px 6px; }
-            .art-card .badge-18 { font-size: 0.55rem; padding: 3px 8px; top: 8px; left: 8px; }
+            .art-card .info .stats { font-size: 0.78rem; }
+            .art-card .info .tag { display: none; }
 
-            .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; letter-spacing: 4px; }
+            .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; }
 
+            /* Лайтбокс */
             .lightbox { padding: 12px 8px; }
             .lb-image { min-height: 260px; }
             .lb-image::after { font-size: 6rem; }
@@ -2194,9 +2359,8 @@
             .lb-btn-mini { font-size: 0.55rem; padding: 10px 4px; }
             .lb-close { width: 36px; height: 36px; font-size: 1rem; top: 12px; right: 12px; }
 
-            /* Модальное окно заказа */
+            /* Модальное заказа */
             .order-modal { padding: 12px 8px; }
-            .order-inner { max-height: 96vh; }
             .order-header { padding: 20px 20px 16px; }
             .order-header h2 { font-size: 1.3rem; letter-spacing: 3px; }
             .order-header h2 span { font-size: 1.1rem; display: block; margin: 6px 0 0; }
@@ -2204,7 +2368,7 @@
             .order-close { width: 36px; height: 36px; font-size: 1rem; }
             .order-body { padding: 20px; }
             .order-option { padding: 12px 14px; gap: 10px; }
-            .order-option .opt-name { font-size: 0.72rem; letter-spacing: 1px; }
+            .order-option .opt-name { font-size: 0.72rem; }
             .order-option .opt-desc { font-size: 0.7rem; }
             .order-option .opt-price { font-size: 0.78rem; }
             .order-textarea { min-height: 110px; font-size: 0.9rem; padding: 14px 16px; }
@@ -2212,47 +2376,43 @@
             .order-total .total-value { font-size: 1.5rem; }
             .order-submit { padding: 14px 28px; font-size: 0.72rem; letter-spacing: 4px; }
             .order-success h3 { font-size: 1.5rem; letter-spacing: 5px; }
-            .order-success p { font-size: 0.9rem; }
-            .order-success .order-number { font-size: 0.9rem; letter-spacing: 3px; }
+
+            .char-counter { gap: 14px; padding: 16px; }
+            .char-counter .cc-btn { width: 44px; height: 44px; font-size: 1.4rem; }
+            .char-counter .cc-value { min-width: 100px; }
+            .char-counter .cc-value .cc-num { font-size: 1.9rem; }
+
+            .contact-grid { grid-template-columns: 1fr; gap: 10px; }
+            .contact-input { font-size: 0.88rem; }
+
+            .tip-block { gap: 8px; }
+            .tip-option { padding: 10px 14px; }
+            .tip-option .tip-label { font-size: 0.65rem; }
+            .tip-option .tip-desc { font-size: 0.7rem; }
         }
 
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; letter-spacing: 5px; }
             .hero h1 span { font-size: 1.4rem; }
-            .hero-badge { font-size: 0.45rem; letter-spacing: 4px; }
-            .casino-stats { grid-template-columns: 1fr 1fr; }
-            .casino-stat { padding: 10px 10px; gap: 8px; }
-            .casino-stat .stat-icon { width: 30px; height: 30px; font-size: 0.9rem; }
-            .casino-stat .stat-value { font-size: 0.85rem; }
-            .casino-stat .stat-label { font-size: 0.55rem; letter-spacing: 1px; }
-
             .wallet { padding: 4px 8px 4px 4px; gap: 6px; }
             .wallet .chip-icon { width: 28px; height: 28px; font-size: 0.8rem; }
-            .wallet .balance { min-width: 55px; }
             .wallet .balance .chips { font-size: 0.78rem; }
-            .wallet .balance .chips .unit { font-size: 0.5rem; }
             .wallet .balance .usdt { font-size: 0.62rem; }
             .wallet .plus { width: 20px; height: 20px; font-size: 0.8rem; }
 
             .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 14px 10px; }
-            .art-card .info { padding: 8px 10px 10px; }
-            .art-card .info .title { font-size: 0.72rem; letter-spacing: 1px; }
-            .art-card .info .author { font-size: 0.68rem; }
-            .art-card .info .stats { font-size: 0.68rem; gap: 8px; }
-            .art-card .info .tag { display: none; }
-            .topbar-nav { font-size: 0.55rem; letter-spacing: 1.5px; gap: 10px; }
-
-            .lb-title { font-size: 1.15rem; letter-spacing: 2px; }
-            .lb-actions { grid-template-columns: 1fr; }
 
             .order-total .total-value { font-size: 1.2rem; }
             .order-submit { width: 100%; padding: 14px 20px; letter-spacing: 3px; font-size: 0.7rem; }
+
+            .tip-option { padding: 9px 12px; }
+            .tip-option .tip-label { font-size: 0.6rem; letter-spacing: 1px; }
+            .tip-option .tip-desc { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ФОН -->
     <div class="spotlight"></div>
     <div class="neon-left"></div>
     <div class="neon-right"></div>
@@ -2287,50 +2447,27 @@
                 <div class="wallet-dropdown" id="walletDropdown">
                     <h4>✦ Кошелёк ✦</h4>
                     <div class="subtitle">Фишки клуба FENBO</div>
-
                     <div class="balance-full">
                         <div class="label">Ваш баланс</div>
-                        <div class="value-chips">
-                            <div class="mini-chip"></div>
-                            1 250
-                        </div>
+                        <div class="value-chips"><div class="mini-chip"></div>1 250</div>
                         <div class="value-usdt"><span class="usdt-icon">₮</span>12.50 USDT</div>
                     </div>
-
                     <div class="rate-info">
                         <div class="rate-label">Курс обмена:</div>
                         <div class="rate-value"><span class="green">1 USDT</span> = 100 фишек</div>
                     </div>
-
                     <div class="packages-title">Пополнить фишки</div>
                     <div class="packages">
-                        <div class="pkg" data-chips="500" data-usdt="5">
-                            <div class="chips-amount">500</div>
-                            <div class="usdt-amount">5 USDT</div>
-                        </div>
-                        <div class="pkg best" data-chips="1500" data-usdt="15">
-                            <div class="chips-amount">1 500</div>
-                            <div class="usdt-amount">15 USDT</div>
-                            <div class="bonus">+10% бонус</div>
-                        </div>
-                        <div class="pkg" data-chips="3000" data-usdt="30">
-                            <div class="chips-amount">3 000</div>
-                            <div class="usdt-amount">30 USDT</div>
-                            <div class="bonus">+5% бонус</div>
-                        </div>
-                        <div class="pkg" data-chips="7000" data-usdt="70">
-                            <div class="chips-amount">7 000</div>
-                            <div class="usdt-amount">70 USDT</div>
-                            <div class="bonus">+10% бонус</div>
-                        </div>
+                        <div class="pkg" data-chips="500" data-usdt="5"><div class="chips-amount">500</div><div class="usdt-amount">5 USDT</div></div>
+                        <div class="pkg best" data-chips="1500" data-usdt="15"><div class="chips-amount">1 500</div><div class="usdt-amount">15 USDT</div><div class="bonus">+10% бонус</div></div>
+                        <div class="pkg" data-chips="3000" data-usdt="30"><div class="chips-amount">3 000</div><div class="usdt-amount">30 USDT</div><div class="bonus">+5% бонус</div></div>
+                        <div class="pkg" data-chips="7000" data-usdt="70"><div class="chips-amount">7 000</div><div class="usdt-amount">70 USDT</div><div class="bonus">+10% бонус</div></div>
                     </div>
-
                     <div class="methods">
                         <div class="method active">TRC-20</div>
                         <div class="method">ERC-20</div>
                         <div class="method">BEP-20</div>
                     </div>
-
                     <button class="deposit-btn" id="depositBtn">Пополнить через USDT</button>
                 </div>
             </div>
@@ -2344,13 +2481,9 @@
             <div class="suits">♠ ♥ ♦ ♣</div>
             <div class="line-s r"></div>
         </div>
-
         <div class="hero-badge">Стриптиз-Казино · Искусство Желания</div>
-
         <h1>Плоть<span>искусство</span></h1>
-
         <p>Где бархат встречается с <span class="accent">желанием</span>. Только для взрослых.</p>
-
         <div class="hero-divider">
             <div class="line"></div>
             <div class="symbol">♠ ♥ ♦ ♣</div>
@@ -2360,43 +2493,16 @@
 
     <!-- КАЗИНО-СТАТИСТИКА -->
     <div class="casino-stats">
-        <div class="casino-stat">
-            <div class="stat-icon">♠</div>
-            <div class="stat-body">
-                <div class="stat-value">2 480</div>
-                <div class="stat-label">Работ на сцене</div>
-            </div>
-        </div>
-        <div class="casino-stat">
-            <div class="stat-icon">♥</div>
-            <div class="stat-body">
-                <div class="stat-value">320</div>
-                <div class="stat-label">Художников</div>
-            </div>
-        </div>
-        <div class="casino-stat">
-            <div class="stat-icon">♦</div>
-            <div class="stat-body">
-                <div class="stat-value">18 500</div>
-                <div class="stat-label">Фишек в ставках</div>
-            </div>
-        </div>
-        <div class="casino-stat">
-            <div class="stat-icon">♣</div>
-            <div class="stat-body">
-                <div class="stat-value">24/7</div>
-                <div class="stat-label">Сцена открыта</div>
-            </div>
-        </div>
+        <div class="casino-stat"><div class="stat-icon">♠</div><div class="stat-body"><div class="stat-value">2 480</div><div class="stat-label">Работ на сцене</div></div></div>
+        <div class="casino-stat"><div class="stat-icon">♥</div><div class="stat-body"><div class="stat-value">320</div><div class="stat-label">Художников</div></div></div>
+        <div class="casino-stat"><div class="stat-icon">♦</div><div class="stat-body"><div class="stat-value">18 500</div><div class="stat-label">Фишек в ставках</div></div></div>
+        <div class="casino-stat"><div class="stat-icon">♣</div><div class="stat-body"><div class="stat-value">24/7</div><div class="stat-label">Сцена открыта</div></div></div>
     </div>
 
     <!-- ГОРЯЧИЕ СТАВКИ -->
     <div class="hot-bets">
         <div class="hot-bets-inner">
-            <div class="hot-bets-label">
-                <span class="dot"></span>
-                Горячие ставки
-            </div>
+            <div class="hot-bets-label"><span class="dot"></span>Горячие ставки</div>
             <div class="hot-bets-track">
                 <div class="hot-bet"><span class="bet-suit">♥</span> <span class="bet-artist">Velvet_Rose</span> ставит <span class="bet-amount">500 FEN</span> на «Бархатный вечер»</div>
                 <div class="hot-bet"><span class="bet-suit">♠</span> <span class="bet-artist">Noir_Art</span> ставит <span class="bet-amount">1 200 FEN</span> на «Ночную смену»</div>
@@ -2427,110 +2533,62 @@
 
         <div class="art-card" data-title="Бархатный вечер" data-author="Velvet_Rose" data-tag="живопись" data-desc="Тихий вечер в бархатном кресле. Только я, вино и твои глаза напротив. Иногда самое интимное — это пауза перед тем, как всё начнётся." data-likes="1245" data-views="4520" data-tags="живопись,неон,бархат,интим,вечер,желание">
             <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Бархатный вечер</div>
-                <div class="author">by Velvet_Rose</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.2k</span><span>👁 4.5k</span></div><span class="tag">живопись</span></div>
-            </div>
+            <div class="info"><div class="title">Бархатный вечер</div><div class="author">by Velvet_Rose</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.2k</span><span>👁 4.5k</span></div><span class="tag">живопись</span></div></div>
         </div>
 
         <div class="art-card" data-title="Ночная смена" data-author="Noir_Art" data-tag="диджитал" data-desc="Когда клуб закрывается, а свет ещё горит — начинается настоящая магия. Тени, дым, отблески на коже." data-likes="856" data-views="2140" data-tags="диджитал,неон,тени,бар,ночь">
             <div class="thumb"><div class="placeholder">♠</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Ночная смена</div>
-                <div class="author">by Noir_Art</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 856</span><span>👁 2.1k</span></div><span class="tag">диджитал</span></div>
-            </div>
+            <div class="info"><div class="title">Ночная смена</div><div class="author">by Noir_Art</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 856</span><span>👁 2.1k</span></div><span class="tag">диджитал</span></div></div>
         </div>
 
         <div class="art-card" data-title="Красный шёлк" data-author="ScarletDream" data-tag="аниме" data-desc="Шёлк скользит по коже. Я знаю, что ты смотришь. Позволь мне продолжить." data-likes="2415" data-views="8930" data-tags="аниме,шёлк,красный,соблазн,кожа">
             <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Красный шёлк</div>
-                <div class="author">by ScarletDream</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 2.4k</span><span>👁 8.9k</span></div><span class="tag">аниме</span></div>
-            </div>
+            <div class="info"><div class="title">Красный шёлк</div><div class="author">by ScarletDream</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 2.4k</span><span>👁 8.9k</span></div><span class="tag">аниме</span></div></div>
         </div>
 
         <div class="art-card" data-title="Сцена · 03:00" data-author="MidnightLux" data-tag="фетиш" data-desc="Три часа ночи. Последний танец. Софит оставляет только самое важное." data-likes="631" data-views="1720" data-tags="фетиш,сцена,софит,танец,ночь">
             <div class="thumb"><div class="placeholder">♦</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Сцена · 03:00</div>
-                <div class="author">by MidnightLux</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 631</span><span>👁 1.7k</span></div><span class="tag">фетиш</span></div>
-            </div>
+            <div class="info"><div class="title">Сцена · 03:00</div><div class="author">by MidnightLux</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 631</span><span>👁 1.7k</span></div><span class="tag">фетиш</span></div></div>
         </div>
 
         <div class="art-card" data-title="Шёлковые оковы" data-author="BoundElegance" data-tag="бдсм" data-desc="Нежные путы из шёлка. Никакой боли — только доверие, ритм и полное присутствие." data-likes="1830" data-views="5210" data-tags="бдсм,шёлк,доверие,оковы,нежность">
             <div class="thumb"><div class="placeholder">♣</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Шёлковые оковы</div>
-                <div class="author">by BoundElegance</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.8k</span><span>👁 5.2k</span></div><span class="tag">бдсм</span></div>
-            </div>
+            <div class="info"><div class="title">Шёлковые оковы</div><div class="author">by BoundElegance</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.8k</span><span>👁 5.2k</span></div><span class="tag">бдсм</span></div></div>
         </div>
 
         <div class="art-card" data-title="Две свечи" data-author="TwinFlame" data-tag="лесби" data-desc="Два огня рядом. Один взгляд — и мы уже всё поняли друг о друге." data-likes="3120" data-views="12040" data-tags="лесби,свечи,интим,взгляд,огонь">
             <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Две свечи</div>
-                <div class="author">by TwinFlame</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 3.1k</span><span>👁 12k</span></div><span class="tag">лесби</span></div>
-            </div>
+            <div class="info"><div class="title">Две свечи</div><div class="author">by TwinFlame</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 3.1k</span><span>👁 12k</span></div><span class="tag">лесби</span></div></div>
         </div>
 
         <div class="art-card" data-title="За кулисами" data-author="Backstage_" data-tag="диджитал" data-desc="То, что происходит за занавесом, важнее самого выступления. Шёпот, дыхание, ожидание." data-likes="921" data-views="3420" data-tags="диджитал,занавес,тайна,ожидание,шёпот">
             <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">За кулисами</div>
-                <div class="author">by Backstage_</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 921</span><span>👁 3.4k</span></div><span class="tag">диджитал</span></div>
-            </div>
+            <div class="info"><div class="title">За кулисами</div><div class="author">by Backstage_</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 921</span><span>👁 3.4k</span></div><span class="tag">диджитал</span></div></div>
         </div>
 
         <div class="art-card" data-title="Тёмный бархат" data-author="DarkVelvet" data-tag="живопись" data-desc="Тёмный бархат скрывает всё, кроме самого главного. Ищи меня глазами." data-likes="1410" data-views="4120" data-tags="живопись,бархат,тени,взгляд,тайна">
             <div class="thumb"><div class="placeholder">♠</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Тёмный бархат</div>
-                <div class="author">by DarkVelvet</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.4k</span><span>👁 4.1k</span></div><span class="tag">живопись</span></div>
-            </div>
+            <div class="info"><div class="title">Тёмный бархат</div><div class="author">by DarkVelvet</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.4k</span><span>👁 4.1k</span></div><span class="tag">живопись</span></div></div>
         </div>
 
         <div class="art-card" data-title="Золотая клетка" data-author="GoldenCage" data-tag="фетиш" data-desc="Иногда свобода — это позволить кому-то закрыть для тебя дверь. И держать ключ." data-likes="2740" data-views="9840" data-tags="фетиш,золото,клетка,власть,свобода">
             <div class="thumb"><div class="placeholder">♦</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Золотая клетка</div>
-                <div class="author">by GoldenCage</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 2.7k</span><span>👁 9.8k</span></div><span class="tag">фетиш</span></div>
-            </div>
+            <div class="info"><div class="title">Золотая клетка</div><div class="author">by GoldenCage</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 2.7k</span><span>👁 9.8k</span></div><span class="tag">фетиш</span></div></div>
         </div>
 
         <div class="art-card" data-title="Пурпурный дым" data-author="PurpleSmoke" data-tag="аниме" data-desc="Дым клубится, свет распадается. Всё, что осталось — мои руки и твой запах." data-likes="1120" data-views="2960" data-tags="аниме,дым,пурпур,руки,запах">
             <div class="thumb"><div class="placeholder">♣</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Пурпурный дым</div>
-                <div class="author">by PurpleSmoke</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.1k</span><span>👁 2.9k</span></div><span class="tag">аниме</span></div>
-            </div>
+            <div class="info"><div class="title">Пурпурный дым</div><div class="author">by PurpleSmoke</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.1k</span><span>👁 2.9k</span></div><span class="tag">аниме</span></div></div>
         </div>
 
         <div class="art-card" data-title="Шёпот в темноте" data-author="WhisperArt" data-tag="диджитал" data-desc="Слова не нужны. Только шёпот у самого уха и тепло на коже." data-likes="1940" data-views="6340" data-tags="диджитал,шёпот,темнота,тепло,кожа">
             <div class="thumb"><div class="placeholder">❦</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Шёпот в темноте</div>
-                <div class="author">by WhisperArt</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.9k</span><span>👁 6.3k</span></div><span class="tag">диджитал</span></div>
-            </div>
+            <div class="info"><div class="title">Шёпот в темноте</div><div class="author">by WhisperArt</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 1.9k</span><span>👁 6.3k</span></div><span class="tag">диджитал</span></div></div>
         </div>
 
         <div class="art-card" data-title="Алый закат" data-author="ScarletSunset" data-tag="живопись" data-desc="Закат цвета крови. Мы на крыше. Всё, что нужно знать друг о друге — уже сказано." data-likes="3520" data-views="15100" data-tags="живопись,закат,алый,крыша,кровь">
             <div class="thumb"><div class="placeholder">♥</div><span class="badge-18">18+</span></div>
-            <div class="info">
-                <div class="title">Алый закат</div>
-                <div class="author">by ScarletSunset</div>
-                <div class="meta"><div class="stats"><span><span class="heart">♥</span> 3.5k</span><span>👁 15k</span></div><span class="tag">живопись</span></div>
-            </div>
+            <div class="info"><div class="title">Алый закат</div><div class="author">by ScarletSunset</div><div class="meta"><div class="stats"><span><span class="heart">♥</span> 3.5k</span><span>👁 15k</span></div><span class="tag">живопись</span></div></div>
         </div>
 
     </main>
@@ -2542,34 +2600,24 @@
             <h3>За кулисами<span>приват</span></h3>
             <p>То, что не попадает на главную сцену. Приватные заказы и закрытые лоты.</p>
         </div>
-
         <div class="backstage-grid">
             <div class="bkg-card">
                 <div class="bkg-tag">Приват · 18+</div>
                 <div class="bkg-title">Индивидуальный заказ</div>
-                <div class="bkg-desc">Личный арт по вашему сценарию. Анонимно. Деликатно. Под вашим полным контролем.</div>
-                <div class="bkg-meta">
-                    <span>от 100 фишек</span>
-                    <span class="bkg-price">Открыть</span>
-                </div>
+                <div class="bkg-desc">Личный арт по вашему сценарию. Анонимно. Деликатно.</div>
+                <div class="bkg-meta"><span>от 100 фишек</span><span class="bkg-price">Открыть</span></div>
             </div>
             <div class="bkg-card">
                 <div class="bkg-tag">VIP · 18+</div>
                 <div class="bkg-title">Закрытый аукцион</div>
-                <div class="bkg-desc">Работы, которые не выставляются публично. Ставки фишками, доступ по приглашению.</div>
-                <div class="bkg-meta">
-                    <span>вход 500 фишек</span>
-                    <span class="bkg-price">Войти</span>
-                </div>
+                <div class="bkg-desc">Работы, которые не выставляются публично. Ставки фишками.</div>
+                <div class="bkg-meta"><span>вход 500 фишек</span><span class="bkg-price">Войти</span></div>
             </div>
             <div class="bkg-card">
                 <div class="bkg-tag">Сцена · 18+</div>
                 <div class="bkg-title">Ночь желаний</div>
-                <div class="bkg-desc">Тематический вечер каждую субботу. Лучшие работы получают призовой фонд фишками.</div>
-                <div class="bkg-meta">
-                    <span>сб · 00:00</span>
-                    <span class="bkg-price">Узнать</span>
-                </div>
+                <div class="bkg-desc">Тематический вечер каждую субботу. Призовой фонд фишками.</div>
+                <div class="bkg-meta"><span>сб · 00:00</span><span class="bkg-price">Узнать</span></div>
             </div>
         </div>
     </section>
@@ -2583,12 +2631,8 @@
     <!-- ЛАЙТБОКС -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-inner">
-            <button class="lb-close" id="lbClose" aria-label="Закрыть">✕</button>
-
-            <div class="lb-image">
-                <span class="badge-18">18+</span>
-            </div>
-
+            <button class="lb-close" id="lbClose">✕</button>
+            <div class="lb-image"><span class="badge-18">18+</span></div>
             <div class="lb-info">
                 <div class="lb-author" id="lbAuthorClick">
                     <div class="author-avatar" id="lbAuthorAvatar">V</div>
@@ -2598,43 +2642,30 @@
                     </div>
                     <button class="btn-subscribe" id="lbSubscribe" type="button">Подписаться</button>
                 </div>
-
                 <h2 class="lb-title" id="lbTitle">Бархатный вечер</h2>
                 <div class="lb-tags" id="lbTags"></div>
                 <div class="lb-desc" id="lbDesc"></div>
-
                 <div class="lb-stats">
-                    <div class="lb-stat" id="lbStatLikes">
-                        <span class="stat-value"><span class="heart">♥</span> <span id="lbLikes">1.2k</span></span>
-                        <span class="stat-label">Лайков</span>
-                    </div>
-                    <div class="lb-stat" id="lbStatViews">
-                        <span class="stat-value">👁 <span id="lbViews">4.5k</span></span>
-                        <span class="stat-label">Просмотров</span>
-                    </div>
+                    <div class="lb-stat" id="lbStatLikes"><span class="stat-value"><span class="heart">♥</span> <span id="lbLikes">1.2k</span></span><span class="stat-label">Лайков</span></div>
+                    <div class="lb-stat" id="lbStatViews"><span class="stat-value">👁 <span id="lbViews">4.5k</span></span><span class="stat-label">Просмотров</span></div>
                 </div>
-
                 <div class="lb-actions">
                     <button class="lb-btn-like" id="lbLike" type="button">♥ Лайк</button>
                     <button class="lb-btn-order" id="lbOrder" type="button">✦ Заказать арт</button>
                 </div>
-
                 <div class="lb-actions-2">
-                    <button class="lb-btn-mini" id="lbFav" type="button"><span class="mini-icon">★</span>В избранное</button>
-                    <button class="lb-btn-mini" id="lbShare" type="button"><span class="mini-icon">➤</span>Поделиться</button>
-                    <button class="lb-btn-mini tip" id="lbTip" type="button"><span class="mini-icon">✦</span>Чаевые</button>
+                    <button class="lb-btn-mini" id="lbFav"><span class="mini-icon">★</span>В избранное</button>
+                    <button class="lb-btn-mini" id="lbShare"><span class="mini-icon">➤</span>Поделиться</button>
+                    <button class="lb-btn-mini tip" id="lbTip"><span class="mini-icon">✦</span>Чаевые</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ============================================
-         МОДАЛЬНОЕ ОКНО ЗАКАЗА
-         ============================================ -->
+    <!-- МОДАЛЬНОЕ ОКНО ЗАКАЗА -->
     <div class="order-modal" id="orderModal">
         <div class="order-inner">
 
-            <!-- Содержимое заказа (скрывается при успехе) -->
             <div id="orderContent" style="display: flex; flex-direction: column; flex: 1; min-height: 0;">
 
                 <div class="order-header">
@@ -2643,7 +2674,7 @@
                         <h2>Собрать заказ<span>у художника</span></h2>
                         <div class="order-author" id="orderAuthor">Velvet_Rose</div>
                     </div>
-                    <button class="order-close" id="orderClose" aria-label="Закрыть">✕</button>
+                    <button class="order-close" id="orderClose">✕</button>
                 </div>
 
                 <div class="order-body">
@@ -2652,30 +2683,10 @@
                     <div class="order-section">
                         <div class="order-section-title"><span class="num">1</span>Стиль работы</div>
                         <div class="order-options" data-group="style">
-                            <div class="order-option" data-price="500">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Живопись</div>
-                                    <div class="opt-desc">Классический стиль, масляная фактура</div>
-                                </div>
-                                <div class="opt-price">500</div>
-                            </div>
-                            <div class="order-option" data-price="400">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Диджитал</div>
-                                    <div class="opt-desc">Чистый digital-art, современный стиль</div>
-                                </div>
-                                <div class="opt-price">400</div>
-                            </div>
-                            <div class="order-option" data-price="450">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Аниме</div>
-                                    <div class="opt-desc">Аниме-стилистика, чистые линии</div>
-                                </div>
-                                <div class="opt-price">450</div>
-                            </div>
+                            <div class="order-option" data-price="500"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Живопись</div><div class="opt-desc">Масляная фактура, классика</div></div><div class="opt-price">500</div></div>
+                            <div class="order-option" data-price="400"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Диджитал</div><div class="opt-desc">Чистый digital-art</div></div><div class="opt-price">400</div></div>
+                            <div class="order-option" data-price="450"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Аниме</div><div class="opt-desc">Аниме-стилистика</div></div><div class="opt-price">450</div></div>
+                            <div class="order-option" data-price="250"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Пиксель-арт / Монохром</div><div class="opt-desc">Простой и быстрый</div></div><div class="opt-price">250</div></div>
                         </div>
                     </div>
 
@@ -2683,127 +2694,109 @@
                     <div class="order-section">
                         <div class="order-section-title"><span class="num">2</span>Формат</div>
                         <div class="order-options" data-group="format">
-                            <div class="order-option" data-price="200">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Портрет</div>
-                                    <div class="opt-desc">Только лицо и плечи</div>
-                                </div>
-                                <div class="opt-price">200</div>
-                            </div>
-                            <div class="order-option" data-price="400">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">По пояс</div>
-                                    <div class="opt-desc">Классический портрет</div>
-                                </div>
-                                <div class="opt-price">400</div>
-                            </div>
-                            <div class="order-option" data-price="700">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">В полный рост</div>
-                                    <div class="opt-desc">Полная фигура, детализация</div>
-                                </div>
-                                <div class="opt-price">700</div>
-                            </div>
-                            <div class="order-option" data-price="1200">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Сцена</div>
-                                    <div class="opt-desc">Сложная сцена, несколько фигур</div>
-                                </div>
-                                <div class="opt-price">1 200</div>
-                            </div>
+                            <div class="order-option" data-price="200"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Портрет</div><div class="opt-desc">Лицо и плечи</div></div><div class="opt-price">200</div></div>
+                            <div class="order-option" data-price="400"><div class="check">✓</div><div class="opt-body"><div class="opt-name">По пояс</div><div class="opt-desc">Классический халфбоди</div></div><div class="opt-price">400</div></div>
+                            <div class="order-option" data-price="700"><div class="check">✓</div><div class="opt-body"><div class="opt-name">В полный рост</div><div class="opt-desc">Полная фигура</div></div><div class="opt-price">700</div></div>
+                            <div class="order-option" data-price="1200"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Сцена / Иллюстрация</div><div class="opt-desc">Сложная композиция</div></div><div class="opt-price">1 200</div></div>
                         </div>
                     </div>
 
-                    <!-- 3. Уровень детализации -->
+                    <!-- 3. Количество персонажей -->
                     <div class="order-section">
-                        <div class="order-section-title"><span class="num">3</span>Детализация</div>
+                        <div class="order-section-title"><span class="num">3</span>Количество персонажей</div>
+                        <div class="char-counter" id="charCounter">
+                            <button class="cc-btn" id="charMinus" type="button">−</button>
+                            <div class="cc-value">
+                                <div class="cc-num" id="charNum">1</div>
+                                <div class="cc-label">персонаж</div>
+                                <div class="cc-mult" id="charMult">Базовая цена</div>
+                            </div>
+                            <button class="cc-btn" id="charPlus" type="button">+</button>
+                        </div>
+                    </div>
+
+                    <!-- 4. Детализация и Фон -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">4</span>Детализация и фон</div>
                         <div class="order-options" data-group="detail">
-                            <div class="order-option" data-price="0">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Эскиз</div>
-                                    <div class="opt-desc">Быстрый набросок, линии</div>
-                                </div>
-                                <div class="opt-price">0</div>
-                            </div>
-                            <div class="order-option" data-price="300">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Стандарт</div>
-                                    <div class="opt-desc">Проработанный арт, тени, цвет</div>
-                                </div>
-                                <div class="opt-price">300</div>
-                            </div>
-                            <div class="order-option" data-price="800">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Премиум</div>
-                                    <div class="opt-desc">Максимум деталей, текстуры, свет</div>
-                                </div>
-                                <div class="opt-price">800</div>
-                            </div>
+                            <div class="order-option" data-price="0"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Эскиз / Скетч</div><div class="opt-desc">Линии, без цвета</div></div><div class="opt-price">0</div></div>
+                            <div class="order-option" data-price="300"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Стандарт</div><div class="opt-desc">Тени, цвет, форма</div></div><div class="opt-price">300</div></div>
+                            <div class="order-option" data-price="800"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Премиум</div><div class="opt-desc">Максимум деталей, свет</div></div><div class="opt-price">800</div></div>
+                            <div class="order-option" data-price="0"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Без фона</div><div class="opt-desc">Простой градиент</div></div><div class="opt-price">0</div></div>
+                            <div class="order-option" data-price="350"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Атмосферный фон</div><div class="opt-desc">Комната, природа, неон</div></div><div class="opt-price">350</div></div>
                         </div>
                     </div>
 
-                    <!-- 4. Доп. опции -->
+                    <!-- 5. Дополнительно -->
                     <div class="order-section">
-                        <div class="order-section-title"><span class="num">4</span>Дополнительно</div>
+                        <div class="order-section-title"><span class="num">5</span>Дополнительно</div>
                         <div class="order-options" data-group="extra">
-                            <div class="order-option" data-price="200">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">18+ контент</div>
-                                    <div class="opt-desc">Обнажённая натура, откровенно</div>
-                                </div>
-                                <div class="opt-price">200</div>
-                            </div>
-                            <div class="order-option" data-price="300">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Фетиш-элемент</div>
-                                    <div class="opt-desc">По вашему запросу (бдсм, латекс и т.д.)</div>
-                                </div>
-                                <div class="opt-price">300</div>
-                            </div>
-                            <div class="order-option" data-price="500">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Срочно (24ч)</div>
-                                    <div class="opt-desc">Ускоренная работа, без очереди</div>
-                                </div>
-                                <div class="opt-price">500</div>
-                            </div>
-                            <div class="order-option" data-price="400">
-                                <div class="check">✓</div>
-                                <div class="opt-body">
-                                    <div class="opt-name">Коммерческое использование</div>
-                                    <div class="opt-desc">Права на публикацию</div>
-                                </div>
-                                <div class="opt-price">400</div>
-                            </div>
+                            <div class="order-option" data-price="200"><div class="check">✓</div><div class="opt-body"><div class="opt-name">18+ контент</div><div class="opt-desc">Обнажённая натура, откровенно</div></div><div class="opt-price">200</div></div>
+                            <div class="order-option" data-price="300"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Фетиш-элемент</div><div class="opt-desc">Кастомный запрос</div></div><div class="opt-price">300</div></div>
+                            <div class="order-option" data-price="500"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Срочно (24ч)</div><div class="opt-desc">Вне очереди</div></div><div class="opt-price">500</div></div>
+                            <div class="order-option" data-price="400"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Коммерческое использование</div><div class="opt-desc">Права на мерч, публикацию</div></div><div class="opt-price">400</div></div>
+                            <div class="order-option" data-price="600"><div class="check">✓</div><div class="opt-body"><div class="opt-name">Приватность</div><div class="opt-desc">Не публикуется в портфолио</div></div><div class="opt-price">600</div></div>
                         </div>
                     </div>
 
-                    <!-- 5. Описание заказа -->
+                    <!-- 6. Связь -->
                     <div class="order-section">
-                        <div class="order-section-title"><span class="num">5</span>Описание заказа</div>
+                        <div class="order-section-title"><span class="num">6</span>Связь с вами</div>
+                        <div class="contact-grid">
+                            <div class="platform-picker" id="platformPicker">
+                                <div class="platform-opt active" data-platform="Telegram">Telegram</div>
+                                <div class="platform-opt" data-platform="Discord">Discord</div>
+                            </div>
+                            <input type="text" class="contact-input" id="contactInput" placeholder="@username — чтобы художник связался с вами">
+                        </div>
+                    </div>
+
+                    <!-- 7. Описание -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">7</span>Описание заказа</div>
                         <div class="order-textarea-wrap">
-                            <textarea class="order-textarea" id="orderDesc" maxlength="1500" placeholder="Опишите, что вы хотите увидеть: персонажи, поза, атмосфера, настроение, детали. Чем подробнее — тем лучше художник поймёт задумку. Упомяните, если это ваш персонаж или конкретный запрос."></textarea>
+                            <textarea class="order-textarea" id="orderDesc" maxlength="1500" placeholder="Опишите, что вы хотите увидеть: персонажи, поза, атмосфера, настроение, детали. Чем подробнее — тем лучше художник поймёт задумку."></textarea>
                             <div class="char-count"><span id="charCount">0</span> / 1500</div>
                         </div>
                     </div>
 
-                    <!-- 6. Референсы (заглушка) -->
+                    <!-- 8. Референсы -->
                     <div class="order-section">
-                        <div class="order-section-title"><span class="num">6</span>Референсы <span style="opacity:0.5;font-size:0.6rem;letter-spacing:2px;">(необязательно)</span></div>
-                        <div class="order-refs">
-                            <div class="order-ref-add" id="refAdd" title="Добавить референс">+</div>
+                        <div class="order-section-title"><span class="num">8</span>Референсы (до 5)</div>
+                        <div class="order-refs" id="orderRefs">
+                            <div class="order-ref-add" id="refAdd" title="Добавить">+</div>
                         </div>
-                        <div class="order-ref-hint">Загрузите примеры — позы, стиль, цвета, персонажи.</div>
+                        <div class="order-ref-hint">Референсы персонажей, палитры, позы.</div>
+                    </div>
+
+                    <!-- 9. Чаевые -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">9</span>Добавить чаевые автору</div>
+                        <div class="tip-block" id="tipBlock">
+                            <div class="tip-option active" data-tip="0">
+                                <div class="tip-icon">🪙</div>
+                                <div class="tip-label">Без чаевых</div>
+                            </div>
+                            <div class="tip-option" data-tip="50">
+                                <div class="tip-icon">🪙</div>
+                                <div class="tip-label">+50 FEN</div>
+                                <div class="tip-desc">на кофе</div>
+                            </div>
+                            <div class="tip-option" data-tip="150">
+                                <div class="tip-icon">🪙</div>
+                                <div class="tip-label">+150 FEN</div>
+                                <div class="tip-desc">для вдохновения</div>
+                            </div>
+                            <div class="tip-option" data-tip="300">
+                                <div class="tip-icon">🪙</div>
+                                <div class="tip-label">+300 FEN</div>
+                                <div class="tip-desc">VIP-отношение</div>
+                            </div>
+                            <div class="tip-custom">
+                                <span class="tip-custom-icon">✏️</span>
+                                <input type="number" id="tipCustom" placeholder="своя" min="0" step="10">
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -2819,7 +2812,6 @@
 
             </div>
 
-            <!-- Экран успеха -->
             <div class="order-success" id="orderSuccess">
                 <div class="success-icon">✓</div>
                 <h3>Заказ оформлен</h3>
@@ -2867,7 +2859,7 @@
         });
         document.querySelectorAll('.pkg').forEach(pkg => {
             pkg.addEventListener('click', () => {
-                alert(`Пакет: ${pkg.dataset.chips} фишек FENBO\nОплата: ${pkg.dataset.usdt} USDT\nКурс: 1 USDT = 100 фишек\n\nПодключение USDT — в следующей версии ✦`);
+                alert(`Пакет: ${pkg.dataset.chips} фишек FENBO\nОплата: ${pkg.dataset.usdt} USDT\nКурс: 1 USDT = 100 фишек`);
             });
         });
         document.querySelectorAll('.method').forEach(m => {
@@ -2878,7 +2870,7 @@
         });
         depositBtn.addEventListener('click', () => {
             const active = document.querySelector('.method.active').textContent;
-            alert(`Пополнение через USDT (${active})\n\nКурс: 1 USDT = 100 фишек FENBO\nМинимум: 5 USDT (500 фишек)\n\nПодключение — в следующей версии ✦`);
+            alert(`Пополнение через USDT (${active})\n\nКурс: 1 USDT = 100 фишек FENBO`);
         });
 
         /* Лайтбокс */
@@ -2898,8 +2890,6 @@
         const lbFav = document.getElementById('lbFav');
         const lbShare = document.getElementById('lbShare');
         const lbTip = document.getElementById('lbTip');
-        const lbStatLikes = document.getElementById('lbStatLikes');
-        const lbStatViews = document.getElementById('lbStatViews');
         const lbAuthorClick = document.getElementById('lbAuthorClick');
 
         function formatNumber(n) {
@@ -2930,7 +2920,7 @@
                 a.href = '#';
                 a.className = 'lb-tag';
                 a.textContent = '#' + t;
-                a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); alert('Переход к тегу #' + t); });
+                a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); });
                 lbTags.appendChild(a);
             });
 
@@ -2954,7 +2944,9 @@
 
         lbClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape' && !orderModal.classList.contains('active')) closeLightbox(); });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !orderModal.classList.contains('active')) closeLightbox();
+        });
 
         lbLike.addEventListener('click', e => {
             e.stopPropagation();
@@ -2967,7 +2959,9 @@
             lbSubscribe.textContent = lbSubscribe.classList.contains('subscribed') ? 'Вы подписаны' : 'Подписаться';
         });
 
-        /* ---- ЗАКАЗ ---- */
+        /* ============================================
+           МОДАЛЬНОЕ ЗАКАЗА
+           ============================================ */
         const orderModal = document.getElementById('orderModal');
         const orderClose = document.getElementById('orderClose');
         const orderSubmit = document.getElementById('orderSubmit');
@@ -2981,34 +2975,142 @@
         const successClose = document.getElementById('successClose');
         const orderAuthorEl = document.getElementById('orderAuthor');
         const refAdd = document.getElementById('refAdd');
+        const orderRefsEl = document.getElementById('orderRefs');
+        const charNumEl = document.getElementById('charNum');
+        const charMultEl = document.getElementById('charMult');
+        const charMinus = document.getElementById('charMinus');
+        const charPlus = document.getElementById('charPlus');
+        const tipBlock = document.getElementById('tipBlock');
+        const tipCustom = document.getElementById('tipCustom');
+        const platformPicker = document.getElementById('platformPicker');
+        const contactInput = document.getElementById('contactInput');
 
-        let selectedTotal = 0;
+        let selectedTotal = 0;   // база + опции
+        let charCount = 1;        // персонажи
+        let charMultiplier = 1;   // множитель
+        let tipValue = 0;         // чаевые
+        let refCount = 0;         // референсы
 
+        /* Пересчёт итога */
         function recalcTotal() {
-            let sum = 0;
+            // Базовая сумма опций
+            let base = 0;
             document.querySelectorAll('.order-option.checked').forEach(o => {
-                sum += parseInt(o.dataset.price, 10) || 0;
+                base += parseInt(o.dataset.price, 10) || 0;
             });
-            selectedTotal = sum;
-            orderTotalEl.textContent = sum.toLocaleString('ru-RU');
-            orderTotalUsdtEl.textContent = (sum / 100).toFixed(2);
-            orderSubmit.disabled = sum === 0;
+
+            // Множитель персонажей применяется к базовой сумме опций формата и стиля?
+            // По ТЗ: множитель к итоговой стоимости формата.
+            // Упростим: множитель применяется к сумме всех выбранных опций (кроме extra).
+            // Точнее — считаем: base = сумма всех опций; умножаем на charMultiplier, но только опции style+format+detail.
+            // Для наглядности применим множитель ко ВСЕЙ базе.
+            const totalBase = Math.round(base * charMultiplier);
+
+            // Чаевые
+            const tip = parseInt(tipCustom.value, 10) || tipValue || 0;
+
+            selectedTotal = totalBase + tip;
+            orderTotalEl.textContent = selectedTotal.toLocaleString('ru-RU');
+            orderTotalUsdtEl.textContent = (selectedTotal / 100).toFixed(2);
+
+            // Кнопка активна если выбрана хотя бы одна опция (кроме эскиза и без фона, у них 0)
+            const hasAny = document.querySelectorAll('.order-option.checked').length > 0;
+            orderSubmit.disabled = !hasAny;
         }
 
         /* Клик на опцию */
         document.querySelectorAll('.order-option').forEach(opt => {
             opt.addEventListener('click', () => {
                 const group = opt.parentElement.dataset.group;
-                // Для одиночных групп — снимаем выделение с других
                 if (group === 'style' || group === 'format' || group === 'detail') {
                     opt.parentElement.querySelectorAll('.order-option').forEach(o => o.classList.remove('checked'));
                     opt.classList.add('checked');
                 } else {
-                    // Для extra — мультивыбор
                     opt.classList.toggle('checked');
                 }
                 recalcTotal();
             });
+        });
+
+        /* Счётчик персонажей */
+        function updateCharMult() {
+            charNumEl.textContent = charCount;
+            if (charCount === 1) {
+                charMultiplier = 1;
+                charMultEl.textContent = 'Базовая цена';
+                charMultEl.style.color = 'rgba(197, 160, 89, 0.85)';
+            } else if (charCount === 2) {
+                charMultiplier = 1.7;
+                charMultEl.textContent = '+70% к стоимости';
+                charMultEl.style.color = '#FF4444';
+            } else {
+                // 3+ : каждый следующий +50%. Т.е. 3 = 1 + 0.7 + 0.5 = 2.2, 4 = 2.7 и т.д.
+                charMultiplier = 1.7 + (charCount - 2) * 0.5;
+                charMultEl.textContent = `+${Math.round((charMultiplier - 1) * 100)}% к стоимости`;
+                charMultEl.style.color = '#FF4444';
+            }
+            charMinus.disabled = charCount <= 1;
+            recalcTotal();
+        }
+
+        charPlus.addEventListener('click', () => {
+            if (charCount < 10) {
+                charCount++;
+                updateCharMult();
+            }
+        });
+        charMinus.addEventListener('click', () => {
+            if (charCount > 1) {
+                charCount--;
+                updateCharMult();
+            }
+        });
+
+        /* Чаевые */
+        document.querySelectorAll('.tip-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                document.querySelectorAll('.tip-option').forEach(o => o.classList.remove('active'));
+                opt.classList.add('active');
+                tipValue = parseInt(opt.dataset.tip, 10) || 0;
+                tipCustom.value = '';
+                recalcTotal();
+            });
+        });
+        tipCustom.addEventListener('input', () => {
+            const val = parseInt(tipCustom.value, 10);
+            if (!isNaN(val) && val > 0) {
+                document.querySelectorAll('.tip-option').forEach(o => o.classList.remove('active'));
+                tipValue = val;
+            } else {
+                tipValue = 0;
+            }
+            recalcTotal();
+        });
+
+        /* Платформа */
+        document.querySelectorAll('.platform-opt').forEach(p => {
+            p.addEventListener('click', () => {
+                document.querySelectorAll('.platform-opt').forEach(x => x.classList.remove('active'));
+                p.classList.add('active');
+            });
+        });
+
+        /* Счётчик символов */
+        orderDescEl.addEventListener('input', () => {
+            charCountEl.textContent = orderDescEl.value.length;
+        });
+
+        /* Референсы */
+        refAdd.addEventListener('click', () => {
+            if (refCount >= 5) {
+                alert('Максимум 5 референсов');
+                return;
+            }
+            refCount++;
+            const ref = document.createElement('div');
+            ref.className = 'order-ref';
+            ref.innerHTML = `❦<span class="ref-num">${refCount}/5</span>`;
+            orderRefsEl.insertBefore(ref, refAdd);
         });
 
         /* Открытие окна заказа */
@@ -3016,11 +3118,19 @@
             e.stopPropagation();
             orderAuthorEl.textContent = currentAuthor;
 
-            // сброс
             document.querySelectorAll('.order-option').forEach(o => o.classList.remove('checked'));
+            document.querySelectorAll('.tip-option').forEach(o => o.classList.remove('active'));
+            document.querySelector('.tip-option[data-tip="0"]').classList.add('active');
+            tipValue = 0;
+            tipCustom.value = '';
+            charCount = 1;
+            updateCharMult();
             orderDescEl.value = '';
             charCountEl.textContent = '0';
-            recalcTotal();
+            refCount = 0;
+            document.querySelectorAll('.order-ref').forEach(r => r.remove());
+            contactInput.value = '';
+
             orderContent.style.display = 'flex';
             orderSuccess.classList.remove('active');
 
@@ -3029,7 +3139,6 @@
             document.body.style.overflow = 'hidden';
         });
 
-        /* Закрытие окна заказа */
         function closeOrder() {
             orderModal.classList.remove('active');
             document.body.style.overflow = '';
@@ -3038,28 +3147,13 @@
         orderClose.addEventListener('click', closeOrder);
         orderModal.addEventListener('click', e => { if (e.target === orderModal) closeOrder(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && orderModal.classList.contains('active')) closeOrder(); });
-
         successClose.addEventListener('click', closeOrder);
 
-        /* Счётчик символов */
-        orderDescEl.addEventListener('input', () => {
-            charCountEl.textContent = orderDescEl.value.length;
-        });
-
-        /* Добавить референс */
-        refAdd.addEventListener('click', () => {
-            alert('Загрузка референсов — в следующей версии ✦');
-        });
-
-        /* Оформить заказ */
+        /* Оформить */
         orderSubmit.addEventListener('click', () => {
             if (selectedTotal === 0) return;
-
-            // Генерируем номер заказа
             const num = Math.floor(Math.random() * 9000) + 1000;
             orderNumber.textContent = 'FEN-' + num;
-
-            // Показываем экран успеха
             orderContent.style.display = 'none';
             orderSuccess.classList.add('active');
         });
@@ -3068,16 +3162,17 @@
         lbFav.addEventListener('click', e => { e.stopPropagation(); alert('Добавлено в избранное ✦'); });
         lbShare.addEventListener('click', e => {
             e.stopPropagation();
-            if (navigator.share) navigator.share({ title: lbTitle.textContent, text: 'Смотри на FENBO · Плоть' });
-            else alert('Ссылка скопирована (заглушка)');
+            if (navigator.share) navigator.share({ title: lbTitle.textContent, text: 'FENBO · Плоть' });
+            else alert('Ссылка скопирована');
         });
         lbTip.addEventListener('click', e => {
             e.stopPropagation();
-            alert('Чаевые автору\n\nСписать фишки FENBO:\n• 10 фишек — поддержать\n• 50 фишек — благодарность\n• 100 фишек — восхищение\n\nПодключение — в следующей версии ✦');
+            alert('Чаевые автору — можно добавить в конструкторе заказа');
         });
-        lbStatLikes.addEventListener('click', () => alert('Список тех, кто лайкнул — в следующей версии'));
-        lbStatViews.addEventListener('click', () => alert('Детальная статистика — в следующей версии'));
-        lbAuthorClick.addEventListener('click', e => { if (e.target === lbSubscribe) return; alert('Профиль автора — в следующей версии'); });
+        lbAuthorClick.addEventListener('click', e => { if (e.target === lbSubscribe) return; });
+
+        /* Инициализация */
+        updateCharMult();
     </script>
 
 </body>
