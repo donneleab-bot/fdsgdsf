@@ -2173,84 +2173,319 @@
             letter-spacing: 5px;
         }
 
-        /* Успех */
-        .order-success {
-            padding: 60px 36px;
-            text-align: center;
+        /* ============================================
+           ЧЕК (стиль казино)
+           ============================================ */
+        .order-receipt {
+            padding: 32px 36px 28px;
             display: none;
             flex-direction: column;
             align-items: center;
             gap: 18px;
+            text-align: center;
         }
-        .order-success.active { display: flex; }
-        .order-success .success-icon {
-            width: 90px; height: 90px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #FFF6C8 0%, #FFE066 15%, #FFD700 35%, #D4AF37 65%, #8B6914 100%);
-            border: 3px solid #FFE066;
+        .order-receipt.active { display: flex; }
+        .receipt-paper {
+            width: 100%;
+            max-width: 480px;
+            background: #FDF8F0;
+            background-image: 
+                radial-gradient(ellipse at 20% 0%, rgba(255, 215, 0, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(180, 0, 0, 0.08) 0%, transparent 60%),
+                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.015) 3px, rgba(0,0,0,0.015) 4px);
+            color: #2B1A0A;
+            border-radius: 4px 4px 16px 16px;
+            padding: 28px 26px 22px;
+            position: relative;
+            box-shadow: 
+                0 30px 70px rgba(0, 0, 0, 0.9),
+                0 0 0 1px rgba(212, 175, 55, 0.3),
+                0 0 60px rgba(180, 0, 0, 0.4);
+            font-family: 'Courier New', 'Cormorant Garamond', monospace;
+        }
+        .receipt-paper::before {
+            content: '';
+            position: absolute;
+            top: -6px; left: 0; right: 0;
+            height: 12px;
+            background: 
+                radial-gradient(circle at 6px 6px, transparent 6px, #FDF8F0 6px) repeat-x;
+            background-size: 12px 12px;
+        }
+        .receipt-paper::after {
+            content: '';
+            position: absolute;
+            bottom: -6px; left: 0; right: 0;
+            height: 12px;
+            background: 
+                radial-gradient(circle at 6px 6px, transparent 6px, #FDF8F0 6px) repeat-x;
+            background-size: 12px 12px;
+        }
+
+        .receipt-header {
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed rgba(43, 26, 10, 0.35);
+            margin-bottom: 16px;
+        }
+        .receipt-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #8B0000;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+        .receipt-logo span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1rem;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            margin-left: 6px;
+            letter-spacing: 1px;
+        }
+        .receipt-subtitle {
+            font-size: 0.65rem;
+            color: rgba(43, 26, 10, 0.6);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        .receipt-order-num {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #8B0000;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: rgba(180, 0, 0, 0.08);
+            border: 1px solid rgba(180, 0, 0, 0.25);
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .receipt-info {
+            font-size: 0.7rem;
+            color: rgba(43, 26, 10, 0.65);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .receipt-info .row {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Courier New', monospace;
+        }
+        .receipt-info .row .label { font-style: italic; }
+        .receipt-info .row .value { font-weight: 700; color: #2B1A0A; }
+
+        .receipt-items {
+            text-align: left;
+            margin-bottom: 16px;
+            border-top: 1px dashed rgba(43, 26, 10, 0.25);
+            border-bottom: 1px dashed rgba(43, 26, 10, 0.25);
+            padding: 12px 0;
+        }
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.72rem;
+            padding: 5px 0;
+            font-family: 'Courier New', monospace;
+            color: #2B1A0A;
+            border-bottom: 1px dotted rgba(43, 26, 10, 0.12);
+        }
+        .receipt-item:last-child { border-bottom: none; }
+        .receipt-item .item-label { flex: 1; text-align: left; padding-right: 8px; }
+        .receipt-item .item-label .item-extra {
+            display: block;
+            font-size: 0.6rem;
+            font-style: italic;
+            color: rgba(43, 26, 10, 0.55);
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .receipt-item .item-price {
+            font-weight: 700;
+            color: #8B0000;
+            white-space: nowrap;
+        }
+
+        .receipt-total-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 12px 0;
+            margin-bottom: 12px;
+            border-bottom: 2px solid rgba(43, 26, 10, 0.3);
+        }
+        .receipt-total-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: #2B1A0A;
+            text-transform: uppercase;
+        }
+        .receipt-total-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #8B0000;
+            letter-spacing: 1px;
+        }
+        .receipt-total-value .usdt-small {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.7rem;
+            font-style: italic;
+            color: #26A17B;
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+
+        .receipt-payment {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .receipt-payment .pay-badge {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            padding: 5px 12px;
+            border: 1px solid rgba(43, 26, 10, 0.3);
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.4);
+            color: rgba(43, 26, 10, 0.7);
+        }
+        .receipt-payment .pay-badge.active {
+            background: #8B0000;
+            color: #FFFFFF;
+            border-color: #8B0000;
+        }
+
+        .receipt-barcode {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+        .receipt-barcode .bars {
+            display: flex;
+            gap: 2px;
+            height: 40px;
+            align-items: stretch;
+        }
+        .receipt-barcode .bar {
+            width: 3px;
+            background: #2B1A0A;
+            border-radius: 1px;
+        }
+        .receipt-barcode .bar.thin { width: 1px; }
+        .receipt-barcode .bar.wide { width: 5px; }
+        .receipt-barcode .barcode-num {
+            font-family: 'Courier New', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            color: rgba(43, 26, 10, 0.6);
+        }
+
+        .receipt-qr {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+        .receipt-qr .qr-box {
+            width: 64px; height: 64px;
+            background: #2B1A0A;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #1A0505;
-            font-size: 2.6rem;
-            box-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 80px rgba(255, 180, 0, 0.6), inset 0 -8px 16px rgba(120, 80, 0, 0.7), inset 0 8px 16px rgba(255, 255, 255, 0.4);
-            animation: successPulse 2s ease-in-out infinite;
+            color: #FDF8F0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 1px;
+            text-align: center;
+            line-height: 1.2;
+            padding: 4px;
         }
-        @keyframes successPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        .order-success h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            color: #FFD700;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            text-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
-        }
-        .order-success p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.05rem;
+        .receipt-qr .qr-hint {
+            font-size: 0.65rem;
+            color: rgba(43, 26, 10, 0.6);
             font-style: italic;
-            color: #C5A059;
-            letter-spacing: 2px;
-            max-width: 500px;
-            line-height: 1.7;
+            text-align: left;
+            max-width: 140px;
         }
-        .order-success .order-number {
+
+        .receipt-footer {
+            font-size: 0.6rem;
+            color: rgba(43, 26, 10, 0.5);
+            letter-spacing: 1px;
+            text-align: center;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(43, 26, 10, 0.25);
+            font-style: italic;
+        }
+        .receipt-footer .hearts {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            margin-top: 4px;
+            color: #8B0000;
+        }
+
+        .receipt-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 6px;
+        }
+        .receipt-btn {
             font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            color: #FF4444;
+            font-size: 0.7rem;
             letter-spacing: 4px;
-            padding: 12px 24px;
-            border: 1px solid rgba(255, 68, 68, 0.6);
-            border-radius: 6px;
-            background: rgba(180, 0, 0, 0.15);
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-        }
-        .order-success .success-btn {
-            margin-top: 14px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 5px;
             text-transform: uppercase;
-            color: #FFD700;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1.5px solid rgba(255, 215, 0, 0.7);
-            padding: 14px 36px;
+            padding: 14px 32px;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        .order-success .success-btn:hover {
+        .receipt-btn.print {
+            color: #1A0505;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: 1px solid #FFD700;
+            font-weight: 700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+        .receipt-btn.print:hover {
+            background: linear-gradient(135deg, #FFFFFF, #FFD700);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 1);
+            letter-spacing: 5px;
+        }
+        .receipt-btn.close-btn {
+            color: #FFD700;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1.5px solid rgba(255, 215, 0, 0.7);
+        }
+        .receipt-btn.close-btn:hover {
             background: #FFD700;
             color: #1A0505;
             box-shadow: 0 0 35px rgba(255, 215, 0, 0.9);
         }
 
-        /* ============================================
-           АДАПТИВ
-           ============================================ */
+        /* АДАПТИВ */
         @media (max-width: 1024px) {
             .topbar-wrap { padding: 0 25px; }
             .topbar { gap: 24px; }
@@ -2341,7 +2576,6 @@
 
             .footer { margin-top: 40px; padding: 30px 16px 15px; font-size: 0.6rem; }
 
-            /* Лайтбокс */
             .lightbox { padding: 12px 8px; }
             .lb-image { min-height: 260px; }
             .lb-image::after { font-size: 6rem; }
@@ -2359,7 +2593,6 @@
             .lb-btn-mini { font-size: 0.55rem; padding: 10px 4px; }
             .lb-close { width: 36px; height: 36px; font-size: 1rem; top: 12px; right: 12px; }
 
-            /* Модальное заказа */
             .order-modal { padding: 12px 8px; }
             .order-header { padding: 20px 20px 16px; }
             .order-header h2 { font-size: 1.3rem; letter-spacing: 3px; }
@@ -2375,7 +2608,6 @@
             .order-footer { padding: 18px 20px; }
             .order-total .total-value { font-size: 1.5rem; }
             .order-submit { padding: 14px 28px; font-size: 0.72rem; letter-spacing: 4px; }
-            .order-success h3 { font-size: 1.5rem; letter-spacing: 5px; }
 
             .char-counter { gap: 14px; padding: 16px; }
             .char-counter .cc-btn { width: 44px; height: 44px; font-size: 1.4rem; }
@@ -2389,6 +2621,12 @@
             .tip-option { padding: 10px 14px; }
             .tip-option .tip-label { font-size: 0.65rem; }
             .tip-option .tip-desc { font-size: 0.7rem; }
+
+            .order-receipt { padding: 20px 12px 16px; }
+            .receipt-paper { padding: 22px 16px 18px; max-width: 100%; }
+            .receipt-total-value { font-size: 1.1rem; }
+            .receipt-actions { flex-direction: column; width: 100%; }
+            .receipt-btn { width: 100%; justify-content: center; padding: 14px 20px; letter-spacing: 3px; font-size: 0.65rem; }
         }
 
         @media (max-width: 480px) {
@@ -2408,6 +2646,11 @@
             .tip-option { padding: 9px 12px; }
             .tip-option .tip-label { font-size: 0.6rem; letter-spacing: 1px; }
             .tip-option .tip-desc { display: none; }
+
+            .receipt-paper { padding: 16px 12px 14px; }
+            .receipt-logo { font-size: 1rem; letter-spacing: 4px; }
+            .receipt-item { font-size: 0.65rem; }
+            .receipt-barcode .bars { height: 32px; }
         }
     </style>
 </head>
@@ -2812,12 +3055,61 @@
 
             </div>
 
-            <div class="order-success" id="orderSuccess">
-                <div class="success-icon">✓</div>
-                <h3>Заказ оформлен</h3>
-                <p>Художник получил ваш заказ. Он свяжется с вами в течение 24 часов для уточнения деталей.</p>
-                <div class="order-number">Заказ №<span id="orderNumber">0000</span></div>
-                <button class="success-btn" id="successClose" type="button">Вернуться к галерее</button>
+            <!-- ============================================
+                 ЧЕК (вместо старого order-success)
+                 ============================================ -->
+            <div class="order-receipt" id="orderReceipt">
+                <div class="receipt-paper" id="receiptPaper">
+                    <div class="receipt-header">
+                        <div class="receipt-logo">FENBO <span>плоть</span></div>
+                        <div class="receipt-subtitle">✦ Кассовый чек ✦</div>
+                        <div class="receipt-order-num">Заказ №<span id="receiptOrderNum">FEN-0000</span></div>
+                    </div>
+
+                    <div class="receipt-info">
+                        <div class="row"><span class="label">Дата:</span><span class="value" id="receiptDate">01.01.2025</span></div>
+                        <div class="row"><span class="label">Время:</span><span class="value" id="receiptTime">00:00:00</span></div>
+                        <div class="row"><span class="label">Художник:</span><span class="value" id="receiptArtist">Velvet_Rose</span></div>
+                        <div class="row"><span class="label">Контакт:</span><span class="value" id="receiptContact">—</span></div>
+                    </div>
+
+                    <div class="receipt-items" id="receiptItems">
+                        <!-- сюда добавляются позиции -->
+                    </div>
+
+                    <div class="receipt-total-block">
+                        <span class="receipt-total-label">ИТОГО:</span>
+                        <span class="receipt-total-value" id="receiptTotal">0 FEN
+                            <span class="usdt-small">≈ 0.00 USDT</span>
+                        </span>
+                    </div>
+
+                    <div class="receipt-payment">
+                        <span class="pay-badge active">TRC-20</span>
+                        <span class="pay-badge">USDT</span>
+                        <span class="pay-badge">Оплачено ✓</span>
+                    </div>
+
+                    <div class="receipt-barcode">
+                        <div class="bars" id="receiptBars"></div>
+                        <div class="barcode-num" id="receiptBarcodeNum">0000 0000 0000 0000</div>
+                    </div>
+
+                    <div class="receipt-qr">
+                        <div class="qr-box">QR<br>FENBO</div>
+                        <div class="qr-hint">Отсканируйте<br>для проверки заказа</div>
+                    </div>
+
+                    <div class="receipt-footer">
+                        Спасибо за игру. Желаем вдохновения.
+                        <div class="hearts">♥ ♠ ♦ ♣</div>
+                    </div>
+                </div>
+
+                <div class="receipt-actions">
+                    <button class="receipt-btn print" id="receiptPrint" type="button">🖨 Распечатать</button>
+                    <button class="receipt-btn close-btn" id="receiptClose" type="button">Вернуться к галерее</button>
+                </div>
             </div>
 
         </div>
@@ -2970,9 +3262,7 @@
         const orderDescEl = document.getElementById('orderDesc');
         const charCountEl = document.getElementById('charCount');
         const orderContent = document.getElementById('orderContent');
-        const orderSuccess = document.getElementById('orderSuccess');
-        const orderNumber = document.getElementById('orderNumber');
-        const successClose = document.getElementById('successClose');
+        const orderReceipt = document.getElementById('orderReceipt');
         const orderAuthorEl = document.getElementById('orderAuthor');
         const refAdd = document.getElementById('refAdd');
         const orderRefsEl = document.getElementById('orderRefs');
@@ -2985,40 +3275,29 @@
         const platformPicker = document.getElementById('platformPicker');
         const contactInput = document.getElementById('contactInput');
 
-        let selectedTotal = 0;   // база + опции
-        let charCount = 1;        // персонажи
-        let charMultiplier = 1;   // множитель
-        let tipValue = 0;         // чаевые
-        let refCount = 0;         // референсы
+        let selectedTotal = 0;
+        let charCount = 1;
+        let charMultiplier = 1;
+        let tipValue = 0;
+        let refCount = 0;
 
-        /* Пересчёт итога */
         function recalcTotal() {
-            // Базовая сумма опций
             let base = 0;
             document.querySelectorAll('.order-option.checked').forEach(o => {
                 base += parseInt(o.dataset.price, 10) || 0;
             });
 
-            // Множитель персонажей применяется к базовой сумме опций формата и стиля?
-            // По ТЗ: множитель к итоговой стоимости формата.
-            // Упростим: множитель применяется к сумме всех выбранных опций (кроме extra).
-            // Точнее — считаем: base = сумма всех опций; умножаем на charMultiplier, но только опции style+format+detail.
-            // Для наглядности применим множитель ко ВСЕЙ базе.
             const totalBase = Math.round(base * charMultiplier);
-
-            // Чаевые
             const tip = parseInt(tipCustom.value, 10) || tipValue || 0;
 
             selectedTotal = totalBase + tip;
             orderTotalEl.textContent = selectedTotal.toLocaleString('ru-RU');
             orderTotalUsdtEl.textContent = (selectedTotal / 100).toFixed(2);
 
-            // Кнопка активна если выбрана хотя бы одна опция (кроме эскиза и без фона, у них 0)
             const hasAny = document.querySelectorAll('.order-option.checked').length > 0;
             orderSubmit.disabled = !hasAny;
         }
 
-        /* Клик на опцию */
         document.querySelectorAll('.order-option').forEach(opt => {
             opt.addEventListener('click', () => {
                 const group = opt.parentElement.dataset.group;
@@ -3032,7 +3311,6 @@
             });
         });
 
-        /* Счётчик персонажей */
         function updateCharMult() {
             charNumEl.textContent = charCount;
             if (charCount === 1) {
@@ -3044,7 +3322,6 @@
                 charMultEl.textContent = '+70% к стоимости';
                 charMultEl.style.color = '#FF4444';
             } else {
-                // 3+ : каждый следующий +50%. Т.е. 3 = 1 + 0.7 + 0.5 = 2.2, 4 = 2.7 и т.д.
                 charMultiplier = 1.7 + (charCount - 2) * 0.5;
                 charMultEl.textContent = `+${Math.round((charMultiplier - 1) * 100)}% к стоимости`;
                 charMultEl.style.color = '#FF4444';
@@ -3054,19 +3331,12 @@
         }
 
         charPlus.addEventListener('click', () => {
-            if (charCount < 10) {
-                charCount++;
-                updateCharMult();
-            }
+            if (charCount < 10) { charCount++; updateCharMult(); }
         });
         charMinus.addEventListener('click', () => {
-            if (charCount > 1) {
-                charCount--;
-                updateCharMult();
-            }
+            if (charCount > 1) { charCount--; updateCharMult(); }
         });
 
-        /* Чаевые */
         document.querySelectorAll('.tip-option').forEach(opt => {
             opt.addEventListener('click', () => {
                 document.querySelectorAll('.tip-option').forEach(o => o.classList.remove('active'));
@@ -3087,7 +3357,6 @@
             recalcTotal();
         });
 
-        /* Платформа */
         document.querySelectorAll('.platform-opt').forEach(p => {
             p.addEventListener('click', () => {
                 document.querySelectorAll('.platform-opt').forEach(x => x.classList.remove('active'));
@@ -3095,17 +3364,12 @@
             });
         });
 
-        /* Счётчик символов */
         orderDescEl.addEventListener('input', () => {
             charCountEl.textContent = orderDescEl.value.length;
         });
 
-        /* Референсы */
         refAdd.addEventListener('click', () => {
-            if (refCount >= 5) {
-                alert('Максимум 5 референсов');
-                return;
-            }
+            if (refCount >= 5) { alert('Максимум 5 референсов'); return; }
             refCount++;
             const ref = document.createElement('div');
             ref.className = 'order-ref';
@@ -3132,7 +3396,7 @@
             contactInput.value = '';
 
             orderContent.style.display = 'flex';
-            orderSuccess.classList.remove('active');
+            orderReceipt.classList.remove('active');
 
             closeLightbox();
             orderModal.classList.add('active');
@@ -3147,29 +3411,160 @@
         orderClose.addEventListener('click', closeOrder);
         orderModal.addEventListener('click', e => { if (e.target === orderModal) closeOrder(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && orderModal.classList.contains('active')) closeOrder(); });
-        successClose.addEventListener('click', closeOrder);
 
-        /* Оформить */
+        /* ============================================
+           ГЕНЕРАЦИЯ ЧЕКА
+           ============================================ */
+        const receiptOrderNum = document.getElementById('receiptOrderNum');
+        const receiptDate = document.getElementById('receiptDate');
+        const receiptTime = document.getElementById('receiptTime');
+        const receiptArtist = document.getElementById('receiptArtist');
+        const receiptContact = document.getElementById('receiptContact');
+        const receiptItems = document.getElementById('receiptItems');
+        const receiptTotal = document.getElementById('receiptTotal');
+        const receiptBars = document.getElementById('receiptBars');
+        const receiptBarcodeNum = document.getElementById('receiptBarcodeNum');
+        const receiptPrint = document.getElementById('receiptPrint');
+        const receiptClose = document.getElementById('receiptClose');
+
+        function generateOrderNumber() {
+            return 'FEN-' + Math.floor(Math.random() * 9000 + 1000);
+        }
+
+        function pad(n) { return n < 10 ? '0' + n : n; }
+
+        function buildBarcode(seed) {
+            receiptBars.innerHTML = '';
+            const types = ['', 'thin', 'wide'];
+            for (let i = 0; i < 40; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'bar ' + (types[(seed + i) % 3] || '');
+                receiptBars.appendChild(bar);
+            }
+        }
+
         orderSubmit.addEventListener('click', () => {
             if (selectedTotal === 0) return;
-            const num = Math.floor(Math.random() * 9000) + 1000;
-            orderNumber.textContent = 'FEN-' + num;
+
+            const orderNum = generateOrderNumber();
+            const now = new Date();
+            const dateStr = `${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()}`;
+            const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+
+            receiptOrderNum.textContent = orderNum;
+            receiptDate.textContent = dateStr;
+            receiptTime.textContent = timeStr;
+            receiptArtist.textContent = orderAuthorEl.textContent;
+            receiptContact.textContent = contactInput.value.trim() || '—';
+
+            /* Позиции чека */
+            receiptItems.innerHTML = '';
+            let subtotal = 0;
+
+            document.querySelectorAll('.order-option.checked').forEach(o => {
+                const price = parseInt(o.dataset.price, 10) || 0;
+                const name = o.querySelector('.opt-name').textContent;
+                const desc = o.querySelector('.opt-desc') ? o.querySelector('.opt-desc').textContent : '';
+
+                const item = document.createElement('div');
+                item.className = 'receipt-item';
+                item.innerHTML = `
+                    <div class="item-label">${name}
+                        ${desc ? `<span class="item-extra">${desc}</span>` : ''}
+                    </div>
+                    <div class="item-price">${price.toLocaleString('ru-RU')} FEN</div>
+                `;
+                receiptItems.appendChild(item);
+                subtotal += price;
+            });
+
+            /* Множитель персонажей */
+            if (charMultiplier !== 1) {
+                const multItem = document.createElement('div');
+                multItem.className = 'receipt-item';
+                multItem.innerHTML = `
+                    <div class="item-label">Множитель персонажей
+                        <span class="item-extra">×${charMultiplier.toFixed(1)} (${charCount} персонажа)</span>
+                    </div>
+                    <div class="item-price">+${Math.round((subtotal * charMultiplier) - subtotal).toLocaleString('ru-RU')} FEN</div>
+                `;
+                receiptItems.appendChild(multItem);
+            }
+
+            /* Чаевые */
+            const tipVal = parseInt(tipCustom.value, 10) || tipValue || 0;
+            if (tipVal > 0) {
+                const tipItem = document.createElement('div');
+                tipItem.className = 'receipt-item';
+                tipItem.innerHTML = `
+                    <div class="item-label">Чаевые автору</div>
+                    <div class="item-price">+${tipVal.toLocaleString('ru-RU')} FEN</div>
+                `;
+                receiptItems.appendChild(tipItem);
+            }
+
+            /* Итого */
+            const totalWithTip = selectedTotal;
+            receiptTotal.innerHTML = `${totalWithTip.toLocaleString('ru-RU')} FEN
+                <span class="usdt-small">≈ ${(totalWithTip / 100).toFixed(2)} USDT</span>
+            `;
+
+            /* Штрих-код */
+            const seed = parseInt(orderNum.replace(/\D/g, ''), 10) || 1234;
+            buildBarcode(seed);
+            receiptBarcodeNum.textContent = String(seed).padStart(16, '0').replace(/(\d{4})(?=\d)/g, '$1 ');
+
+            /* Показать чек */
             orderContent.style.display = 'none';
-            orderSuccess.classList.add('active');
+            orderReceipt.classList.add('active');
         });
 
-        /* Другие кнопки */
-        lbFav.addEventListener('click', e => { e.stopPropagation(); alert('Добавлено в избранное ✦'); });
-        lbShare.addEventListener('click', e => {
-            e.stopPropagation();
-            if (navigator.share) navigator.share({ title: lbTitle.textContent, text: 'FENBO · Плоть' });
-            else alert('Ссылка скопирована');
+        /* Печать чека */
+        receiptPrint.addEventListener('click', () => {
+            const paper = document.getElementById('receiptPaper');
+            const w = window.open('', '', 'width=600,height=800');
+            w.document.write(`
+                <html><head><title>Чек FENBO</title>
+                <style>
+                    body { margin: 0; padding: 20px; background: #fff; font-family: 'Courier New', monospace; }
+                    .receipt-paper { max-width: 400px; margin: 0 auto; background: #FDF8F0; color: #2B1A0A; padding: 24px; border-radius: 4px; box-shadow: 0 0 0 1px #ccc; }
+                    .receipt-logo { font-family: serif; font-size: 1.4rem; color: #8B0000; text-align: center; letter-spacing: 6px; }
+                    .receipt-logo span { font-style: italic; color: #B8860B; }
+                    .receipt-subtitle { text-align: center; font-size: 0.65rem; letter-spacing: 4px; color: #888; margin-top: 4px; }
+                    .receipt-order-num { text-align: center; font-size: 0.9rem; color: #8B0000; margin: 8px 0 12px; padding: 6px; border: 1px solid #ddd; display: block; }
+                    .receipt-info .row { display: flex; justify-content: space-between; font-size: 0.7rem; margin: 3px 0; }
+                    .receipt-items { margin: 12px 0; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc; padding: 10px 0; }
+                    .receipt-item { display: flex; justify-content: space-between; font-size: 0.72rem; padding: 4px 0; border-bottom: 1px dotted #eee; }
+                    .item-extra { display: block; font-size: 0.6rem; color: #999; }
+                    .receipt-total-block { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 2px solid #ccc; margin: 8px 0; }
+                    .receipt-total-value { font-size: 1.3rem; color: #8B0000; }
+                    .usdt-small { font-size: 0.7rem; color: #26A17B; display: block; }
+                    .receipt-payment { display: flex; gap: 6px; justify-content: center; margin: 10px 0; }
+                    .pay-badge { font-size: 0.6rem; padding: 4px 10px; border: 1px solid #ccc; border-radius: 3px; }
+                    .pay-badge.active { background: #8B0000; color: #fff; border-color: #8B0000; }
+                    .receipt-barcode { text-align: center; margin: 12px 0; }
+                    .bars { display: flex; gap: 2px; justify-content: center; height: 36px; }
+                    .bar { width: 3px; background: #2B1A0A; }
+                    .bar.thin { width: 1px; }
+                    .bar.wide { width: 5px; }
+                    .barcode-num { font-size: 0.6rem; letter-spacing: 4px; color: #888; margin-top: 4px; }
+                    .receipt-qr { text-align: center; margin: 10px 0; }
+                    .qr-box { display: inline-block; width: 56px; height: 56px; background: #2B1A0A; color: #fff; font-size: 0.55rem; padding: 6px; border-radius: 4px; }
+                    .receipt-footer { text-align: center; font-size: 0.6rem; color: #888; border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 10px; }
+                    .hearts { font-size: 0.7rem; letter-spacing: 3px; color: #8B0000; margin-top: 4px; }
+                </style></head><body>
+                ${paper.outerHTML}
+                </body></html>
+            `);
+            w.document.close();
+            w.focus();
+            w.print();
         });
-        lbTip.addEventListener('click', e => {
-            e.stopPropagation();
-            alert('Чаевые автору — можно добавить в конструкторе заказа');
+
+        receiptClose.addEventListener('click', () => {
+            orderReceipt.classList.remove('active');
+            closeOrder();
         });
-        lbAuthorClick.addEventListener('click', e => { if (e.target === lbSubscribe) return; });
 
         /* Инициализация */
         updateCharMult();
