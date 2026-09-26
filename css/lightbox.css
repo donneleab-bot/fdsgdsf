@@ -1,1 +1,130 @@
+/* ============================================
+   FENBO · ЛАЙТБОКС
+   ============================================ */
 
+(function lightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return; // если нет лайтбокса на странице — не запускаем
+
+    const lbClose       = document.getElementById('lbClose');
+    const lbTitle       = document.getElementById('lbTitle');
+    const lbAuthorName  = document.getElementById('lbAuthorName');
+    const lbAuthorAvatar= document.getElementById('lbAuthorAvatar');
+    const lbAuthorSubs  = document.getElementById('lbAuthorSubs');
+    const lbDesc        = document.getElementById('lbDesc');
+    const lbTags        = document.getElementById('lbTags');
+    const lbLikes       = document.getElementById('lbLikes');
+    const lbViews       = document.getElementById('lbViews');
+    const lbLike        = document.getElementById('lbLike');
+    const lbSubscribe   = document.getElementById('lbSubscribe');
+    const lbOrder       = document.getElementById('lbOrder');
+    const lbFav         = document.getElementById('lbFav');
+    const lbShare       = document.getElementById('lbShare');
+    const lbTip         = document.getElementById('lbTip');
+
+    /* Сокращение чисел: 1245 → 1.2k */
+    function formatNumber(n) {
+        n = parseInt(n, 10) || 0;
+        if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+        if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+        return n.toString();
+    }
+
+    /* Текущий автор — чтобы order.js мог его забрать */
+    window.currentAuthor = '';
+
+    /* Открыть лайтбокс по карточке */
+    function openLightbox(card) {
+        lbTitle.textContent = card.dataset.title || 'Без названия';
+
+        const author = card.dataset.author || 'Аноним';
+        window.currentAuthor = author;
+        lbAuthorName.textContent = author;
+        lbAuthorAvatar.textContent = author.charAt(0).toUpperCase();
+        lbAuthorSubs.textContent = formatNumber(Math.floor(Math.random() * 30000) + 500) + ' подписчиков';
+
+        lbDesc.textContent = card.dataset.desc || 'Описание отсутствует.';
+        lbLikes.textContent = formatNumber(card.dataset.likes);
+        lbViews.textContent = formatNumber(card.dataset.views);
+
+        /* Теги */
+        lbTags.innerHTML = '';
+        (card.dataset.tags || '').split(',').forEach(t => {
+            t = t.trim();
+            if (!t) return;
+            const a = document.createElement('a');
+            a.href = '#';
+            a.className = 'lb-tag';
+            a.textContent = '#' + t;
+            a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); });
+            lbTags.appendChild(a);
+        });
+
+        /* Сброс кнопок */
+        lbLike.classList.remove('liked');
+        lbLike.innerHTML = '♥ Лайк';
+        lbSubscribe.classList.remove('subscribed');
+        lbSubscribe.textContent = 'Подписаться';
+
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    /* Открытие по клику на карточку */
+    document.querySelectorAll('.art-card').forEach(card => {
+        card.addEventListener('click', e => {
+            e.preventDefault();
+            openLightbox(card);
+        });
+    });
+
+    /* Закрытие */
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    /* Лайк */
+    lbLike.addEventListener('click', e => {
+        e.stopPropagation();
+        lbLike.classList.toggle('liked');
+        lbLike.innerHTML = lbLike.classList.contains('liked') ? '♥ Понравилось' : '♥ Лайк';
+    });
+
+    /* Подписка */
+    lbSubscribe.addEventListener('click', e => {
+        e.stopPropagation();
+        lbSubscribe.classList.toggle('subscribed');
+        lbSubscribe.textContent = lbSubscribe.classList.contains('subscribed') ? 'Вы подписаны' : 'Подписаться';
+    });
+
+    /* Избранное / поделиться / чаевые */
+    lbFav.addEventListener('click', e => { e.stopPropagation(); alert('Добавлено в избранное ✦'); });
+    lbShare.addEventListener('click', e => {
+        e.stopPropagation();
+        if (navigator.share) {
+            navigator.share({ title: lbTitle.textContent, text: 'FENBO · Плоть' });
+        } else {
+            alert('Ссылка скопирована');
+        }
+    });
+    lbTip.addEventListener('click', e => {
+        e.stopPropagation();
+        alert('Чаевые автору — можно добавить в конструкторе заказа');
+    });
+
+    /* Экспорт наружу — чтобы order.js и order.js знали, как закрыть лайтбокс */
+    window.closeLightbox = closeLightbox;
+
+    /* Esc обрабатывается в order.js (универсальный), но если его нет — продублируем тут */
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active') && !document.querySelector('.order-modal.active')) {
+            closeLightbox();
+        }
+    });
+})();
