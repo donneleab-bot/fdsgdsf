@@ -53,9 +53,6 @@
             pointer-events: none;
         }
 
-        /* ============================================
-           ФОН: софиты, дым, пыль, неон
-           ============================================ */
         .spotlight {
             position: fixed;
             top: 0; left: 50%;
@@ -71,13 +68,10 @@
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
         }
-
-        /* Два боковых неоновых прожектора */
         .neon-left, .neon-right {
             position: fixed;
             top: 20%;
-            width: 40%;
-            height: 60vh;
+            width: 40%; height: 60vh;
             pointer-events: none;
             z-index: 0;
             filter: blur(60px);
@@ -101,7 +95,6 @@
             0%, 100% { opacity: 0.7; }
             50% { opacity: 0.3; }
         }
-
         .smoke {
             position: fixed;
             inset: 0;
@@ -119,7 +112,6 @@
             from { transform: translate(0, 0) scale(1); }
             to { transform: translate(30px, -20px) scale(1.1); }
         }
-
         .dust-bg {
             position: fixed;
             inset: 0;
@@ -171,7 +163,6 @@
             background: linear-gradient(90deg, transparent 0%, rgba(255, 215, 0, 0.4) 20%, rgba(255, 215, 0, 0.6) 50%, rgba(255, 215, 0, 0.4) 80%, transparent 100%);
             box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
         }
-
         .logo {
             font-family: 'Cinzel', serif;
             font-size: 1.75rem;
@@ -179,10 +170,7 @@
             color: #FFD700;
             letter-spacing: 10px;
             text-decoration: none;
-            text-shadow: 
-                0 0 22px rgba(255, 215, 0, 0.6),
-                0 0 45px rgba(180, 0, 0, 0.5),
-                0 2px 4px rgba(0, 0, 0, 1);
+            text-shadow: 0 0 22px rgba(255, 215, 0, 0.6), 0 0 45px rgba(180, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 1);
             display: flex;
             align-items: baseline;
             white-space: nowrap;
@@ -196,7 +184,6 @@
             text-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
             font-weight: 400;
         }
-
         .topbar-nav {
             display: flex;
             justify-content: center;
@@ -235,7 +222,6 @@
         .topbar-nav a.active::after {
             transform: translateX(-50%) scaleX(1);
         }
-
         .topbar-user {
             display: flex;
             align-items: center;
@@ -243,8 +229,6 @@
             justify-content: flex-end;
             position: relative;
         }
-
-        /* Кошелёк */
         .wallet {
             display: flex;
             align-items: center;
@@ -389,17 +373,13 @@
             border-color: #FFD700;
         }
 
-        /* ============================================
-           ВЫПАДАЮЩЕЕ МЕНЮ ПОПОЛНЕНИЯ
-           ============================================ */
+        /* Выпадающее меню пополнения */
         .wallet-dropdown {
             position: absolute;
             top: calc(100% + 16px);
             right: 0;
             width: 380px;
-            background: 
-                radial-gradient(ellipse at 30% 0%, rgba(120, 0, 0, 0.55) 0%, transparent 60%),
-                linear-gradient(165deg, #150303 0%, #080101 100%);
+            background: radial-gradient(ellipse at 30% 0%, rgba(120, 0, 0, 0.55) 0%, transparent 60%), linear-gradient(165deg, #150303 0%, #080101 100%);
             border: 1.5px solid rgba(212, 175, 55, 0.55);
             border-radius: 16px;
             padding: 24px;
@@ -409,10 +389,7 @@
             transform: translateY(-10px);
             transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .wallet-dropdown.active {
-            opacity: 1; visibility: visible;
-            transform: translateY(0);
-        }
+        .wallet-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
         .wallet-dropdown::before {
             content: '';
             position: absolute;
@@ -540,9 +517,7 @@
             color: #FFD700;
             letter-spacing: 1px;
         }
-        .wallet-dropdown .rate-info .rate-value .green {
-            color: #26A17B;
-        }
+        .wallet-dropdown .rate-info .rate-value .green { color: #26A17B; }
         .wallet-dropdown .packages-title {
             font-family: 'Cinzel', serif;
             font-size: 0.65rem;
@@ -633,9 +608,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .wallet-dropdown .methods .method:hover {
-            border-color: rgba(38, 161, 123, 0.8);
-        }
+        .wallet-dropdown .methods .method:hover { border-color: rgba(38, 161, 123, 0.8); }
         .wallet-dropdown .methods .method.active {
             background: rgba(38, 161, 123, 0.2);
             border-color: rgba(38, 161, 123, 0.9);
@@ -664,7 +637,7 @@
         }
 
         /* ============================================
-           ГЕРОЙ — КАЗИНО-СТРИПТИЗ СТИЛЬ
+           ГЕРОЙ
            ============================================ */
         .hero {
             width: 100%;
@@ -679,14 +652,11 @@
             from { opacity: 0; transform: translateY(-40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Верхняя плашка — «СТРИПТИЗ-КАЗИНО» */
         .hero-topline {
             display: inline-flex;
             align-items: center;
             gap: 22px;
             margin-bottom: 20px;
-            animation: fadeIn 1.6s ease;
         }
         .hero-topline .line-s {
             width: 80px;
@@ -703,8 +673,6 @@
             letter-spacing: 6px;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
         }
-
-        /* Основной бейдж */
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -744,12 +712,6 @@
             0%, 100% { box-shadow: 0 0 30px rgba(180, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1); }
             50% { box-shadow: 0 0 50px rgba(255, 0, 0, 0.7), inset 0 0 30px rgba(255, 0, 0, 0.2); }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Заголовок */
         .hero h1 {
             font-family: 'Cinzel', serif;
             font-size: 5.5rem;
@@ -776,7 +738,6 @@
             margin-left: 20px;
             text-shadow: 0 0 30px rgba(255, 0, 0, 0.9), 0 0 60px rgba(180, 0, 0, 0.7);
         }
-
         .hero p {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.2rem;
@@ -792,8 +753,6 @@
             letter-spacing: 6px;
             text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
         }
-
-        /* Разделитель-масти под героем */
         .hero-divider {
             display: flex;
             align-items: center;
@@ -817,9 +776,7 @@
             text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
         }
 
-        /* ============================================
-           СТАТИСТИКА КАЗИНО (мини-плашки)
-           ============================================ */
+        /* Казино-статистика */
         .casino-stats {
             width: 100%;
             max-width: 1600px;
@@ -829,7 +786,6 @@
             padding: 30px 45px 0;
             position: relative;
             z-index: 5;
-            animation: fadeIn 1.8s ease 0.2s both;
         }
         .casino-stat {
             display: flex;
@@ -871,12 +827,7 @@
             text-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
             flex-shrink: 0;
         }
-        .casino-stat .stat-body {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-            min-width: 0;
-        }
+        .casino-stat .stat-body { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
         .casino-stat .stat-value {
             font-family: 'Cinzel', serif;
             font-size: 1.15rem;
@@ -896,72 +847,7 @@
             margin-top: 2px;
         }
 
-        /* ============================================
-           ФИЛЬТРЫ
-           ============================================ */
-        .filters {
-            width: 100%;
-            max-width: 1600px;
-            padding: 30px 45px 10px;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-            position: relative;
-            z-index: 5;
-        }
-        .filter-chip {
-            font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
-            letter-spacing: 3.5px;
-            text-transform: uppercase;
-            color: rgba(232, 216, 200, 0.7);
-            padding: 10px 24px;
-            border: 1px solid rgba(212, 175, 55, 0.35);
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 24px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-        .filter-chip::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 0; height: 0;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-            z-index: -1;
-        }
-        .filter-chip:hover::before { width: 200%; height: 200%; }
-        .filter-chip:hover {
-            color: #FFD700;
-            border-color: rgba(255, 215, 0, 0.9);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            transform: translateY(-3px);
-        }
-        .filter-chip.active {
-            color: #1A0505;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-color: #FFD700;
-            box-shadow: 0 0 35px rgba(255, 215, 0, 0.8), inset 0 -2px 8px rgba(120, 80, 0, 0.3);
-            font-weight: 700;
-        }
-        .filter-chip.adult { color: #FF4444; border-color: rgba(255, 68, 68, 0.6); }
-        .filter-chip.adult.active {
-            background: linear-gradient(135deg, #FF0000, #8B0000);
-            color: #FFFFFF;
-            border-color: #FF0000;
-            box-shadow: 0 0 35px rgba(255, 0, 0, 0.8);
-        }
-
-        /* ============================================
-           ГОРЯЧИЕ СТАВКИ — лента-полоска
-           ============================================ */
+        /* Горячие ставки */
         .hot-bets {
             width: 100%;
             max-width: 1600px;
@@ -969,15 +855,13 @@
             padding: 0 45px;
             position: relative;
             z-index: 5;
-            animation: fadeIn 2s ease 0.4s both;
         }
         .hot-bets-inner {
             display: flex;
             align-items: center;
             gap: 20px;
             padding: 16px 24px;
-            background: 
-                linear-gradient(90deg, rgba(180, 0, 0, 0.25) 0%, rgba(60, 0, 0, 0.35) 50%, rgba(180, 0, 0, 0.25) 100%);
+            background: linear-gradient(90deg, rgba(180, 0, 0, 0.25) 0%, rgba(60, 0, 0, 0.35) 50%, rgba(180, 0, 0, 0.25) 100%);
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 12px;
             overflow: hidden;
@@ -1046,18 +930,74 @@
             font-style: normal;
             font-weight: 700;
         }
-        .hot-bet .bet-suit {
-            color: #FFD700;
-            font-size: 1rem;
-        }
+        .hot-bet .bet-suit { color: #FFD700; font-size: 1rem; }
         @keyframes hotScroll {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
         }
 
-        /* ============================================
-           ГАЛЕРЕЯ (карточки НЕ ТРОГАЮ)
-           ============================================ */
+        /* Фильтры */
+        .filters {
+            width: 100%;
+            max-width: 1600px;
+            padding: 30px 45px 10px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 5;
+        }
+        .filter-chip {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: rgba(232, 216, 200, 0.7);
+            padding: 10px 24px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .filter-chip::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+        .filter-chip:hover::before { width: 200%; height: 200%; }
+        .filter-chip:hover {
+            color: #FFD700;
+            border-color: rgba(255, 215, 0, 0.9);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: translateY(-3px);
+        }
+        .filter-chip.active {
+            color: #1A0505;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-color: #FFD700;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.8), inset 0 -2px 8px rgba(120, 80, 0, 0.3);
+            font-weight: 700;
+        }
+        .filter-chip.adult { color: #FF4444; border-color: rgba(255, 68, 68, 0.6); }
+        .filter-chip.adult.active {
+            background: linear-gradient(135deg, #FF0000, #8B0000);
+            color: #FFFFFF;
+            border-color: #FF0000;
+            box-shadow: 0 0 35px rgba(255, 0, 0, 0.8);
+        }
+
+        /* Галерея */
         .gallery {
             width: 100%;
             max-width: 1600px;
@@ -1087,7 +1027,6 @@
             border-color: #FFD700;
             box-shadow: 0 30px 70px rgba(180, 0, 0, 0.9), 0 0 0 2px rgba(255, 215, 0, 0.7), 0 0 50px rgba(255, 215, 0, 0.5), 0 0 100px rgba(180, 0, 0, 0.5);
         }
-
         .art-card .thumb { position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #0A0000; }
         .art-card .thumb .placeholder {
             position: absolute;
@@ -1126,7 +1065,6 @@
             transition: left 0.9s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .art-card:hover .thumb::before { left: 130%; }
-
         .art-card .badge-18 {
             position: absolute;
             top: 14px; left: 14px;
@@ -1142,7 +1080,6 @@
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             z-index: 3;
         }
-
         .art-card .info { padding: 16px 18px 18px; }
         .art-card .info .title {
             font-family: 'Cinzel', serif;
@@ -1190,21 +1127,15 @@
             border-radius: 2px;
         }
 
-        /* ============================================
-           ЗА КУЛИСАМИ — доп. лента (намёк 18+)
-           ============================================ */
+        /* За кулисами */
         .backstage {
             width: 100%;
             max-width: 1600px;
             padding: 60px 45px 20px;
             position: relative;
             z-index: 5;
-            animation: fadeIn 2.2s ease 0.6s both;
         }
-        .backstage-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        .backstage-header { text-align: center; margin-bottom: 30px; }
         .backstage-header .label {
             font-family: 'Cinzel', serif;
             font-size: 0.65rem;
@@ -1220,9 +1151,7 @@
             color: #FFD700;
             letter-spacing: 10px;
             text-transform: uppercase;
-            text-shadow: 
-                0 0 25px rgba(255, 215, 0, 0.6),
-                0 0 60px rgba(180, 0, 0, 0.5);
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.6), 0 0 60px rgba(180, 0, 0, 0.5);
         }
         .backstage-header h3 span {
             font-family: 'Great Vibes', cursive;
@@ -1241,13 +1170,11 @@
             letter-spacing: 3px;
             margin-top: 14px;
         }
-
         .backstage-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
-
         .bkg-card {
             position: relative;
             padding: 26px 24px;
@@ -1301,7 +1228,6 @@
             font-style: italic;
             color: rgba(232, 216, 200, 0.75);
             line-height: 1.6;
-            letter-spacing: 0.5px;
         }
         .bkg-card .bkg-meta {
             display: flex;
@@ -1324,9 +1250,7 @@
             text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
         }
 
-        /* ============================================
-           ПОДВАЛ
-           ============================================ */
+        /* Подвал */
         .footer {
             width: 100%;
             max-width: 1600px;
@@ -1363,7 +1287,7 @@
         }
 
         /* ============================================
-           ЛАЙТБОКС (не трогаю)
+           ЛАЙТБОКС
            ============================================ */
         .lightbox {
             position: fixed;
@@ -1380,7 +1304,6 @@
             overflow-y: auto;
         }
         .lightbox.active { opacity: 1; visibility: visible; }
-
         .lightbox-inner {
             position: relative;
             width: 100%;
@@ -1510,15 +1433,8 @@
             transition: all 0.3s ease;
             white-space: nowrap;
         }
-        .lb-author .btn-subscribe:hover {
-            background: #FFD700;
-            color: #1A0505;
-        }
-        .lb-author .btn-subscribe.subscribed {
-            background: rgba(180, 0, 0, 0.5);
-            border-color: #FF4444;
-            color: #FF4444;
-        }
+        .lb-author .btn-subscribe:hover { background: #FFD700; color: #1A0505; }
+        .lb-author .btn-subscribe.subscribed { background: rgba(180, 0, 0, 0.5); border-color: #FF4444; color: #FF4444; }
         .lb-title {
             font-family: 'Cinzel', serif;
             font-size: 2.2rem;
@@ -1671,10 +1587,494 @@
             transition: all 0.4s ease;
             z-index: 30;
         }
-        .lb-close:hover {
+        .lb-close:hover { background: #FFD700; color: #1A0505; transform: rotate(90deg); }
+
+        /* ============================================
+           МОДАЛЬНОЕ ОКНО ЗАКАЗА
+           ============================================ */
+        .order-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            background: radial-gradient(ellipse at 50% 30%, rgba(120, 0, 0, 0.6) 0%, transparent 60%), rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(24px);
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            overflow-y: auto;
+        }
+        .order-modal.active { opacity: 1; visibility: visible; }
+        .order-inner {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            background: radial-gradient(ellipse at 30% 0%, rgba(120, 0, 0, 0.5) 0%, transparent 50%), linear-gradient(165deg, #150303 0%, #080101 100%);
+            border: 1.5px solid rgba(212, 175, 55, 0.55);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 50px 150px rgba(0, 0, 0, 1), 0 0 0 1px rgba(255, 215, 0, 0.2), 0 0 120px rgba(180, 0, 0, 0.7);
+            transform: scale(0.94) translateY(20px);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            max-height: 94vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .order-modal.active .order-inner { transform: scale(1) translateY(0); }
+        .order-inner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, #FF4444, #FFD700, transparent);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            z-index: 5;
+        }
+
+        /* Шапка модалки */
+        .order-header {
+            padding: 26px 36px 22px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: relative;
+        }
+        .order-header .order-title-block {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .order-header .order-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 8px;
+            color: #FF4444;
+            text-transform: uppercase;
+            text-shadow: 0 0 12px rgba(255, 0, 0, 0.7);
+        }
+        .order-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #FFD700;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+        }
+        .order-header h2 span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+            color: #FF4444;
+            letter-spacing: 2px;
+            text-transform: none;
+            margin-left: 10px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+        .order-header .order-author {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #C5A059;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .order-header .order-author::before {
+            content: '✦';
+            color: #FFD700;
+            font-size: 0.8rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+        .order-close {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 215, 0, 0.6);
+            color: #FFD700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+        .order-close:hover { background: #FFD700; color: #1A0505; transform: rotate(90deg); }
+
+        /* Скроллящееся тело модалки */
+        .order-body {
+            padding: 28px 36px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 215, 0, 0.4) transparent;
+            flex: 1;
+        }
+        .order-body::-webkit-scrollbar { width: 6px; }
+        .order-body::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.4); border-radius: 3px; }
+
+        /* Секция */
+        .order-section {
+            margin-bottom: 26px;
+        }
+        .order-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            color: #FFD700;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+        .order-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.5), transparent);
+        }
+        .order-section-title .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            font-size: 0.65rem;
+            color: #FFD700;
+        }
+
+        /* Сетка опций */
+        .order-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 10px;
+        }
+        .order-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+        }
+        .order-option:hover {
+            border-color: rgba(255, 215, 0, 0.7);
+            background: rgba(60, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        .order-option.checked {
+            border-color: #FFD700;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(60, 0, 0, 0.5) 100%);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.35), inset 0 0 15px rgba(255, 215, 0, 0.1);
+        }
+        .order-option .check {
+            width: 22px; height: 22px;
+            border-radius: 4px;
+            border: 1.5px solid rgba(255, 215, 0, 0.5);
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: transparent;
+            font-size: 0.8rem;
+            font-weight: 900;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        .order-option.checked .check {
             background: #FFD700;
             color: #1A0505;
-            transform: rotate(90deg);
+            border-color: #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        .order-option .opt-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+            min-width: 0;
+        }
+        .order-option .opt-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.78rem;
+            color: #E8D8C8;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .order-option.checked .opt-name { color: #FFD700; }
+        .order-option .opt-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem;
+            font-style: italic;
+            color: rgba(197, 160, 89, 0.8);
+        }
+        .order-option .opt-price {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: #FFD700;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .order-option .opt-price::before {
+            content: '♠';
+            font-size: 0.7rem;
+            color: #FFD700;
+            opacity: 0.7;
+        }
+
+        /* Поле описания */
+        .order-textarea-wrap {
+            position: relative;
+        }
+        .order-textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 18px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 12px;
+            color: #E8D8C8;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.7;
+            resize: vertical;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .order-textarea:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.05);
+        }
+        .order-textarea::placeholder {
+            color: rgba(197, 160, 89, 0.6);
+            font-style: italic;
+        }
+        .order-textarea-wrap .char-count {
+            position: absolute;
+            bottom: 10px;
+            right: 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            color: rgba(197, 160, 89, 0.6);
+            letter-spacing: 1px;
+            pointer-events: none;
+        }
+
+        /* Референсы — превью-загрузка */
+        .order-refs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .order-ref-add {
+            width: 70px; height: 70px;
+            border-radius: 8px;
+            border: 1.5px dashed rgba(255, 215, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFD700;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .order-ref-add:hover {
+            border-color: #FFD700;
+            background: rgba(60, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+        .order-ref-hint {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            font-style: italic;
+            color: rgba(197, 160, 89, 0.7);
+            margin-top: 8px;
+        }
+
+        /* Футер модалки с итогом */
+        .order-footer {
+            padding: 22px 36px;
+            border-top: 1px solid rgba(212, 175, 55, 0.25);
+            background: linear-gradient(0deg, rgba(60, 0, 0, 0.4) 0%, transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .order-total {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .order-total .total-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 5px;
+            color: rgba(197, 160, 89, 0.8);
+            text-transform: uppercase;
+        }
+        .order-total .total-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #FFD700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .order-total .total-value .unit {
+            font-size: 0.95rem;
+            color: rgba(255, 215, 0, 0.85);
+            letter-spacing: 3px;
+        }
+        .order-total .total-usdt {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #26A17B;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .order-total .total-usdt .usdt-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 14px; height: 14px;
+            background: #26A17B;
+            border-radius: 50%;
+            color: #FFFFFF;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .order-submit {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #1A0505;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: 1px solid #FFD700;
+            padding: 18px 42px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.6);
+            transition: all 0.4s ease;
+            white-space: nowrap;
+        }
+        .order-submit:hover {
+            background: linear-gradient(135deg, #FFFFFF, #FFD700);
+            box-shadow: 0 0 60px rgba(255, 215, 0, 1);
+            letter-spacing: 6px;
+        }
+        .order-submit:disabled {
+            background: rgba(80, 80, 80, 0.4);
+            color: rgba(232, 216, 200, 0.4);
+            border-color: rgba(120, 120, 120, 0.3);
+            box-shadow: none;
+            cursor: not-allowed;
+            letter-spacing: 5px;
+        }
+
+        /* Успех */
+        .order-success {
+            padding: 60px 36px;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+        .order-success.active { display: flex; }
+        .order-success .success-icon {
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #FFF6C8 0%, #FFE066 15%, #FFD700 35%, #D4AF37 65%, #8B6914 100%);
+            border: 3px solid #FFE066;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1A0505;
+            font-size: 2.6rem;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 80px rgba(255, 180, 0, 0.6), inset 0 -8px 16px rgba(120, 80, 0, 0.7), inset 0 8px 16px rgba(255, 255, 255, 0.4);
+            animation: successPulse 2s ease-in-out infinite;
+        }
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 80px rgba(255, 180, 0, 0.6), inset 0 -8px 16px rgba(120, 80, 0, 0.7), inset 0 8px 16px rgba(255, 255, 255, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255, 215, 0, 1), 0 0 120px rgba(255, 180, 0, 0.8), inset 0 -8px 16px rgba(120, 80, 0, 0.7), inset 0 8px 16px rgba(255, 255, 255, 0.4); }
+        }
+        .order-success h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #FFD700;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+        }
+        .order-success p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: #C5A059;
+            letter-spacing: 2px;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+        .order-success .order-number {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #FF4444;
+            letter-spacing: 4px;
+            padding: 12px 24px;
+            border: 1px solid rgba(255, 68, 68, 0.6);
+            border-radius: 6px;
+            background: rgba(180, 0, 0, 0.15);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            margin-top: 6px;
+        }
+        .order-success .success-btn {
+            margin-top: 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #FFD700;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1.5px solid rgba(255, 215, 0, 0.7);
+            padding: 14px 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .order-success .success-btn:hover {
+            background: #FFD700;
+            color: #1A0505;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.9);
         }
 
         /* ============================================
@@ -1697,6 +2097,8 @@
             .filters { padding: 25px; }
             .lightbox-inner { grid-template-columns: 1fr; }
             .lb-image { min-height: 320px; }
+            .order-inner { max-width: 90vw; }
+            .order-options { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -1779,20 +2181,39 @@
             .lb-image { min-height: 260px; }
             .lb-image::after { font-size: 6rem; }
             .lb-info { padding: 20px 16px; }
-            .lb-title { font-size: 1.4rem; letter-spacing: 3px; margin-bottom: 12px; }
+            .lb-title { font-size: 1.4rem; letter-spacing: 3px; }
             .lb-author { padding: 11px; gap: 11px; }
             .lb-author .author-avatar { width: 46px; height: 46px; font-size: 1.2rem; }
             .lb-author .author-name { font-size: 0.85rem; }
             .lb-author .author-subs { font-size: 0.75rem; }
             .lb-author .btn-subscribe { font-size: 0.55rem; padding: 8px 12px; letter-spacing: 2px; }
             .lb-desc { font-size: 0.95rem; line-height: 1.7; padding: 20px 22px 20px 42px; margin-bottom: 18px; }
-            .lb-desc::before { font-size: 3.5rem; top: 4px; left: 10px; }
-            .lb-desc::after { font-size: 3.5rem; bottom: -16px; right: 14px; }
             .lb-stat .stat-value { font-size: 1.2rem; }
             .lb-stat .stat-label { font-size: 0.6rem; }
             .lb-actions button { padding: 13px 10px; font-size: 0.62rem; letter-spacing: 3px; }
             .lb-btn-mini { font-size: 0.55rem; padding: 10px 4px; }
             .lb-close { width: 36px; height: 36px; font-size: 1rem; top: 12px; right: 12px; }
+
+            /* Модальное окно заказа */
+            .order-modal { padding: 12px 8px; }
+            .order-inner { max-height: 96vh; }
+            .order-header { padding: 20px 20px 16px; }
+            .order-header h2 { font-size: 1.3rem; letter-spacing: 3px; }
+            .order-header h2 span { font-size: 1.1rem; display: block; margin: 6px 0 0; }
+            .order-header .order-author { font-size: 0.82rem; }
+            .order-close { width: 36px; height: 36px; font-size: 1rem; }
+            .order-body { padding: 20px; }
+            .order-option { padding: 12px 14px; gap: 10px; }
+            .order-option .opt-name { font-size: 0.72rem; letter-spacing: 1px; }
+            .order-option .opt-desc { font-size: 0.7rem; }
+            .order-option .opt-price { font-size: 0.78rem; }
+            .order-textarea { min-height: 110px; font-size: 0.9rem; padding: 14px 16px; }
+            .order-footer { padding: 18px 20px; }
+            .order-total .total-value { font-size: 1.5rem; }
+            .order-submit { padding: 14px 28px; font-size: 0.72rem; letter-spacing: 4px; }
+            .order-success h3 { font-size: 1.5rem; letter-spacing: 5px; }
+            .order-success p { font-size: 0.9rem; }
+            .order-success .order-number { font-size: 0.9rem; letter-spacing: 3px; }
         }
 
         @media (max-width: 480px) {
@@ -1823,12 +2244,15 @@
 
             .lb-title { font-size: 1.15rem; letter-spacing: 2px; }
             .lb-actions { grid-template-columns: 1fr; }
+
+            .order-total .total-value { font-size: 1.2rem; }
+            .order-submit { width: 100%; padding: 14px 20px; letter-spacing: 3px; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ФОН: софиты, неон, дым, пыль -->
+    <!-- ФОН -->
     <div class="spotlight"></div>
     <div class="neon-left"></div>
     <div class="neon-right"></div>
@@ -1934,7 +2358,7 @@
         </div>
     </section>
 
-    <!-- СТАТИСТИКА КАЗИНО -->
+    <!-- КАЗИНО-СТАТИСТИКА -->
     <div class="casino-stats">
         <div class="casino-stat">
             <div class="stat-icon">♠</div>
@@ -2111,7 +2535,7 @@
 
     </main>
 
-    <!-- ЗА КУЛИСАМИ (доп. секция) -->
+    <!-- ЗА КУЛИСАМИ -->
     <section class="backstage">
         <div class="backstage-header">
             <div class="label">✦ Только для своих ✦</div>
@@ -2204,7 +2628,211 @@
         </div>
     </div>
 
+    <!-- ============================================
+         МОДАЛЬНОЕ ОКНО ЗАКАЗА
+         ============================================ -->
+    <div class="order-modal" id="orderModal">
+        <div class="order-inner">
+
+            <!-- Содержимое заказа (скрывается при успехе) -->
+            <div id="orderContent" style="display: flex; flex-direction: column; flex: 1; min-height: 0;">
+
+                <div class="order-header">
+                    <div class="order-title-block">
+                        <div class="order-label">✦ Заказ арта ✦</div>
+                        <h2>Собрать заказ<span>у художника</span></h2>
+                        <div class="order-author" id="orderAuthor">Velvet_Rose</div>
+                    </div>
+                    <button class="order-close" id="orderClose" aria-label="Закрыть">✕</button>
+                </div>
+
+                <div class="order-body">
+
+                    <!-- 1. Стиль -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">1</span>Стиль работы</div>
+                        <div class="order-options" data-group="style">
+                            <div class="order-option" data-price="500">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Живопись</div>
+                                    <div class="opt-desc">Классический стиль, масляная фактура</div>
+                                </div>
+                                <div class="opt-price">500</div>
+                            </div>
+                            <div class="order-option" data-price="400">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Диджитал</div>
+                                    <div class="opt-desc">Чистый digital-art, современный стиль</div>
+                                </div>
+                                <div class="opt-price">400</div>
+                            </div>
+                            <div class="order-option" data-price="450">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Аниме</div>
+                                    <div class="opt-desc">Аниме-стилистика, чистые линии</div>
+                                </div>
+                                <div class="opt-price">450</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Формат -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">2</span>Формат</div>
+                        <div class="order-options" data-group="format">
+                            <div class="order-option" data-price="200">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Портрет</div>
+                                    <div class="opt-desc">Только лицо и плечи</div>
+                                </div>
+                                <div class="opt-price">200</div>
+                            </div>
+                            <div class="order-option" data-price="400">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">По пояс</div>
+                                    <div class="opt-desc">Классический портрет</div>
+                                </div>
+                                <div class="opt-price">400</div>
+                            </div>
+                            <div class="order-option" data-price="700">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">В полный рост</div>
+                                    <div class="opt-desc">Полная фигура, детализация</div>
+                                </div>
+                                <div class="opt-price">700</div>
+                            </div>
+                            <div class="order-option" data-price="1200">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Сцена</div>
+                                    <div class="opt-desc">Сложная сцена, несколько фигур</div>
+                                </div>
+                                <div class="opt-price">1 200</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Уровень детализации -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">3</span>Детализация</div>
+                        <div class="order-options" data-group="detail">
+                            <div class="order-option" data-price="0">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Эскиз</div>
+                                    <div class="opt-desc">Быстрый набросок, линии</div>
+                                </div>
+                                <div class="opt-price">0</div>
+                            </div>
+                            <div class="order-option" data-price="300">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Стандарт</div>
+                                    <div class="opt-desc">Проработанный арт, тени, цвет</div>
+                                </div>
+                                <div class="opt-price">300</div>
+                            </div>
+                            <div class="order-option" data-price="800">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Премиум</div>
+                                    <div class="opt-desc">Максимум деталей, текстуры, свет</div>
+                                </div>
+                                <div class="opt-price">800</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Доп. опции -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">4</span>Дополнительно</div>
+                        <div class="order-options" data-group="extra">
+                            <div class="order-option" data-price="200">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">18+ контент</div>
+                                    <div class="opt-desc">Обнажённая натура, откровенно</div>
+                                </div>
+                                <div class="opt-price">200</div>
+                            </div>
+                            <div class="order-option" data-price="300">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Фетиш-элемент</div>
+                                    <div class="opt-desc">По вашему запросу (бдсм, латекс и т.д.)</div>
+                                </div>
+                                <div class="opt-price">300</div>
+                            </div>
+                            <div class="order-option" data-price="500">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Срочно (24ч)</div>
+                                    <div class="opt-desc">Ускоренная работа, без очереди</div>
+                                </div>
+                                <div class="opt-price">500</div>
+                            </div>
+                            <div class="order-option" data-price="400">
+                                <div class="check">✓</div>
+                                <div class="opt-body">
+                                    <div class="opt-name">Коммерческое использование</div>
+                                    <div class="opt-desc">Права на публикацию</div>
+                                </div>
+                                <div class="opt-price">400</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Описание заказа -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">5</span>Описание заказа</div>
+                        <div class="order-textarea-wrap">
+                            <textarea class="order-textarea" id="orderDesc" maxlength="1500" placeholder="Опишите, что вы хотите увидеть: персонажи, поза, атмосфера, настроение, детали. Чем подробнее — тем лучше художник поймёт задумку. Упомяните, если это ваш персонаж или конкретный запрос."></textarea>
+                            <div class="char-count"><span id="charCount">0</span> / 1500</div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Референсы (заглушка) -->
+                    <div class="order-section">
+                        <div class="order-section-title"><span class="num">6</span>Референсы <span style="opacity:0.5;font-size:0.6rem;letter-spacing:2px;">(необязательно)</span></div>
+                        <div class="order-refs">
+                            <div class="order-ref-add" id="refAdd" title="Добавить референс">+</div>
+                        </div>
+                        <div class="order-ref-hint">Загрузите примеры — позы, стиль, цвета, персонажи.</div>
+                    </div>
+
+                </div>
+
+                <div class="order-footer">
+                    <div class="order-total">
+                        <div class="total-label">Итого к оплате</div>
+                        <div class="total-value"><span id="orderTotal">0</span><span class="unit">FEN</span></div>
+                        <div class="total-usdt">≈ <span class="usdt-icon">₮</span><span id="orderTotalUsdt">0.00</span> USDT</div>
+                    </div>
+                    <button class="order-submit" id="orderSubmit" type="button" disabled>Оформить заказ</button>
+                </div>
+
+            </div>
+
+            <!-- Экран успеха -->
+            <div class="order-success" id="orderSuccess">
+                <div class="success-icon">✓</div>
+                <h3>Заказ оформлен</h3>
+                <p>Художник получил ваш заказ. Он свяжется с вами в течение 24 часов для уточнения деталей.</p>
+                <div class="order-number">Заказ №<span id="orderNumber">0000</span></div>
+                <button class="success-btn" id="successClose" type="button">Вернуться к галерее</button>
+            </div>
+
+        </div>
+    </div>
+
     <script>
+        /* Пыль */
         (function dustBg(){
             const c = document.getElementById('dustBg');
             if (!c) return;
@@ -2223,6 +2851,7 @@
             }
         })();
 
+        /* Кошелёк */
         const walletBtn = document.getElementById('walletBtn');
         const walletDropdown = document.getElementById('walletDropdown');
         const depositBtn = document.getElementById('depositBtn');
@@ -2280,9 +2909,12 @@
             return n.toString();
         }
 
+        let currentAuthor = '';
+
         function openLightbox(card) {
             lbTitle.textContent = card.dataset.title || 'Без названия';
             const author = card.dataset.author || 'Аноним';
+            currentAuthor = author;
             lbAuthorName.textContent = author;
             lbAuthorAvatar.textContent = author.charAt(0).toUpperCase();
             lbAuthorSubs.textContent = formatNumber(Math.floor(Math.random() * 30000) + 500) + ' подписчиков';
@@ -2322,7 +2954,7 @@
 
         lbClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && !orderModal.classList.contains('active')) closeLightbox(); });
 
         lbLike.addEventListener('click', e => {
             e.stopPropagation();
@@ -2334,7 +2966,105 @@
             lbSubscribe.classList.toggle('subscribed');
             lbSubscribe.textContent = lbSubscribe.classList.contains('subscribed') ? 'Вы подписаны' : 'Подписаться';
         });
-        lbOrder.addEventListener('click', e => { e.stopPropagation(); alert('Форма заказа арта — в следующей версии ✦'); });
+
+        /* ---- ЗАКАЗ ---- */
+        const orderModal = document.getElementById('orderModal');
+        const orderClose = document.getElementById('orderClose');
+        const orderSubmit = document.getElementById('orderSubmit');
+        const orderTotalEl = document.getElementById('orderTotal');
+        const orderTotalUsdtEl = document.getElementById('orderTotalUsdt');
+        const orderDescEl = document.getElementById('orderDesc');
+        const charCountEl = document.getElementById('charCount');
+        const orderContent = document.getElementById('orderContent');
+        const orderSuccess = document.getElementById('orderSuccess');
+        const orderNumber = document.getElementById('orderNumber');
+        const successClose = document.getElementById('successClose');
+        const orderAuthorEl = document.getElementById('orderAuthor');
+        const refAdd = document.getElementById('refAdd');
+
+        let selectedTotal = 0;
+
+        function recalcTotal() {
+            let sum = 0;
+            document.querySelectorAll('.order-option.checked').forEach(o => {
+                sum += parseInt(o.dataset.price, 10) || 0;
+            });
+            selectedTotal = sum;
+            orderTotalEl.textContent = sum.toLocaleString('ru-RU');
+            orderTotalUsdtEl.textContent = (sum / 100).toFixed(2);
+            orderSubmit.disabled = sum === 0;
+        }
+
+        /* Клик на опцию */
+        document.querySelectorAll('.order-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                const group = opt.parentElement.dataset.group;
+                // Для одиночных групп — снимаем выделение с других
+                if (group === 'style' || group === 'format' || group === 'detail') {
+                    opt.parentElement.querySelectorAll('.order-option').forEach(o => o.classList.remove('checked'));
+                    opt.classList.add('checked');
+                } else {
+                    // Для extra — мультивыбор
+                    opt.classList.toggle('checked');
+                }
+                recalcTotal();
+            });
+        });
+
+        /* Открытие окна заказа */
+        lbOrder.addEventListener('click', e => {
+            e.stopPropagation();
+            orderAuthorEl.textContent = currentAuthor;
+
+            // сброс
+            document.querySelectorAll('.order-option').forEach(o => o.classList.remove('checked'));
+            orderDescEl.value = '';
+            charCountEl.textContent = '0';
+            recalcTotal();
+            orderContent.style.display = 'flex';
+            orderSuccess.classList.remove('active');
+
+            closeLightbox();
+            orderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        /* Закрытие окна заказа */
+        function closeOrder() {
+            orderModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        orderClose.addEventListener('click', closeOrder);
+        orderModal.addEventListener('click', e => { if (e.target === orderModal) closeOrder(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && orderModal.classList.contains('active')) closeOrder(); });
+
+        successClose.addEventListener('click', closeOrder);
+
+        /* Счётчик символов */
+        orderDescEl.addEventListener('input', () => {
+            charCountEl.textContent = orderDescEl.value.length;
+        });
+
+        /* Добавить референс */
+        refAdd.addEventListener('click', () => {
+            alert('Загрузка референсов — в следующей версии ✦');
+        });
+
+        /* Оформить заказ */
+        orderSubmit.addEventListener('click', () => {
+            if (selectedTotal === 0) return;
+
+            // Генерируем номер заказа
+            const num = Math.floor(Math.random() * 9000) + 1000;
+            orderNumber.textContent = 'FEN-' + num;
+
+            // Показываем экран успеха
+            orderContent.style.display = 'none';
+            orderSuccess.classList.add('active');
+        });
+
+        /* Другие кнопки */
         lbFav.addEventListener('click', e => { e.stopPropagation(); alert('Добавлено в избранное ✦'); });
         lbShare.addEventListener('click', e => {
             e.stopPropagation();
